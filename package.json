@@ -1,0 +1,36 @@
+{
+	"name": "jewelery-co-upwork",
+	"version": "1.0.0",
+	"description": "Create a webpage (that looks good on mobile as well) where a product is chosen, a series of fields is filled out, and a PDF is produced. One of the fields will be an email and the PDF should be mailed there. This site should be password protected. Fields should be stored to MongoDB as well as users, of course.",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon ./bin/www",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/pmocal/jewelery-co-upwork.git"
+	},
+	"author": "Parthiv Mohan",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/pmocal/jewelery-co-upwork/issues"
+	},
+	"homepage": "https://github.com/pmocal/jewelery-co-upwork#readme",
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"cookie-parser": "~1.4.4",
+		"debug": "~2.6.9",
+		"dotenv": "^8.2.0",
+		"express": "~4.16.1",
+		"express-session": "^1.17.0",
+		"express-validator": "^6.3.1",
+		"hbs": "~4.0.4",
+		"http-errors": "~1.6.3",
+		"mongoose": "^5.8.6",
+		"morgan": "~1.9.1",
+		"nodemon": "^2.0.2",
+		"passport": "^0.4.1",
+		"passport-local": "^1.0.0"
+	}
+}
