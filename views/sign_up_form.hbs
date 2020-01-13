@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{title}}</title>
+</head>
+<body>
+  <h1>Sign Up</h1>
+  <form action="" method="POST">
+    {{#if user}}
+      <input name="username" placeholder="username" type="text" value="{{user.username}}" />
+      <label for="password">Password</label>
+      <input name="password" type="password" />
+      <label for="passwordConfirmation">Password confirmation</label>
+      <input name="passwordConfirmation" type="password" />
+      <input name="codename" type="text" />
+    {{else}}
+      <label for="username">Username</label>
+      <input name="username" placeholder="username" type="text" />
+      <label for="password">Password</label>
+      <input name="password" type="password" />
+      <label for="passwordConfirmation">Password confirmation</label>
+      <input name="passwordConfirmation" type="password" />
+      <input name="codename" type="text" />
+    {{/if}}
+    <button>Sign Up</button>
+  </form>
+  {{#if errors}}
+    <ul>
+      {{#each errors}}
+        <li>{{this.msg}}</li>
+      {{/each}}
+    </ul>
+  {{/if}}
+</body>
+</html>
