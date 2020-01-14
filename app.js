@@ -11,6 +11,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 const mongoose = require("mongoose");
+var hbs = require('hbs');
 const Schema = mongoose.Schema;
 
 const mongoDb = "mongodb+srv://" + process.env.DB_USER + ":" + 
@@ -26,6 +27,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 var User = require('./models/user');
 var user_controller = require('./controllers/userController');

@@ -7,15 +7,15 @@ var JewelerySchema = new Schema(
 		customerInfo: {type: String, required: true},
 		description: {type: String, required: true},
 		stoneType: { type: String, required: true },
-		jeweleryWeight: {type: Boolean, required: true},
-		totalStones: {type: Boolean, required: true},
-		comments: {type: Boolean, required: true},
-		serialNumber: {type: Boolean, required: true},
-		metalType: {type: Boolean, required: true},
-		caratWeight: {type: Boolean, required: true},
-		colorGrade: {type: Boolean, required: true},
-		clarityGrade: {type: Boolean, required: true},
-		estimatedRetailReplacementValue: {type: Boolean, required: true}
+		jeweleryWeight: {type: String, required: true},
+		totalStones: {type: String, required: true},
+		comments: {type: String, required: true},
+		serialNumber: {type: String, required: true},
+		metalType: {type: String, required: true},
+		caratWeight: {type: String, required: true},
+		colorGrade: {type: String, required: true},
+		clarityGrade: {type: String, required: true},
+		estimatedRetailReplacementValue: {type: String, required: true}
 	}
 )
 

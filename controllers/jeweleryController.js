@@ -1,6 +1,7 @@
 var Jewelery = require('../models/jewelery');
 const { check,validationResult } = require('express-validator');
 const { sanitizeBody } = require('express-validator');
+var path = require('path');
 
 exports.jewelery_list = function(req, res, next) {
 	Jewelery.find()
@@ -15,7 +16,7 @@ exports.jewelery_list = function(req, res, next) {
 //display detail page for a specific author
 exports.jewelery_detail = function(req, res, next) {
 	Jewelery.findById(req.params.id)
-		.exec(function(err, item) {
+		.exec(function(err, jewelery) {
 			if (err) {
 				return next(err);
 			}

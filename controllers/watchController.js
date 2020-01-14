@@ -1,6 +1,7 @@
 var Watch = require('../models/watch');
 const { check,validationResult } = require('express-validator');
 const { sanitizeBody } = require('express-validator');
+var path = require('path');
 
 exports.watch_list = function(req, res, next) {
 	Watch.find()
@@ -15,7 +16,7 @@ exports.watch_list = function(req, res, next) {
 //display detail page for a specific author
 exports.watch_detail = function(req, res, next) {
 	Watch.findById(req.params.id)
-		.exec(function(err, item) {
+		.exec(function(err, watch) {
 			if (err) {
 				return next(err);
 			}
