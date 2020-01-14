@@ -7,7 +7,7 @@ var JewelerySchema = new Schema(
 		customerInfo: {type: String, required: true},
 		description: {type: String, required: true},
 		stoneType: { type: String, required: true },
-		jewleryWeight: {type: Boolean, required: true},
+		jeweleryWeight: {type: Boolean, required: true},
 		totalStones: {type: Boolean, required: true},
 		comments: {type: Boolean, required: true},
 		serialNumber: {type: Boolean, required: true},
@@ -18,5 +18,11 @@ var JewelerySchema = new Schema(
 		estimatedRetailReplacementValue: {type: Boolean, required: true}
 	}
 )
+
+JewelerySchema
+.virtual('url')
+.get(function() {
+	return '/jewelery/' + this._id;
+});
 
 module.exports = mongoose.model('Jewelery', JewelerySchema);

@@ -23,4 +23,10 @@ var WatchSchema = new Schema(
 	}
 )
 
-module.exports = mongoose.model('Jewelery', JewelerySchema);
+WatchSchema
+.virtual('url')
+.get(function() {
+	return '/watches/' + this._id;
+});
+
+module.exports = mongoose.model('Watch', WatchSchema);
