@@ -1,14 +1,30 @@
 <body>
 	{{#if user}}
-		<h1>Welcome {{user.username}}</h1>
-		<a href="/jewelery/all">View past jewelery appraisals</a>
-		<a href="/watches/all">View past watch appraisals</a>
-		<a href="/jewelery/create">Create new jewelery appraisal</a>
-		<a href="/watches/create">Create new watch appraisal</a>
-		<a href="/log-out">Log Out</a>
+		<div class="row1">
+			<h1>Welcome {{user.username}}</h1>
+		</div>
+		<div class="row2">
+			<div class="link1">
+				<a href="/jewelery/all">View past jewelery appraisals</a>
+			</div>
+			<div class="link2">
+				<a href="/watches/all">View past watch appraisals</a>
+			</div>
+			<div class="link3">
+				<a href="/jewelery/create">Create new jewelery appraisal</a>
+			</div>
+			<div class="link4">
+				<a href="/watches/create">Create new watch appraisal</a>
+			</div>
+		</div>
+		<div class="row3">
+			<a href="/log-out">Log Out</a>
+		</div>
 	{{else}}
-		<h1>Log In</h1>
-		<div>
+		<div class="row1">
+			<h1>Log In</h1>
+		</div>
+		<div class="login-row">
 			<form action="/log-in" method="POST">
 				<label for="username">Username</label>
 				<input name="username" placeholder="username" type="text" />
@@ -17,7 +33,7 @@
 				<button>Log In</button>
 			</form>
 		</div>
-		<div>
+		<div class="row3">
 			<a href="/sign-up">Sign up</a>
 		</div>
 	{{/if}}

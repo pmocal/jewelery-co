@@ -4,8 +4,8 @@ html, body {
 
 body {
 	display: grid;
-	grid-template-columns: 33% 33% 33%;
-	grid-template-rows: 40% 30% 30%;
+	grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+	grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
 }
 
 body * {
@@ -13,12 +13,51 @@ body * {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	color: #2c3e50;
-	display: block;
-	margin: 5%;
+	margin: 2%;
 }
 
-h1 {
+.row1 {
 	grid-column-start: 1;
-	grid-column-end: 4;
+	grid-column-end: 11;
 	grid-row-start: 1;
+	grid-row-end: 4;
+}
+
+.row2 {
+	grid-column-start: 1;
+	grid-column-end: 11;
+	grid-row-start: 4;
+	grid-row-end: 8;
+}
+
+.link1 {
+	grid-row-start: 4;
+	grid-row-end: 5;
+}
+
+.link2 {
+	grid-row-start: 5;
+	grid-row-end: 6;
+}
+
+.link3 {
+	grid-row-start: 6;
+	grid-row-end: 7;
+}
+
+.link4 {
+	grid-row-start: 7;
+	grid-row-end: 8;
+}
+
+.row3 {
+	grid-column-start: 1;
+	grid-column-end: 11;
+	grid-row-start: 8;
+	grid-row-end: 10;
+}
+
+.login-row {
+	grid-column-start: 5;
+	grid-column-end: 6;
 }
