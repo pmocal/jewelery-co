@@ -44,19 +44,6 @@ exports.jewelery_create_post = [
 	check('clarityGrade', 'Clarity Grade must not be empty').isLength({ min: 1 }).trim(),
 	check('estimatedRetailReplacementValue', 'Estimated retail replacement value must not be empty').isLength({ min: 1 }).trim(),
 	// Sanitize fields (using wildcard).
-	sanitizeBody('reportId').escape(),
-	sanitizeBody('customerInfo').escape(),
-	sanitizeBody('description').escape(),
-	sanitizeBody('stoneType').escape(),
-	sanitizeBody('jeweleryWeight').escape(),
-	sanitizeBody('totalStones').escape(),
-	sanitizeBody('comments').escape(),
-	sanitizeBody('serialNumber').escape(),
-	sanitizeBody('metalType').escape(),
-	sanitizeBody('caratWeight').escape(),
-	sanitizeBody('colorGrade').escape(),
-	sanitizeBody('clarityGrade').escape(),
-	sanitizeBody('estimatedRetailReplacementValue').escape(),
 	// Process request after validation and sanitization.
 	(req, res, next) => {
 		
@@ -161,19 +148,6 @@ exports.jewelery_update_post = [
 	check('clarityGrade', 'Clarity Grade must not be empty').isLength({ min: 1 }).trim(),
 	check('estimatedRetailReplacementValue', 'Estimated retail replacement value must not be empty').isLength({ min: 1 }).trim(),
 	// Sanitize fields (using wildcard).
-	sanitizeBody('reportId').escape(),
-	sanitizeBody('customerInfo').escape(),
-	sanitizeBody('description').escape(),
-	sanitizeBody('stoneType').escape(),
-	sanitizeBody('jeweleryWeight').escape(),
-	sanitizeBody('totalStones').escape(),
-	sanitizeBody('comments').escape(),
-	sanitizeBody('serialNumber').escape(),
-	sanitizeBody('metalType').escape(),
-	sanitizeBody('caratWeight').escape(),
-	sanitizeBody('colorGrade').escape(),
-	sanitizeBody('clarityGrade').escape(),
-	sanitizeBody('estimatedRetailReplacementValue').escape(),
 	// Process request after validation and sanitization.
 	(req, res, next) => {
 		
