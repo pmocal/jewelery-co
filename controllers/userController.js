@@ -4,10 +4,10 @@ const { sanitizeBody } = require('express-validator');
 const bcrypt = require("bcryptjs");
 
 exports.index = (req, res) => { 
-	res.render("index", { user: req.user });
+	res.render("index", { user: req.user, title: "Manhattan Gemological Appraisals" });
 };
 
-exports.sign_up_get = (req, res) => res.render("sign_up_form", { title: "Sign up form" });
+exports.sign_up_get = (req, res) => res.render("sign_up_form", { title: "Sign up" });
 
 exports.sign_up_post = [
 	// Validate fields.
@@ -35,7 +35,7 @@ exports.sign_up_post = [
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
 			// There are errors. Render form again with sanitized values/error messages.
-			res.render('sign_up_form', { title: "Signup form", user: user, errors: errors.array() });
+			res.render('sign_up_form', { title: "Sign Up", user: user, errors: errors.array() });
 			// , { title: 'Create Item', item: item, errors: errors.array() });
 		}
 		else {

@@ -118,7 +118,7 @@ exports.watch_delete_get = function(req, res, next) {
 				err.status = 404;
 				return next(err);
 			}
-			res.render('watch_delete', { title: 'Watch Delete', watch: watch });
+			res.render('watch_delete', { title: 'Delete Watch', watch: watch });
 		})
 }
 

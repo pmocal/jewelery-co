@@ -95,7 +95,7 @@ exports.jewelery_delete_get = function(req, res, next) {
 				err.status = 404;
 				return next(err);
 			}
-			res.render('jewelery_delete', { title: 'Jewelery Delete', jewelery: jewelery });
+			res.render('jewelery_delete', { title: 'Delete Jewelery', jewelery: jewelery });
 		})
 }
 

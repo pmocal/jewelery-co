@@ -1,27 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>{{title}}</title>
-	</head>
-	<body>
-		{{#if user}}
-			<h1>Welcome {{user.username}}</h1>
-			<a href="/jewelery/all">View past jewelery appraisals</a>
-			<a href="/watches/all">View past watch appraisals</a>
-			<a href="/jewelery/create">Create new jewelery appraisal</a>
-			<a href="/watches/create">Create new watch appraisal</a>
-			<a href="/log-out">Log Out</a>
-		{{else}}
-			<h1>please log in</h1>
+<body>
+	{{#if user}}
+		<h1>Welcome {{user.username}}</h1>
+		<a href="/jewelery/all">View past jewelery appraisals</a>
+		<a href="/watches/all">View past watch appraisals</a>
+		<a href="/jewelery/create">Create new jewelery appraisal</a>
+		<a href="/watches/create">Create new watch appraisal</a>
+		<a href="/log-out">Log Out</a>
+	{{else}}
+		<h1>Log In</h1>
+		<div>
 			<form action="/log-in" method="POST">
 				<label for="username">Username</label>
 				<input name="username" placeholder="username" type="text" />
 				<label for="password">Password</label>
 				<input name="password" type="password" />
 				<button>Log In</button>
-				<a href="/sign-up">Sign up</a>
 			</form>
-		{{/if}}
-	</body>
-</html>
+		</div>
+		<div>
+			<a href="/sign-up">Sign up</a>
+		</div>
+	{{/if}}
+</body>
