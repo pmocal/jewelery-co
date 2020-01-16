@@ -38,24 +38,8 @@ body * {
 	grid-row-end: 5;
 }
 
-.link1 {
-	grid-column-start: 1;
-	grid-column-end: 11;
-}
-
-.link2 {
-	grid-column-start: 1;
-	grid-column-end: 11;
-}
-
-.link3 {
-	grid-column-start: 1;
-	grid-column-end: 11;
-}
-
-.link4 {
-	grid-column-start: 1;
-	grid-column-end: 11;
+.row2 ul {
+	padding-left: 5%;
 }
 
 .row3 {
@@ -71,7 +55,6 @@ body * {
 	grid-row-start: 2;
 	grid-row-end: 5;
 	text-align: center;
-	font-size: 175%;
 }
 
 .signupform {
@@ -82,9 +65,11 @@ body * {
 	text-align: center;
 }
 
-form button {
-	margin-top: 4%;
+div button {
+	margin-top: 3%;
 	margin-left: 1%;
+	width: 10%;
+	font-size: 50%;
 }
 
 .inline {
@@ -93,4 +78,48 @@ form button {
 
 .inline * {
 	display: inline;
+}
+
+.detail {
+	grid-column-start: 1;
+	grid-column-end: 11;
+	grid-row-start: 2;
+	grid-row-end: 6;
+	text-align: center;
+	padding: 0%;
+}
+
+.detail-watch {
+	padding-top: 10%;
+	grid-column-start: 1;
+	grid-column-end: 11;
+	grid-row-end: 6;
+	text-align: center;
+	padding: 0%;
+}
+
+.logged-in {
+	grid-column-start: 1;
+	grid-column-end: 11;
+	grid-row-start: 2;
+	grid-row-end: 6;
+	text-align: center;
+	padding: 1%;
+}
+
+.logged-in a {
+	display: block;
+}
+
+input {
+	font-size: 50%;
+}
+
+.detail * {
+	padding: 0%;
+}
+
+.detail button {
+	padding: 0.5% 0;
+	margin-bottom: 2%;
 }

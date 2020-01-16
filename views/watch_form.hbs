@@ -1,113 +1,155 @@
-<h1>{{title}}</h1>
-<form method="POST" action=''>
-	<label for="reportId">Report ID: </label>
-	{{#if watch}}
-		<input id="reportId" type="text" name="reportId" value="{{watch.reportId}}">
-	{{else}}
-		<input id="reportId" type="text" name="reportId">
-	{{/if}}
-	<label for="customerInfo">Customer Info: </label>
-	{{#if watch}}
-		<input id="customerInfo" type="text" name="customerInfo" value="{{watch.customerInfo}}">
-	{{else}}
-		<input id="customerInfo" type="text" name="customerInfo">
-	{{/if}}
-	<label for="brand">Brand: </label>
-	{{#if watch}}
-		<input id="brand" type="text" name="brand" value="{{watch.brand}}">
-	{{else}}
-		<input id="brand" type="text" name="brand">
-	{{/if}}
-	<label for="referenceNumber">Reference Number: </label>
-	{{#if watch}}
-		<input id="referenceNumber" type="text" name="referenceNumber" value="{{watch.referenceNumber}}">
-	{{else}}
-		<input id="referenceNumber" type="text" name="referenceNumber">
-	{{/if}}
-	<label for="serialNumber">Serial Number: </label>
-	{{#if watch}}
-		<input id="serialNumber" type="text" name="serialNumber" value="{{watch.serialNumber}}">
-	{{else}}
-		<input id="serialNumber" type="text" name="serialNumber">
-	{{/if}}
-	<label for="model">Model: </label>
-	{{#if watch}}
-		<input id="model" type="text" name="model" value="{{watch.model}}">
-	{{else}}
-		<input id="model" type="text" name="model">
-	{{/if}}
-	<label for="movement">Movement: </label>
-	{{#if watch}}
-		<input id="movement" type="text" name="movement" value="{{watch.movement}}">
-	{{else}}
-		<input id="movement" type="text" name="movement">
-	{{/if}}
-	<label for="caseDiameter">Case Diameter: </label>
-	{{#if watch}}
-		<input id="caseDiameter" type="text" name="caseDiameter" value="{{watch.caseDiameter}}">
-	{{else}}
-		<input id="caseDiameter" type="text" name="caseDiameter">
-	{{/if}}
-	<label for="bezelMaterial">Bezel Material: </label>
-	{{#if watch}}
-		<input id="bezelMaterial" type="text" name="bezelMaterial" value="{{watch.bezelMaterial}}">
-	{{else}}
-		<input id="bezelMaterial" type="text" name="bezelMaterial">
-	{{/if}}
-	<label for="dial">Dial: </label>
-	{{#if watch}}
-		<input id="dial" type="text" name="dial" value="{{watch.dial}}">
-	{{else}}
-		<input id="dial" type="text" name="dial">
-	{{/if}}
-	<label for="braceletMaterial">Bracelet Material: </label>
-	{{#if watch}}
-		<input id="braceletMaterial" type="text" name="braceletMaterial" value="{{watch.braceletMaterial}}">
-	{{else}}
-		<input id="braceletMaterial" type="text" name="braceletMaterial">
-	{{/if}}
-	<label for="comments">Comments: </label>
-	{{#if watch}}
-		<input id="comments" type="text" name="comments" value="{{watch.comments}}">
-	{{else}}
-		<input id="comments" type="text" name="comments">
-	{{/if}}
-	<label for="claspMaterial">Clasp Material: </label>
-	{{#if watch}}
-		<input id="claspMaterial" type="text" name="claspMaterial" value="{{watch.claspMaterial}}">
-	{{else}}
-		<input id="claspMaterial" type="text" name="claspMaterial">
-	{{/if}}
-	<label for="functions">Functions: </label>
-	{{#if watch}}
-		<input id="functions" type="text" name="functions" value="{{watch.functions}}">
-	{{else}}
-		<input id="functions" type="text" name="functions">
-	{{/if}}
-	<label for="year">Year: </label>
-	{{#if watch}}
-		<input id="year" type="text" name="year" value="{{watch.year}}">
-	{{else}}
-		<input id="year" type="text" name="year">
-	{{/if}}
-	<label for="condition">Condition: </label>
-	{{#if watch}}
-		<input id="condition" type="text" name="condition" value="{{watch.condition}}">
-	{{else}}
-		<input id="condition" type="text" name="condition">
-	{{/if}}
-	<label for="estimatedRetailReplacementValue">Estimated Retail Replacement Value: </label>
-	{{#if watch}}
-		<input id="estimatedRetailReplacementValue" type="text" name="estimatedRetailReplacementValue" value="{{watch.estimatedRetailReplacementValue}}">
-	{{else}}
-		<input id="estimatedRetailReplacementValue" type="text" name="estimatedRetailReplacementValue">
-	{{/if}}
-	<button type="submit">Submit</button>
-</form>
-{{#if errors}}
-	<ul>
-		{{#each errors}}
-			<li>{{this.msg}}</li>
-		{{/each}}
-	</ul>
-{{/if}}
+<body>
+	<div class="row1">
+		<h1>{{title}}</h1>
+	</div>
+	<div class="detail">
+		<form method="POST" action=''>
+			<div class="inline">
+				<label for="reportId">Report ID: </label>
+				{{#if watch}}
+					<input id="reportId" type="text" name="reportId" value="{{watch.reportId}}">
+				{{else}}
+					<input id="reportId" type="text" name="reportId">
+				{{/if}}
+			</div>
+			<div class="inline">
+				<label for="customerInfo">Customer Info: </label>
+				{{#if watch}}
+					<input id="customerInfo" type="text" name="customerInfo" value="{{watch.customerInfo}}">
+				{{else}}
+					<input id="customerInfo" type="text" name="customerInfo">
+				{{/if}}
+			</div>
+			<div class="inline">
+				<label for="brand">Brand: </label>
+				{{#if watch}}
+					<input id="brand" type="text" name="brand" value="{{watch.brand}}">
+				{{else}}
+					<input id="brand" type="text" name="brand">
+				{{/if}}
+			</div>
+			<div class="inline">
+				<label for="referenceNumber">Reference Number: </label>
+				{{#if watch}}
+					<input id="referenceNumber" type="text" name="referenceNumber" value="{{watch.referenceNumber}}">
+				{{else}}
+					<input id="referenceNumber" type="text" name="referenceNumber">
+				{{/if}}
+			</div>
+			<div class="inline">
+				<label for="serialNumber">Serial Number: </label>
+				{{#if watch}}
+					<input id="serialNumber" type="text" name="serialNumber" value="{{watch.serialNumber}}">
+				{{else}}
+					<input id="serialNumber" type="text" name="serialNumber">
+				{{/if}}
+			</div>
+			<div class="inline">
+				<label for="model">Model: </label>
+				{{#if watch}}
+					<input id="model" type="text" name="model" value="{{watch.model}}">
+				{{else}}
+					<input id="model" type="text" name="model">
+				{{/if}}
+			</div>
+			<div class="inline">
+				<label for="movement">Movement: </label>
+				{{#if watch}}
+					<input id="movement" type="text" name="movement" value="{{watch.movement}}">
+				{{else}}
+					<input id="movement" type="text" name="movement">
+				{{/if}}
+			</div>
+			<div class="inline">
+				<label for="caseDiameter">Case Diameter: </label>
+				{{#if watch}}
+					<input id="caseDiameter" type="text" name="caseDiameter" value="{{watch.caseDiameter}}">
+				{{else}}
+					<input id="caseDiameter" type="text" name="caseDiameter">
+				{{/if}}
+			</div>
+			<div class="inline">
+				<label for="bezelMaterial">Bezel Material: </label>
+				{{#if watch}}
+					<input id="bezelMaterial" type="text" name="bezelMaterial" value="{{watch.bezelMaterial}}">
+				{{else}}
+					<input id="bezelMaterial" type="text" name="bezelMaterial">
+				{{/if}}
+			</div>
+			<div class="inline">
+				<label for="dial">Dial: </label>
+				{{#if watch}}
+					<input id="dial" type="text" name="dial" value="{{watch.dial}}">
+				{{else}}
+					<input id="dial" type="text" name="dial">
+				{{/if}}
+			</div>
+			<div class="inline">
+				<label for="braceletMaterial">Bracelet Material: </label>
+				{{#if watch}}
+					<input id="braceletMaterial" type="text" name="braceletMaterial" value="{{watch.braceletMaterial}}">
+				{{else}}
+					<input id="braceletMaterial" type="text" name="braceletMaterial">
+				{{/if}}
+			</div>
+			<div class="inline">
+				<label for="comments">Comments: </label>
+				{{#if watch}}
+					<input id="comments" type="text" name="comments" value="{{watch.comments}}">
+				{{else}}
+					<input id="comments" type="text" name="comments">
+				{{/if}}
+			</div>
+			<div class="inline">
+				<label for="claspMaterial">Clasp Material: </label>
+				{{#if watch}}
+					<input id="claspMaterial" type="text" name="claspMaterial" value="{{watch.claspMaterial}}">
+				{{else}}
+					<input id="claspMaterial" type="text" name="claspMaterial">
+				{{/if}}
+			</div>
+			<div class="inline">
+				<label for="functions">Functions: </label>
+				{{#if watch}}
+					<input id="functions" type="text" name="functions" value="{{watch.functions}}">
+				{{else}}
+					<input id="functions" type="text" name="functions">
+				{{/if}}
+			</div>
+			<div class="inline">
+				<label for="year">Year: </label>
+				{{#if watch}}
+					<input id="year" type="text" name="year" value="{{watch.year}}">
+				{{else}}
+					<input id="year" type="text" name="year">
+				{{/if}}
+			</div>
+			<div class="inline">
+				<label for="condition">Condition: </label>
+				{{#if watch}}
+					<input id="condition" type="text" name="condition" value="{{watch.condition}}">
+				{{else}}
+					<input id="condition" type="text" name="condition">
+				{{/if}}
+			</div>
+			<div class="inline">
+				<label for="estimatedRetailReplacementValue">Estimated Retail Replacement Value: </label>
+				{{#if watch}}
+					<input id="estimatedRetailReplacementValue" type="text" name="estimatedRetailReplacementValue" value="{{watch.estimatedRetailReplacementValue}}">
+				{{else}}
+					<input id="estimatedRetailReplacementValue" type="text" name="estimatedRetailReplacementValue">
+				{{/if}}
+			</div>
+			<div>
+				<button type="submit">Submit</button>
+			</div>
+		</form>
+		{{#if errors}}
+			<ul>
+				{{#each errors}}
+					<li>{{this.msg}}</li>
+				{{/each}}
+			</ul>
+		{{/if}}
+	</div>
+</body>
