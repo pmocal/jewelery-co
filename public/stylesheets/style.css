@@ -89,6 +89,10 @@ div button {
 	padding: 0%;
 }
 
+.detail-title {
+	font-size: 150%;
+}
+
 input {
 	font-size: 50%;
 }
