@@ -2,46 +2,46 @@
 	<div class="row1">
 		<h1>{{title}}</h1>
 	</div>
-	<form class="signupform" action="" method="POST">
-		{{#if user}}
-			<div class="link1">
-				<label for="username">Username</label>
-				<input name="username" placeholder="username" type="text" value="{{user.username}}" />
-			</div>
-			<div class="link2">
-				<label for="password">Password</label>
-				<input name="password" placeholder="password" type="password" />
-			</div>
-			<div class="link3">
-				<label for="passwordConfirmation">Password confirmation</label>
-				<input name="passwordConfirmation" placeholder="password" type="password" />
-			</div>
-			<div class="link4">
-				<label for="codename">Codename</label>
-				<input name="codename" placeholder="codename" type="text" />
-			</div>
-		{{else}}
-			<div class="link1">
-				<label for="username">Username</label>
-				<input name="username" placeholder="username" type="text" />
-			</div>
-			<div class="link2">
-				<label for="password">Password</label>
-				<input name="password" placeholder="password" type="password" />
-			</div>
-			<div class="link3">
-				<label for="passwordConfirmation">Password confirmation</label>
-				<input name="passwordConfirmation" placeholder="password" type="password" />
-			</div>
-			<div class="link4">
-				<label for="codename">Codename</label>
-				<input name="codename" placeholder="codename" type="text" />
-			</div>
-		{{/if}}
-		<div>
+	<div class="signupform">
+		<form action="" method="POST">
+			{{#if user}}
+				<p>
+					<label for="username">Username</label>
+					<input name="username" placeholder="username" type="text" value="{{user.username}}" />
+				</p>
+				<p>
+					<label for="password">Password</label>
+					<input name="password" placeholder="password" type="password" />
+				</p>
+				<p>
+					<label for="passwordConfirmation">Password confirmation</label>
+					<input name="passwordConfirmation" placeholder="password" type="password" />
+				</p>
+				<p>
+					<label for="codename">Codename</label>
+					<input name="codename" placeholder="codename" type="text" />
+				</p>
+			{{else}}
+				<p>
+					<label for="username">Username</label>
+					<input name="username" placeholder="username" type="text" />
+				</p>
+				<p>
+					<label for="password">Password</label>
+					<input name="password" placeholder="password" type="password" />
+				</p>
+				<p>
+					<label for="passwordConfirmation">Password confirmation</label>
+					<input name="passwordConfirmation" placeholder="password" type="password" />
+				</p>
+				<p>
+					<label for="codename">Codename</label>
+					<input name="codename" placeholder="codename" type="text" />
+				</p>
+			{{/if}}
 			<button>Sign Up</button>
-		</div>
-	</form>
+		</form>
+	</div>
 	{{#if errors}}
 		<ul>
 			{{#each errors}}

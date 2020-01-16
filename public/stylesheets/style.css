@@ -3,6 +3,7 @@ html, body {
 	font-size: 150%;
 	margin: 0%;
 	padding: 0%;
+	background-color: gainsboro;
 }
 
 body {
@@ -12,16 +13,48 @@ body {
 	grid-template-rows: 20% 20% 20% 20% 20%;
 }
 
-h1 {
-	font-size: 180%;
-}
-
 body * {
 	font-family: 'Avenir', Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	color: #2c3e50;
-	padding: 1%;
+	padding: 0.5%;
+}
+
+h1 {
+	font-size: 180%;
+	color: black;
+	font-weight: bold;
+}
+
+div button {
+	margin-top: 3%;
+	margin-left: 1%;
+	width: 30%;
+	font-size: 50%;
+}
+
+form {
+	display: table;
+	white-space: nowrap;
+}
+
+form p {
+	display: table-row;
+	text-align: right;
+}
+
+form label {
+	text-align: left;
+}
+
+form input {
+	font-size: 80%;
+	display: table-cell;
+}
+
+.inline {
+	display: block;
 }
 
 .row1 {
@@ -65,47 +98,17 @@ body * {
 	text-align: center;
 }
 
-div button {
-	margin-top: 3%;
-	margin-left: 1%;
-	width: 10%;
-	font-size: 50%;
-}
-
-.inline {
-	display: block;
-}
-
-.inline * {
-	display: inline;
-}
-
-.detail {
+.merchandise {
 	grid-column-start: 1;
 	grid-column-end: 11;
 	grid-row-start: 2;
 	grid-row-end: 6;
-	text-align: center;
-	padding: 0%;
 }
 
-.detail-title {
+.merchandise-title {
 	font-size: 150%;
 }
 
-input {
-	font-size: 50%;
-}
-
-.details {
+.merchandise-items {
 	font-size: 60%;
-}
-
-.detail * {
-	padding: 0%;
-}
-
-.detail button {
-	padding: 0.5% 0;
-	margin-bottom: 2%;
 }
