@@ -13,7 +13,7 @@ body {
 }
 
 h1 {
-	font-size: 200%;
+	font-size: 180%;
 }
 
 body * {
@@ -89,30 +89,12 @@ div button {
 	padding: 0%;
 }
 
-.detail-watch {
-	padding-top: 10%;
-	grid-column-start: 1;
-	grid-column-end: 11;
-	grid-row-end: 6;
-	text-align: center;
-	padding: 0%;
-}
-
-.logged-in {
-	grid-column-start: 1;
-	grid-column-end: 11;
-	grid-row-start: 2;
-	grid-row-end: 6;
-	text-align: center;
-	padding: 1%;
-}
-
-.logged-in a {
-	display: block;
-}
-
 input {
 	font-size: 50%;
+}
+
+.details {
+	font-size: 60%;
 }
 
 .detail * {
