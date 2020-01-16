@@ -1,5 +1,8 @@
 html, body {
 	height: 100%;
+	font-size: 120%;
+	margin: 0%;
+	padding: 0%;
 }
 
 body {
@@ -8,12 +11,16 @@ body {
 	grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
 }
 
+h1 {
+	font-size: 170%;
+}
+
 body * {
 	font-family: 'Avenir', Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	color: #2c3e50;
-	margin: 2%;
+	padding: 1%;
 }
 
 .row1 {
@@ -31,21 +38,29 @@ body * {
 }
 
 .link1 {
+	grid-column-start: 1;
+	grid-column-end: 11;
 	grid-row-start: 4;
 	grid-row-end: 5;
 }
 
 .link2 {
+	grid-column-start: 1;
+	grid-column-end: 11;
 	grid-row-start: 5;
 	grid-row-end: 6;
 }
 
 .link3 {
+	grid-column-start: 1;
+	grid-column-end: 11;
 	grid-row-start: 6;
 	grid-row-end: 7;
 }
 
 .link4 {
+	grid-column-start: 1;
+	grid-column-end: 11;
 	grid-row-start: 7;
 	grid-row-end: 8;
 }
@@ -54,10 +69,34 @@ body * {
 	grid-column-start: 1;
 	grid-column-end: 11;
 	grid-row-start: 8;
-	grid-row-end: 10;
+	grid-row-end: 11;
 }
 
 .login-row {
-	grid-column-start: 5;
-	grid-column-end: 6;
+	grid-column-start: 4;
+	grid-column-end: 8;
+	grid-row-start: 4;
+	grid-row-end: 8;
+	text-align: center;
+}
+
+.signupform {
+	grid-column-start: 4;
+	grid-column-end: 8;
+	grid-row-start: 4;
+	grid-row-end: 11;
+	text-align: center;
+}
+
+form button {
+	margin-top: 4%;
+	margin-left: 1%;
+}
+
+.inline {
+	display: block;
+}
+
+.inline * {
+	display: inline;
 }
