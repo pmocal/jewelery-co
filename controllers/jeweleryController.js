@@ -9,7 +9,7 @@ exports.jewelery_list = function(req, res, next) {
 			if (err) {
 				return next(err);
 			}
-			res.render('jewelery_list', { title: 'Jewelery List', jewelery_list: list_jewelery});
+			res.render('jewelery_list', { title: 'Jewelery List', jewelery_list: list_jewelery });
 		})
 }
 
@@ -112,7 +112,7 @@ exports.jewelery_delete_post = function(req, res, next) {
 			} else{
 				Jewelery.findByIdAndRemove(req.params.id, function deleteItem(err) {
 					if (err) { return next(err); }
-					res.redirect('/jewelery');
+					res.redirect('/jewelery/all');
 				})
 			}
 		})

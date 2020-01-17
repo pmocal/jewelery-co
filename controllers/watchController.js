@@ -135,7 +135,7 @@ exports.watch_delete_post = function(req, res, next) {
 			} else{
 				Watch.findByIdAndRemove(req.params.id, function deleteItem(err) {
 					if (err) { return next(err); }
-					res.redirect('/watches');
+					res.redirect('/watches/all');
 				})
 			}
 		})
