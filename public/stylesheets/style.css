@@ -139,8 +139,8 @@ form button {
 }
 
 .merchandise-photo {
-	height: 1fr;
-	width: 1fr;
+	height: 300px;
+	width: 300px;
 }
 
 .footer * {
