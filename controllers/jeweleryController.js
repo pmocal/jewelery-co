@@ -52,8 +52,10 @@ exports.jewelery_create_post = [
 	(req, res, next) => {
 		if (req.file != null) {
 			const tempPath = req.file.path;
-			const targetPath = path.join(__dirname, "../public/uploads/" + req.body.reportId + ".png");
-			if (path.extname(req.file.originalname).toLowerCase() === ".png") {
+			var fileEnding = tempPath.match(/\.[0-9a-z]{1,5}$/i);
+			var targetPath;
+			if (path.extname(req.file.originalname).toLowerCase() === ".jpg") {
+				targetPath = path.join(__dirname, "../public/uploads/" + req.body.reportId + ".jpg");
 				fs.rename(tempPath, targetPath, err => {
 					if (err) return next(err);
 			  	});
@@ -62,7 +64,7 @@ exports.jewelery_create_post = [
 					if (err) return next(err);
 					res.status(403)
 						.contentType("text/plain")
-						.end("Only .png files are allowed!");
+						.end("Only .jpg files are allowed!");
 				});
 			}
 		}
