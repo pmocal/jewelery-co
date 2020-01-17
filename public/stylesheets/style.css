@@ -4,23 +4,19 @@ html, body {
 	margin: 0%;
 	padding: 0%;
 	background-color: gainsboro;
-}
-
-body {
-	display: grid;
-	align-items: center;
-	display: grid;  
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;  
-	grid-template-rows: minmax(200px auto) minmax(200px auto) minmax(200px auto) minmax(200px auto) minmax(200px auto);  
-	grid-gap: 10px;
-}
-
-body * {
 	font-family: 'Avenir', Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	color: #2c3e50;
-	padding: 0.5%;
+}
+
+body {
+	align-items: center;
+	text-align: center;
+	display: grid;  
+	grid-template-columns: minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr);
+	grid-template-rows: minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr);  
+	grid-gap: 10px;
 }
 
 h1 {
@@ -29,96 +25,74 @@ h1 {
 	font-weight: bold;
 }
 
-div button {
-	margin-top: 3%;
-	margin-left: 1%;
-	width: 30%;
-	font-size: 50%;
-}
-
 form {
 	display: table;
-	white-space: nowrap;
+	width: 100%;
+	text-align: right;
+	font-size:0.8em;
+}
+
+form * {
+	padding: 1%;
+	margin: 1%;
 }
 
 form p {
 	display: table-row;
-	text-align: right;
 }
 
 form label {
 	text-align: left;
+	display: table-cell;
 }
 
 form input {
 	font-size: 0.8em;
 	display: table-cell;
+	text-align: right;
+}
+
+form button {
+	text-align: right;
+	font-size: 0.8em;
 }
 
 .inline {
 	display: block;
 }
 
-.row1 {
+.col12 {
 	grid-column-start: 1;
-	grid-column-end: 6;
+	grid-column-end: 3;
+}
+
+.col23 {
+	grid-column-start: 2;
+	grid-column-end: 4;
+}
+
+.row1 {
 	grid-row-start: 1;
 	grid-row-end: 2;
 }
 
-.row2 {
-	grid-column-start: 1;
-	grid-column-end: 6;
-	grid-row-start: 2;
-	grid-row-end: 4;
-}
-
-.errorMessage {
-	grid-column-start: 1;
-	grid-column-end: 6;
+.row12 { /*error title*/
 	grid-row-start: 1;
 	grid-row-end: 3;
 }
 
-.errorStack {
-	grid-column-start: 1;
-	grid-column-end: 6;
-	grid-row-start: 3;
-	grid-row-end: 6;
+.row23 {
+	grid-row-start: 2;
+	grid-row-end: 4;
 }
 
-.row2 ul {
+.row23 ul { /*detail page*/
 	padding-left: 5%;
 }
 
-.row3 {
-	grid-column-start: 1;
-	grid-column-end: 6;
-	grid-row-start: 5;
-	grid-row-end: 6;
-}
-
-.login-row {
-	grid-column-start: 1;
-	grid-column-end: 6;
+.row234 { /*error stack trace*/
 	grid-row-start: 2;
 	grid-row-end: 5;
-	text-align: center;
-}
-
-.signupform {
-	grid-column-start: 1;
-	grid-column-end: 6;
-	grid-row-start: 2;
-	grid-row-end: 6;
-	text-align: center;
-}
-
-.merchandise {
-	grid-column-start: 1;
-	grid-column-end: 6;
-	grid-row-start: 2;
-	grid-row-end: 6;
 }
 
 .merchandise-title {
