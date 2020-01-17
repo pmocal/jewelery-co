@@ -138,6 +138,11 @@ form button {
 	font-size: 0.9em;
 }
 
+.merchandise-photo {
+	height: 1fr;
+	width: 1fr;
+}
+
 .footer * {
 	font-size: 0.8em;
 }
