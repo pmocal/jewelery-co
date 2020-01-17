@@ -1,8 +1,8 @@
 <body>
-	<div class="row1">
+	<div class="col123 row1">
 		<h1 class="merchandise-title">{{title}}</h1>
 	</div>
-	<div class="merchandise merchandise-items">
+	<div class="col23 row234 merchandise-items">
 		<p>Report ID: {{jewelery.reportId}}</p>
 		<img src="/uploads/{{jewelery.reportId}}.png">
 		<p>Customer Info: {{jewelery.customerInfo}}</p>
@@ -18,7 +18,10 @@
 		<p>Clarity Grade: {{jewelery.clarityGrade}}</p>
 		<p>Estimated Retail Replacement Value: {{jewelery.estimatedRetailReplacementValue}}</p>
 	</div>
-	<div class="footer">
-		{{> CRUD_footer id=watch._id }}
+	<div class="col4 row1">
+		<a href="/jewelery/all">Back</a>
+	</div>
+	<div class="footer col4 row4">
+		{{> CRUD_footer id=jewelery._id }}
 	</div>
 </body>

@@ -44,20 +44,20 @@ form p {
 form label {
 	text-align: left;
 	display: table-cell;
+	width: 100%;
 }
 
 form input {
 	font-size: 0.8em;
 	display: table-cell;
-	text-align: right;
 }
 
 form button {
-	text-align: right;
 	font-size: 0.8em;
+	width: 40%;
 }
 
-.inline {
+.block {
 	display: block;
 }
 
@@ -69,6 +69,36 @@ form button {
 .col23 {
 	grid-column-start: 2;
 	grid-column-end: 4;
+}
+
+.col123 {
+	grid-column-start: 1;
+	grid-column-end: 4;
+}
+
+.col234 {
+	grid-column-start: 2;
+	grid-column-end: 5;
+}
+
+.col2 {
+	grid-column-start: 2;
+	grid-column-end: 3;
+}
+
+.col3 {
+	grid-column-start: 3;
+	grid-column-end: 4;
+}
+
+.col4 {
+	grid-column-start: 4;
+	grid-column-end: 5;
+}
+
+.col3 {
+	grid-column-start: 4;
+	grid-column-end: 5;
 }
 
 .row1 {
@@ -95,17 +125,17 @@ form button {
 	grid-row-end: 5;
 }
 
+.row4 { /*error stack trace*/
+	grid-row-start: 4;
+	grid-row-end: 5;
+}
+
 .merchandise-title {
 	font-size: 2em;
 }
 
 .merchandise-items {
 	font-size: 0.9em;
-}
-
-.footer {
-	grid-column-start: 1;
-	grid-column-end: 6;
 }
 
 .footer * {

@@ -1,15 +1,17 @@
 <body>
-	<div class="row1">
+	<div class="col123 row1">
 		<h1>{{title}}</h1>
 	</div>
-	<div class="row2">
+	<div class="col123 row234">
 		<ul>
 			{{#each watch_list}}
 				<li><a href="/watches/{{this.id}}">{{this.customerInfo}}</a></li>
+				<br>
 			{{/each}}
 		</ul>
+		<a href="/watches/create">Create a watch appraisal</a>
 	</div>
-	<div class="row3">
-		<a href="/watches/create">Create watch appraisal</a>
+	<div class="col4 row1">
+		<a href="/">Back</a>
 	</div>
 </body>

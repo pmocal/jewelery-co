@@ -1,22 +1,25 @@
 <body>
 	{{#if user}}
-		<div class="row1">
+		<div class="col123 row1">
 			<h1>Welcome {{user.username}}</h1>
 		</div>
-		<div class="row23">
-			<a class="inline" href="/jewelery/all">View past jewelery appraisals</a>
-			<a class="inline" href="/watches/all">View past watch appraisals</a>
-			<a class="inline" href="/jewelery/create">Create new jewelery appraisal</a>
-			<a class="inline" href="/watches/create">Create new watch appraisal</a>
+		<div class="col123 row234">
+			<a class="block" href="/jewelery/all">View past jewelery appraisals</a>
+			<br>
+			<a class="block" href="/watches/all">View past watch appraisals</a>
+			<br>
+			<a class="block" href="/jewelery/create">Create new jewelery appraisal</a>
+			<br>
+			<a class="block" href="/watches/create">Create new watch appraisal</a>
 		</div>
-		<div class="row5">
+		<div class="col4 row1">
 			<a href="/log-out">Log Out</a>
 		</div>
 	{{else}}
-		<div class="row1">
+		<div class="col123 row1">
 			<h1>Log In</h1>
 		</div>
-		<div class="login-row">
+		<div class="col23 row234">
 			<form action="/log-in" method="POST">
 				<p>
 					<label for="username">Username</label>
@@ -26,10 +29,11 @@
 					<label for="password">Password</label>
 					<input name="password" placeholder="password" type="password" />
 				</p>
+				<br>
 				<button>Log In</button>
 			</form>
 		</div>
-		<div class="row3">
+		<div class="col4 row1">
 			<a href="/sign-up">Sign up</a>
 		</div>
 	{{/if}}

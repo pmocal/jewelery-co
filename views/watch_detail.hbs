@@ -1,8 +1,8 @@
 <body>
-	<div class="row1">
+	<div class="col123 row1">
 		<h1 class="merchandise-title">{{title}}</h1>
 	</div>
-	<div class="merchandise merchandise-items">
+	<div class="col23 row234 merchandise-items">
 		<p>Report ID: {{watch.reportId}}</p>
 		<img src="/uploads/{{watch.reportId}}.png">
 		<p>Customer Info: {{watch.customerInfo}}</p>
@@ -22,7 +22,10 @@
 		<p>Condition: {{watch.condition}}</p>
 		<p>Estimated Retail Replacement Value: {{watch.estimatedRetailReplacementValue}}</p>
 	</div>
-	<div class="footer">
+	<div class="col4 row1">
+		<a href="/watches/all">Back</a>
+	</div>
+	<div class="footer col4 row4">
 		{{> CRUD_footer id=watch._id }}
 	</div>
 </body>
