@@ -3,7 +3,7 @@
 		<h1 class="merchandise-title">{{title}}</h1>
 	</div>
 	<div class="merchandise merchandise-items">
-		<form method="POST" action=''>
+		<form method="POST" enctype="multipart/form-data" action=''>
 			<p>
 				<label for="reportId">Report ID: </label>
 				{{#if watch}}
@@ -140,6 +140,7 @@
 					<input id="estimatedRetailReplacementValue" type="text" name="estimatedRetailReplacementValue">
 				{{/if}}
 			</p>
+			<input type="file" name="file">
 			<div>
 				<button type="submit">Submit</button>
 			</div>

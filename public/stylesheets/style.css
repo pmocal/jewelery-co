@@ -1,6 +1,6 @@
 html, body {
 	height: 100%;
-	font-size: 2em;
+	font-size: 1.3em;
 	margin: 0%;
 	padding: 0%;
 	background-color: gainsboro;
@@ -9,8 +9,10 @@ html, body {
 body {
 	display: grid;
 	align-items: center;
-	grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
-	grid-template-rows: 20% 20% 20% 20% 20%;
+	display: grid;  
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;  
+	grid-template-rows: minmax(200px auto) minmax(200px auto) minmax(200px auto) minmax(200px auto) minmax(200px auto);  
+	grid-gap: 10px;
 }
 
 body * {
@@ -22,7 +24,7 @@ body * {
 }
 
 h1 {
-	font-size: 180%;
+	font-size: 2.2em;
 	color: black;
 	font-weight: bold;
 }
@@ -49,7 +51,7 @@ form label {
 }
 
 form input {
-	font-size: 80%;
+	font-size: 0.8em;
 	display: table-cell;
 }
 
@@ -59,29 +61,29 @@ form input {
 
 .row1 {
 	grid-column-start: 1;
-	grid-column-end: 11;
+	grid-column-end: 6;
 	grid-row-start: 1;
 	grid-row-end: 2;
 }
 
 .row2 {
 	grid-column-start: 1;
-	grid-column-end: 11;
+	grid-column-end: 6;
 	grid-row-start: 2;
-	grid-row-end: 5;
+	grid-row-end: 4;
 }
 
 .errorMessage {
 	grid-column-start: 1;
-	grid-column-end: 11;
+	grid-column-end: 6;
 	grid-row-start: 1;
-	grid-row-end: 4;
+	grid-row-end: 3;
 }
 
 .errorStack {
 	grid-column-start: 1;
-	grid-column-end: 11;
-	grid-row-start: 4;
+	grid-column-end: 6;
+	grid-row-start: 3;
 	grid-row-end: 6;
 }
 
@@ -91,14 +93,14 @@ form input {
 
 .row3 {
 	grid-column-start: 1;
-	grid-column-end: 11;
+	grid-column-end: 6;
 	grid-row-start: 5;
 	grid-row-end: 6;
 }
 
 .login-row {
 	grid-column-start: 1;
-	grid-column-end: 11;
+	grid-column-end: 6;
 	grid-row-start: 2;
 	grid-row-end: 5;
 	text-align: center;
@@ -106,7 +108,7 @@ form input {
 
 .signupform {
 	grid-column-start: 1;
-	grid-column-end: 11;
+	grid-column-end: 6;
 	grid-row-start: 2;
 	grid-row-end: 6;
 	text-align: center;
@@ -114,24 +116,24 @@ form input {
 
 .merchandise {
 	grid-column-start: 1;
-	grid-column-end: 11;
+	grid-column-end: 6;
 	grid-row-start: 2;
 	grid-row-end: 6;
 }
 
 .merchandise-title {
-	font-size: 150%;
+	font-size: 2em;
 }
 
 .merchandise-items {
-	font-size: 60%;
+	font-size: 0.9em;
 }
 
 .footer {
 	grid-column-start: 1;
-	grid-column-end: 11;
+	grid-column-end: 6;
 }
 
 .footer * {
-	font-size: 80%;
+	font-size: 0.8em;
 }

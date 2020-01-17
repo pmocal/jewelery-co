@@ -20,6 +20,7 @@ const mongoDb = "mongodb+srv://" + process.env.DB_USER + ":" +
 mongoose.connect(mongoDb, { useNewUrlParser: true });
 const db = mongoose.connection;
 
+
 db.on("error", console.error.bind(console, "mongo connection error"));
 
 var app = express();

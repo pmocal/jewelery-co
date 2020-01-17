@@ -2,6 +2,9 @@ var Watch = require('../models/watch');
 const { check,validationResult } = require('express-validator');
 const { sanitizeBody } = require('express-validator');
 var path = require('path');
+var multer  = require('multer')
+var upload = multer({ dest: path.join(__dirname, '../public/uploads/') })
+const fs = require('fs');
 
 exports.watch_list = function(req, res, next) {
 	Watch.find()
@@ -30,6 +33,7 @@ exports.watch_create_get = function(req, res, next) {
 
 exports.watch_create_post = [
 	// Validate fields.
+	upload.single('file'),
 	check('reportId', 'Report ID must not be empty.').isLength({ min: 1 }).trim(),
 	check('customerInfo', 'Customer Information must not be empty.').isLength({ min: 1 }).trim(),
 	check('brand', 'Brand must not be empty.').isLength({ min: 1 }).trim(),
@@ -67,7 +71,24 @@ exports.watch_create_post = [
 	sanitizeBody('estimatedRetailReplacementValue').escape(),
 	// Process request after validation and sanitization.
 	(req, res, next) => {
-		
+
+		if (req.file != null) {
+			const tempPath = req.file.path;
+			const targetPath = path.join(__dirname, "../public/uploads/" + req.body.reportId + ".png");
+			if (path.extname(req.file.originalname).toLowerCase() === ".png") {
+				fs.rename(tempPath, targetPath, err => {
+					if (err) return next(err);
+			  	});
+			} else {
+				fs.unlink(tempPath, err => {
+					if (err) return next(err);
+					res.status(403)
+						.contentType("text/plain")
+						.end("Only .png files are allowed!");
+				});
+			}
+		}
+
 		// Extract the validation errors from a request.
 		const errors = validationResult(req);
 
