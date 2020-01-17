@@ -138,9 +138,9 @@ form button {
 	font-size: 0.9em;
 }
 
-.merchandise-photo {
-	height: 300px;
-	width: 300px;
+img {
+	height: 100px;
+	width: 100px;
 }
 
 .footer * {
