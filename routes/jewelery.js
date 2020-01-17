@@ -16,8 +16,4 @@ router.get('/:id/delete', jewelery_controller.jewelery_delete_get);
 
 router.post('/:id/delete', jewelery_controller.jewelery_delete_post);
 
-router.get('/:id/update', jewelery_controller.jewelery_update_get);
-
-router.post('/:id/update', jewelery_controller.jewelery_update_post);
-
 module.exports = router;

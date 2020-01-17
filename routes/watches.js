@@ -16,8 +16,4 @@ router.get('/:id/delete', watch_controller.watch_delete_get);
 
 router.post('/:id/delete', watch_controller.watch_delete_post);
 
-router.get('/:id/update', watch_controller.watch_update_get);
-
-router.post('/:id/update', watch_controller.watch_update_post);
-
 module.exports = router;
