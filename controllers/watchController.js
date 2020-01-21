@@ -5,6 +5,7 @@ var path = require('path');
 var multer  = require('multer')
 var upload = multer({ dest: path.join(__dirname, '../public/uploads/') })
 const fs = require('fs');
+var generatePdfBase64 = require('../util/generatePdfBase64');
 
 exports.watch_list = function(req, res, next) {
 	Watch.find()
@@ -124,7 +125,42 @@ exports.watch_create_post = [
 			watch.save(function (err) {
 				if (err) { return next(err); }
 					//successful - redirect to new watch record.
-					res.redirect(watch.url);
+					const docDefinition = {
+						content: [
+							{
+								text: 'Manhattan Gemological Appraisals',
+								style: 'header'
+							},
+							{
+								style: 'tableExample',
+								table: {
+									body: [
+										['Report ID', 'Customer Info', 'Brand', 'Reference Number', 'Serial Number', 'Model', 'Movement',
+										'Case Diameter', 'Bezel Material', 'Dial', 'Bracelet Material', 'Comments', 'Clasp Material',
+										'Functions', 'Year', 'Condition', 'Estimated Retail Replacement Value'],
+										[req.body.reportId, req.body.customerInfo, req.body.brand, req.body.referenceNumber, req.body.serialNumber,
+										req.body.model, req.body.movement, req.body.caseDiameter, req.body.bezelMaterial, req.body.dial,
+										req.body.braceletMaterial, req.body.comments, req.body.claspMaterial, req.body.functions,
+										req.body.year, req.body.condition, req.body.estimatedRetailReplacementValue]
+									]
+								}
+							}
+						],
+						defaultStyle: {
+							font: 'Courier'
+						},
+						styles: {
+							header: {
+								fontSize: 18,
+								bold: true
+							}
+						}
+					};
+					generatePdfBase64.generatePdf(docDefinition, (response) => {
+						res.setHeader('Content-Type', 'application/pdf');
+						res.send(response);
+					})
+					// res.redirect(watch.url);
 				});
 		}
 	}
