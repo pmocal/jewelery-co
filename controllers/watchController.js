@@ -177,7 +177,7 @@ exports.watch_create_post = [
 			};
 			generatePdfBase64.generatePdf(docDefinition, (response) => {
 				// res.setHeader('Content-Type', 'application/pdf');
-				res.send(response);
+				watch.pdfString = response;
 			})
 			// Data from form is valid. Save watch.
 			watch.save(function (err) {
