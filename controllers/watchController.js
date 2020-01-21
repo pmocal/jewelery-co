@@ -125,8 +125,12 @@ exports.watch_create_post = [
 			watch.save(function (err) {
 				if (err) { return next(err); }
 					//successful - redirect to new watch record.
+					targetPath = path.join(__dirname, "../public/uploads/" + req.body.reportId + ".jpg");
 					const docDefinition = {
 						content: [
+							{
+								image: targetPath,
+							},
 							{
 								text: 'Manhattan Gemological Appraisals',
 								color: 'blue',

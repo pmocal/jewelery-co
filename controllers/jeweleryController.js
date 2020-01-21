@@ -119,7 +119,10 @@ exports.jewelery_create_post = [
 									[req.body.reportId, req.body.customerInfo, req.body.description, req.body.stoneType,
 									req.body.jeweleryWeight, req.body.totalStones, req.body.comments]
 								]
-							},
+							}
+						},
+						{
+							style: 'tableExample',
 							table: {
 								body: [
 									['Serial Number',
