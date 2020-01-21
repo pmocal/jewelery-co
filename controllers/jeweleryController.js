@@ -5,6 +5,7 @@ var path = require('path');
 var multer  = require('multer')
 var upload = multer({ dest: path.join(__dirname, '../public/uploads/') })
 const fs = require('fs');
+var generatePdfBase64 = require('../util/generatePdfBase64');
 
 exports.jewelery_list = function(req, res, next) {
 	Jewelery.find()
@@ -98,9 +99,45 @@ exports.jewelery_create_post = [
 			// Data from form is valid. Save jewelery.
 			jewelery.save(function (err) {
 				if (err) { return next(err); }
-					//successful - redirect to new jewelery record.
-					res.redirect(jewelery.url);
-				});
+				//successful - redirect to new watch record.
+				const docDefinition = {
+					content: [
+						{
+							text: 'Manhattan Gemological Appraisals',
+							style: 'header'
+						},
+						{
+							style: 'tableExample',
+							table: {
+								body: [
+									['Report ID', 'Customer Information', 'Description', 'Stone Type',
+									'Jewelery Weight', 'Total Stones', 'Comments', 'Serial Number',
+									'Metal Type', 'Carat Weight', 'Color Grade', 'Clarity Grade',
+									'Estimated Retail Replacement Value'],
+									[req.body.reportId, req.body.customerInfo, req.body.description, req.body.stoneType,
+									req.body.jeweleryWeight, req.body.totalStones, req.body.comments, 
+									req.body.serialNumber, req.body.metalType, req.body.caratWeight, req.body.colorGrade,
+									req.body.clarityGrade, req.body.estimatedRetailReplacementValue]
+								]
+							}
+						}
+					],
+					defaultStyle: {
+						font: 'Courier'
+					},
+					styles: {
+						header: {
+							fontSize: 18,
+							bold: true
+						}
+					}
+				};
+				generatePdfBase64.generatePdf(docDefinition, (response) => {
+					res.setHeader('Content-Type', 'application/pdf');
+					res.send(response);
+				})
+				// res.redirect(watch.url);
+			});
 		}
 	}
 ];
