@@ -128,10 +128,10 @@ exports.jewelery_create_post = [
 						style: 'tableExample',
 						table: {
 							body: [
-								['Report ID', 'Customer Information', 'Description', 'Stone Type',
+								['Report ID', 'Date', 'Customer Information', 'Description', 'Stone Type',
 								'Jewelery Weight', 'Total Stones', 'Comments'],
-								[req.body.reportId, req.body.customerInfo, req.body.description, req.body.stoneType,
-								req.body.jeweleryWeight, req.body.totalStones, req.body.comments]
+								[req.body.reportId, req.body.date, req.body.customerInfo, req.body.description,
+								req.body.stoneType, req.body.jeweleryWeight, req.body.totalStones, req.body.comments]
 							]
 						}
 					},

@@ -140,9 +140,9 @@ exports.watch_create_post = [
 						style: 'tableExample',
 						table: {
 							body: [
-								['Report ID', 'Customer Info', 'Brand', 'Reference Number', 'Serial Number', 'Model', 'Movement',
+								['Report ID', 'Date', 'Customer Info', 'Brand', 'Reference Number', 'Serial Number', 'Model', 'Movement',
 								'Case Diameter'],
-								[req.body.reportId, req.body.customerInfo, req.body.brand, req.body.referenceNumber, req.body.serialNumber,
+								[req.body.reportId, req.body.date, req.body.customerInfo, req.body.brand, req.body.referenceNumber, req.body.serialNumber,
 								req.body.model, req.body.movement, req.body.caseDiameter]
 							]
 						}
