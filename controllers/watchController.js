@@ -129,6 +129,7 @@ exports.watch_create_post = [
 						content: [
 							{
 								text: 'Manhattan Gemological Appraisals',
+								color: 'blue',
 								style: 'header'
 							},
 							{
@@ -136,12 +137,29 @@ exports.watch_create_post = [
 								table: {
 									body: [
 										['Report ID', 'Customer Info', 'Brand', 'Reference Number', 'Serial Number', 'Model', 'Movement',
-										'Case Diameter', 'Bezel Material', 'Dial', 'Bracelet Material', 'Comments', 'Clasp Material',
-										'Functions', 'Year', 'Condition', 'Estimated Retail Replacement Value'],
+										'Case Diameter'],
 										[req.body.reportId, req.body.customerInfo, req.body.brand, req.body.referenceNumber, req.body.serialNumber,
-										req.body.model, req.body.movement, req.body.caseDiameter, req.body.bezelMaterial, req.body.dial,
-										req.body.braceletMaterial, req.body.comments, req.body.claspMaterial, req.body.functions,
-										req.body.year, req.body.condition, req.body.estimatedRetailReplacementValue]
+										req.body.model, req.body.movement, req.body.caseDiameter]
+									]
+								}
+							},
+							{
+								style: 'tableExample',
+								table: {
+									body: [
+										['Bezel Material', 'Dial', 'Bracelet Material', 'Comments', 'Clasp Material',
+										'Functions'],
+										[req.body.bezelMaterial, req.body.dial,
+										req.body.braceletMaterial, req.body.comments, req.body.claspMaterial, req.body.functions]
+									]
+								}
+							},
+							{
+								style: 'tableExample',
+								table: {
+									body: [
+										['Year', 'Condition', 'Estimated Retail Replacement Value'],
+										[req.body.year, req.body.condition, req.body.estimatedRetailReplacementValue]
 									]
 								}
 							}

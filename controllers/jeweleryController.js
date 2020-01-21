@@ -100,8 +100,12 @@ exports.jewelery_create_post = [
 			jewelery.save(function (err) {
 				if (err) { return next(err); }
 				//successful - redirect to new watch record.
+				targetPath = path.join(__dirname, "../public/uploads/" + req.body.reportId + ".jpg");
 				const docDefinition = {
 					content: [
+						{
+							image: targetPath,
+						},
 						{
 							text: 'Manhattan Gemological Appraisals',
 							style: 'header'
@@ -111,15 +115,21 @@ exports.jewelery_create_post = [
 							table: {
 								body: [
 									['Report ID', 'Customer Information', 'Description', 'Stone Type',
-									'Jewelery Weight', 'Total Stones', 'Comments', 'Serial Number',
+									'Jewelery Weight', 'Total Stones', 'Comments'],
+									[req.body.reportId, req.body.customerInfo, req.body.description, req.body.stoneType,
+									req.body.jeweleryWeight, req.body.totalStones, req.body.comments]
+								]
+							},
+							table: {
+								body: [
+									['Serial Number',
 									'Metal Type', 'Carat Weight', 'Color Grade', 'Clarity Grade',
 									'Estimated Retail Replacement Value'],
-									[req.body.reportId, req.body.customerInfo, req.body.description, req.body.stoneType,
-									req.body.jeweleryWeight, req.body.totalStones, req.body.comments, 
-									req.body.serialNumber, req.body.metalType, req.body.caratWeight, req.body.colorGrade,
+									[req.body.serialNumber, req.body.metalType, req.body.caratWeight, req.body.colorGrade,
 									req.body.clarityGrade, req.body.estimatedRetailReplacementValue]
 								]
 							}
+							
 						}
 					],
 					defaultStyle: {
