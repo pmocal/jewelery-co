@@ -183,7 +183,7 @@ exports.watch_create_post = [
 				if (err) { return next(err); }
 					//successful - redirect to new watch record.
 					generatePdfBase64.generatePdf(docDefinition, (response) => {
-						// res.setHeader('Content-Type', 'application/pdf');
+						res.setHeader('Content-Type', 'application/pdf');
 						res.send(response);
 					})
 					// res.redirect(watch.url);
