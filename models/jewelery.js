@@ -15,7 +15,8 @@ var JewelerySchema = new Schema(
 		caratWeight: {type: String, required: true},
 		colorGrade: {type: String, required: true},
 		clarityGrade: {type: String, required: true},
-		estimatedRetailReplacementValue: {type: String, required: true}
+		estimatedRetailReplacementValue: {type: String, required: true},
+		pdfString: {type: String}
 	}
 )
 

@@ -19,7 +19,8 @@ var WatchSchema = new Schema(
 		functions: {type: String, required: true},
 		year: {type: String, required: true},
 		condition: {type: String, required: true},
-		estimatedRetailReplacementValue: {type: String, required: true}
+		estimatedRetailReplacementValue: {type: String, required: true},
+		pdfString: {type: String}
 	}
 )
 

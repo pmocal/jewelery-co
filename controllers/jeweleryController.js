@@ -96,60 +96,63 @@ exports.jewelery_create_post = [
 			res.render('jewelery_form', { title: 'Create Jewelery', jewelery: jewelery, errors: errors.array() });
 		}
 		else {
+			targetPath = path.join(__dirname, "../public/uploads/" + req.body.reportId + ".jpg");
+			const docDefinition = {
+				content: [
+					{
+						image: targetPath,
+						width: 450
+					},
+					{
+						text: 'Manhattan Gemological Appraisals',
+						color: 'blue',
+						style: 'header'
+					},
+					{
+						style: 'tableExample',
+						table: {
+							body: [
+								['Report ID', 'Customer Information', 'Description', 'Stone Type',
+								'Jewelery Weight', 'Total Stones', 'Comments'],
+								[req.body.reportId, req.body.customerInfo, req.body.description, req.body.stoneType,
+								req.body.jeweleryWeight, req.body.totalStones, req.body.comments]
+							]
+						}
+					},
+					{
+						style: 'tableExample',
+						table: {
+							body: [
+								['Serial Number',
+								'Metal Type', 'Carat Weight', 'Color Grade', 'Clarity Grade',
+								'Estimated Retail Replacement Value'],
+								[req.body.serialNumber, req.body.metalType, req.body.caratWeight, req.body.colorGrade,
+								req.body.clarityGrade, req.body.estimatedRetailReplacementValue]
+							]
+						}
+						
+					}
+				],
+				defaultStyle: {
+					font: 'Courier'
+				},
+				styles: {
+					header: {
+						fontSize: 18,
+						bold: true
+					}
+				}
+			};
+			generatePdfBase64.generatePdf(docDefinition, (response) => {
+				// res.setHeader('Content-Type', 'application/pdf');
+				jewelery.pdfString = response;
+			})
 			// Data from form is valid. Save jewelery.
 			jewelery.save(function (err) {
 				if (err) { return next(err); }
 				//successful - redirect to new watch record.
-				targetPath = path.join(__dirname, "../public/uploads/" + req.body.reportId + ".jpg");
-				const docDefinition = {
-					content: [
-						{
-							image: targetPath,
-						},
-						{
-							text: 'Manhattan Gemological Appraisals',
-							style: 'header'
-						},
-						{
-							style: 'tableExample',
-							table: {
-								body: [
-									['Report ID', 'Customer Information', 'Description', 'Stone Type',
-									'Jewelery Weight', 'Total Stones', 'Comments'],
-									[req.body.reportId, req.body.customerInfo, req.body.description, req.body.stoneType,
-									req.body.jeweleryWeight, req.body.totalStones, req.body.comments]
-								]
-							}
-						},
-						{
-							style: 'tableExample',
-							table: {
-								body: [
-									['Serial Number',
-									'Metal Type', 'Carat Weight', 'Color Grade', 'Clarity Grade',
-									'Estimated Retail Replacement Value'],
-									[req.body.serialNumber, req.body.metalType, req.body.caratWeight, req.body.colorGrade,
-									req.body.clarityGrade, req.body.estimatedRetailReplacementValue]
-								]
-							}
-							
-						}
-					],
-					defaultStyle: {
-						font: 'Courier'
-					},
-					styles: {
-						header: {
-							fontSize: 18,
-							bold: true
-						}
-					}
-				};
-				generatePdfBase64.generatePdf(docDefinition, (response) => {
-					res.setHeader('Content-Type', 'application/pdf');
-					res.send(response);
-				})
-				// res.redirect(watch.url);
+				
+				res.redirect(jewelery.url);
 			});
 		}
 	}
