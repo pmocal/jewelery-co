@@ -20,8 +20,7 @@ exports.generatePdf = function(docDefinition, callback) {
 		});
 	
 		doc.on('end', () => {
-			const result = Buffer.concat(chunks);
-			callback('data:application/pdf;base64,' + result.toString('base64'));
+			callback(Buffer.concat(chunks));
 		});
 		
 		doc.end();

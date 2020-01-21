@@ -143,16 +143,15 @@ exports.jewelery_create_post = [
 					}
 				}
 			};
-			generatePdfBase64.generatePdf(docDefinition, (response) => {
-				// res.setHeader('Content-Type', 'application/pdf');
-				jewelery.pdfString = response;
-			})
 			// Data from form is valid. Save jewelery.
 			jewelery.save(function (err) {
 				if (err) { return next(err); }
 				//successful - redirect to new watch record.
-				
-				res.redirect(jewelery.url);
+				generatePdfBase64.generatePdf(docDefinition, (response) => {
+					// res.setHeader('Content-Type', 'application/pdf');
+					res.send(response);
+				})
+				// res.redirect(jewelery.url);
 			});
 		}
 	}

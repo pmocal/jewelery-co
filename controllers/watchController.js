@@ -175,16 +175,15 @@ exports.watch_create_post = [
 					}
 				}
 			};
-			generatePdfBase64.generatePdf(docDefinition, (response) => {
-				// res.setHeader('Content-Type', 'application/pdf');
-				watch.pdfString = response;
-			})
 			// Data from form is valid. Save watch.
 			watch.save(function (err) {
 				if (err) { return next(err); }
 					//successful - redirect to new watch record.
-					
-					res.redirect(watch.url);
+					generatePdfBase64.generatePdf(docDefinition, (response) => {
+						// res.setHeader('Content-Type', 'application/pdf');
+						res.send(response);
+					})
+					// res.redirect(watch.url);
 				});
 		}
 	}
