@@ -36,6 +36,7 @@ exports.watch_create_post = [
 	// Validate fields.
 	upload.single('file'),
 	check('reportId', 'Report ID must not be empty.').isLength({ min: 1 }).trim(),
+	check('date', 'Date must not be empty.').isLength({ min: 1 }).trim(),
 	check('customerInfo', 'Customer Information must not be empty.').isLength({ min: 1 }).trim(),
 	check('brand', 'Brand must not be empty.').isLength({ min: 1 }).trim(),
 	check('referenceNumber', 'Reference Number must not be empty').isLength({ min: 1 }).trim(),
@@ -54,6 +55,7 @@ exports.watch_create_post = [
 	check('estimatedRetailReplacementValue', 'Estimated Retail Replacement Value must not be empty').isLength({ min: 1 }).trim(),
 	// Sanitize fields (using wildcard).
 	sanitizeBody('reportId').escape(),
+	sanitizeBody('date').escape(),
 	sanitizeBody('customerInfo').escape(),
 	sanitizeBody('brand').escape(),
 	sanitizeBody('referenceNumber').escape(),
@@ -98,6 +100,7 @@ exports.watch_create_post = [
 		// Create a Watch object with escaped and trimmed data.
 		var watch = new Watch(
 		  { reportId: req.body.reportId,
+		  	date: req.body.date,
 			customerInfo: req.body.customerInfo,
 			brand: req.body.brand,
 			referenceNumber: req.body.referenceNumber,

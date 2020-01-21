@@ -36,6 +36,7 @@ exports.jewelery_create_post = [
 	// Validate fields.
 	upload.single('file'),
 	check('reportId', 'Report ID must not be empty.').isLength({ min: 1 }).trim(),
+	check('date', 'Date must not be empty.').isLength({ min: 1 }).trim(),
 	check('customerInfo', 'Customer Information must not be empty.').isLength({ min: 1 }).trim(),
 	check('description', 'Description must not be empty.').isLength({ min: 1 }).trim(),
 	check('stoneType', 'Stone Type must not be empty').isLength({ min: 1 }).trim(),
@@ -49,6 +50,20 @@ exports.jewelery_create_post = [
 	check('clarityGrade', 'Clarity Grade must not be empty').isLength({ min: 1 }).trim(),
 	check('estimatedRetailReplacementValue', 'Estimated retail replacement value must not be empty').isLength({ min: 1 }).trim(),
 	// Sanitize fields (using wildcard).
+	sanitizeBody('reportId').escape(),
+	sanitizeBody('date').escape(),
+	sanitizeBody('customerInfo').escape(),
+	sanitizeBody('description').escape(),
+	sanitizeBody('stoneType').escape(),
+	sanitizeBody('jeweleryWeight').escape(),
+	sanitizeBody('totalStones').escape(),
+	sanitizeBody('comments').escape(),
+	sanitizeBody('serialNumber').escape(),
+	sanitizeBody('metalType').escape(),
+	sanitizeBody('caratWeight').escape(),
+	sanitizeBody('colorGrade').escape(),
+	sanitizeBody('clarityGrade').escape(),
+	sanitizeBody('estimatedRetailReplacementValue').escape(),
 	// Process request after validation and sanitization.
 	(req, res, next) => {
 		if (req.file != null) {
@@ -76,6 +91,7 @@ exports.jewelery_create_post = [
 		var jewelery = new Jewelery(
 			{
 				reportId: req.body.reportId,
+				date: req.body.date,
 				customerInfo: req.body.customerInfo,
 				description: req.body.description,
 				stoneType: req.body.stoneType,

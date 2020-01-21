@@ -13,6 +13,14 @@
 				{{/if}}
 			</p>
 			<p>
+				<label for="date">Date: </label>
+				{{#if watch}}
+					<input id="date" type="text" name="date" value="{{watch.date}}">
+				{{else}}
+					<input id="date" type="text" name="date">
+				{{/if}}
+			</p>
+			<p>
 				<label for="customerInfo">Customer Info: </label>
 				{{#if watch}}
 					<input id="customerInfo" type="text" name="customerInfo" value="{{watch.customerInfo}}">
