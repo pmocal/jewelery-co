@@ -10,7 +10,9 @@ router.get('/create', watch_controller.watch_create_get);
 
 router.post('/create', watch_controller.watch_create_post);
 
-router.get('/:id', watch_controller.watch_detail);
+router.get('/:id', watch_controller.watch_detail_get);
+
+router.post('/:id', watch_controller.watch_detail_post);
 
 router.get('/:id/delete', watch_controller.watch_delete_get);
 

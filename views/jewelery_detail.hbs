@@ -23,6 +23,25 @@
 		<a href="/">Back</a>
 	</div>
 	<div class="footer col4 row4">
+		<form method="POST" action="">
+			<input name="reportId" type="hidden" value="{{jewelery.reportId}}" />
+			<input name="imageUrl" type="hidden" value="/uploads/{{jewelery.reportId}}.jpg" />
+			<input name="date" type="hidden" value="{{jewelery.date}}" />
+			<input name="customerInfo" type="hidden" value="{{jewelery.customerInfo}}" />
+			<input name="description" type="hidden" value="{{jewelery.description}}" />
+			<input name="stoneType" type="hidden" value="{{jewelery.stoneType}}" />
+			<input name="jeweleryWeight" type="hidden" value="{{jewelery.jeweleryWeight}}" />
+			<input name="totalStones" type="hidden" value="{{jewelery.totalStones}}" />
+			<input name="comments" type="hidden" value="{{jewelery.comments}}" />
+			<input name="serialNumber" type="hidden" value="{{jewelery.serialNumber}}" />
+			<input name="metalType" type="hidden" value="{{jewelery.metalType}}" />
+			<input name="caratWeight" type="hidden" value="{{jewelery.caratWeight}}" />
+			<input name="colorGrade" type="hidden" value="{{jewelery.colorGrade}}" />
+			<input name="clarityGrade" type="hidden" value="{{jewelery.clarityGrade}}" />
+			<input name="estimatedRetailReplacementValue" type="hidden" value="{{jewelery.estimatedRetailReplacementValue}}" />
+			<input name="emailAddress" type="text" placeholder="Enter an email address if you would like the PDF to be delivered there" />
+			<button>Generate PDF</button>
+		</form>
 		{{> CRUD_footer id=jewelery._id }}
 	</div>
 </body>
