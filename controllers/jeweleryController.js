@@ -35,13 +35,18 @@ exports.jewelery_detail_post = function(req, res, next) {
 	const docDefinition = {
 		content: [
 			{
-				image: targetPath,
-				width: 450
+				text: 'Manhattan Gemological Appraisals',
+				color: 'royalblue',
+				style: 'header'
 			},
 			{
-				text: 'Manhattan Gemological Appraisals',
-				color: 'blue',
-				style: 'header'
+				text: 'Diamond, High End Watches and Jewelry Experts',
+				style: 'subheader'
+			},
+			{text: '36 West 47th Street\nBooth E07-W07\nNew York, NY 10036\n\nGeneral Info: 212-858-0834'},
+			{
+				image: targetPath,
+				height: 300
 			},
 			{
 				style: 'tableExample',
@@ -124,11 +129,15 @@ exports.jewelery_detail_post = function(req, res, next) {
 			Appraisals (“MGA) & Benny’s Jewelry NYC, Inc.\n\n'
 		],
 		defaultStyle: {
-			font: 'Courier',
+			font: 'Helvetica',
 			alignment: 'justify'
 		},
 		styles: {
 			header: {
+				fontSize: 24,
+				bold: true
+			},
+			subheader: {
 				fontSize: 18,
 				bold: true
 			}

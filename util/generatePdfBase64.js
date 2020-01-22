@@ -3,11 +3,11 @@ const pdfMakePrinter = require('pdfmake/src/printer');
 exports.generatePdf = function(docDefinition, callback) {
 	try {
 		const fontDescriptors = {
-			Courier: {
-				normal: 'Courier',
-				bold: 'Courier-Bold',
-				italics: 'Courier-Oblique',
-				bolditalics: 'Courier-BoldOblique'
+			Helvetica: {
+				normal: 'Helvetica',
+				bold: 'Helvetica-Bold',
+				italics: 'Helvetica-Oblique',
+				bolditalics: 'Helvetica-BoldOblique'
 			}
 		};
 		const printer = new pdfMakePrinter(fontDescriptors);

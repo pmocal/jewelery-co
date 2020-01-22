@@ -2,7 +2,8 @@ var Watch = require('../models/watch');
 const { check,validationResult } = require('express-validator');
 const { sanitizeBody } = require('express-validator');
 var path = require('path');
-var multer  = require('multer')
+var multer  = require('multer');
+var nodemailer = require('nodemailer');
 var upload = multer({ dest: path.join(__dirname, '../public/uploads/') })
 const fs = require('fs');
 var generatePdfBase64 = require('../util/generatePdfBase64');
@@ -35,13 +36,18 @@ exports.watch_detail_post = function(req, res, next) {
 	const docDefinition = {
 		content: [
 			{
-				image: targetPath,
-				width: 450
+				text: 'Manhattan Gemological Appraisals',
+				color: 'royalblue',
+				style: 'header'
 			},
 			{
-				text: 'Manhattan Gemological Appraisals',
-				color: 'blue',
-				style: 'header'
+				text: 'Diamond, High End Watches and Jewelry Experts',
+				style: 'subheader'
+			},
+			{text: '36 West 47th Street\nBooth E07-W07\nNew York, NY 10036\n\nGeneral Info: 212-858-0834'},
+			{
+				image: targetPath,
+				height: 300
 			},
 			{
 				style: 'tableExample',
@@ -131,15 +137,33 @@ exports.watch_detail_post = function(req, res, next) {
 			Appraisals (“MGA) & Benny’s Jewelry NYC, Inc.\n\n'
 		],
 		defaultStyle: {
-			font: 'Courier'
+			font: 'Helvetica',
+			alignment: 'justify'
 		},
 		styles: {
 			header: {
+				fontSize: 24,
+				bold: true
+			},
+			subheader: {
 				fontSize: 18,
 				bold: true
 			}
 		}
 	};
+	// let transporter = nodemailer.createTransport({
+	// 	host: "localhost",
+	// 	port: 3000,
+	// 	secure: false
+	// });
+	// var message = {
+	//   from: "parthiv.mohan@gmail.com",
+	//   to: "parthiv.mohan@gmail.com",
+	//   subject: "Message title",
+	//   text: "Plaintext version of the message",
+	//   html: "<p>HTML version of the message</p>"
+	// };
+	// transporter.sendMail(message);
 	generatePdfBase64.generatePdf(docDefinition, (response) => {
 		res.setHeader('Content-Type', 'application/pdf');
 		res.send(response);
