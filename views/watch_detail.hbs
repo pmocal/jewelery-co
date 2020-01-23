@@ -3,8 +3,8 @@
 		<h1 class="merchandise-title">{{title}}</h1>
 	</div>
 	<div class="col23 row234 merchandise-items">
-		<p>Report ID: {{watch.reportId}}</p>
-		<img src="/uploads/{{watch.reportId}}.jpg" class="merchandise-photo">
+		<p>Report ID: {{watch._id}}</p>
+		<img src="/uploads/{{watch._id}}.jpg">
 		<p>Date: {{watch.date}}</p>
 		<p>Customer Info: {{watch.customerInfo}}</p>
 		<p>Brand: {{watch.brand}}</p>
@@ -27,9 +27,9 @@
 		<a href="/">Back</a>
 	</div>
 	<div class="footer col4 row4">
-		<form method="POST" action="">
-			<input name="reportId" type="hidden" value="{{watch.reportId}}" />
-			<input name="imageUrl" type="hidden" value="/uploads/{{watch.reportId}}.jpg" />
+		<form class="pdfForm" method="POST" action="">
+			<input name="id" type="hidden" value="{{watch.id}}" />
+			<input name="imageUrl" type="hidden" value="/uploads/{{watch.id}}.jpg" />
 			<input name="date" type="hidden" value="{{watch.date}}" />
 			<input name="customerInfo" type="hidden" value="{{watch.customerInfo}}" />
 			<input name="brand" type="hidden" value="{{watch.brand}}" />
@@ -47,8 +47,8 @@
 			<input name="year" type="hidden" value="{{watch.year}}" />
 			<input name="condition" type="hidden" value="{{watch.condition}}" />
 			<input name="estimatedRetailReplacementValue" type="hidden" value="{{watch.estimatedRetailReplacementValue}}" />
-			<input name="emailAddress" type="text" placeholder="Enter an email address if you would like the PDF to be delivered there" />
-			<button>Generate PDF</button>
+			<input name="emailAddress" type="text" placeholder="Enter email address" />
+			<button>Generate and Send PDF</button>
 		</form>
 		{{> CRUD_footer id=watch._id }}
 	</div>

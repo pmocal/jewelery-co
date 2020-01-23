@@ -3,8 +3,8 @@
 		<h1 class="merchandise-title">{{title}}</h1>
 	</div>
 	<div class="col23 row234 merchandise-items">
-		<p>Report ID: {{jewelery.reportId}}</p>
-		<img src="/uploads/{{jewelery.reportId}}.jpg" class="merchandise-photo">
+		<p>Report ID: {{jewelery.id}}</p>
+		<img src="/uploads/{{jewelery.id}}.jpg">
 		<p>Date: {{jewelery.date}}</p>
 		<p>Customer Info: {{jewelery.customerInfo}}</p>
 		<p>Description: {{jewelery.description}}</p>
@@ -23,9 +23,9 @@
 		<a href="/">Back</a>
 	</div>
 	<div class="footer col4 row4">
-		<form method="POST" action="">
-			<input name="reportId" type="hidden" value="{{jewelery.reportId}}" />
-			<input name="imageUrl" type="hidden" value="/uploads/{{jewelery.reportId}}.jpg" />
+		<form class="pdfForm" method="POST" action="">
+			<input name="id" type="hidden" value="{{jewelery.id}}" />
+			<input name="imageUrl" type="hidden" value="/uploads/{{jewelery.id}}.jpg" />
 			<input name="date" type="hidden" value="{{jewelery.date}}" />
 			<input name="customerInfo" type="hidden" value="{{jewelery.customerInfo}}" />
 			<input name="description" type="hidden" value="{{jewelery.description}}" />
@@ -39,8 +39,8 @@
 			<input name="colorGrade" type="hidden" value="{{jewelery.colorGrade}}" />
 			<input name="clarityGrade" type="hidden" value="{{jewelery.clarityGrade}}" />
 			<input name="estimatedRetailReplacementValue" type="hidden" value="{{jewelery.estimatedRetailReplacementValue}}" />
-			<input name="emailAddress" type="text" placeholder="Enter an email address if you would like the PDF to be delivered there" />
-			<button>Generate PDF</button>
+			<input name="emailAddress" type="text" placeholder="Enter email address" />
+			<button>Generate and Send PDF</button>
 		</form>
 		{{> CRUD_footer id=jewelery._id }}
 	</div>

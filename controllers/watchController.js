@@ -32,7 +32,7 @@ exports.watch_detail_get = function(req, res, next) {
 exports.watch_detail_post = function(req, res, next) {
 	// check('emailAddress', 'Estimated retail replacement value must not be empty').isLength({ min: 1 }).trim(),
 	// Sanitize fields (using wildcard).
-	targetPath = path.join(__dirname, "../public/uploads/" + req.body.reportId + ".jpg");
+	targetPath = path.join(__dirname, "../public/uploads/" + req.body.imageUrl + ".jpg");
 	const docDefinition = {
 		content: [
 			{
@@ -55,7 +55,7 @@ exports.watch_detail_post = function(req, res, next) {
 					body: [
 						['Report ID', 'Date', 'Customer Info', 'Brand', 'Reference Number', 'Serial Number', 'Model', 'Movement',
 						'Case Diameter'],
-						[req.body.reportId, req.body.date, req.body.customerInfo, req.body.brand, req.body.referenceNumber, req.body.serialNumber,
+						[req.body._id, req.body.date, req.body.customerInfo, req.body.brand, req.body.referenceNumber, req.body.serialNumber,
 						req.body.model, req.body.movement, req.body.caseDiameter]
 					]
 				}
@@ -177,7 +177,6 @@ exports.watch_create_get = function(req, res, next) {
 exports.watch_create_post = [
 	// Validate fields.
 	upload.single('file'),
-	check('reportId', 'Report ID must not be empty.').isLength({ min: 1 }).trim(),
 	check('date', 'Date must not be empty.').isLength({ min: 1 }).trim(),
 	check('customerInfo', 'Customer Information must not be empty.').isLength({ min: 1 }).trim(),
 	check('brand', 'Brand must not be empty.').isLength({ min: 1 }).trim(),
@@ -196,7 +195,6 @@ exports.watch_create_post = [
 	check('condition', 'Condition must not be empty').isLength({ min: 1 }).trim(),
 	check('estimatedRetailReplacementValue', 'Estimated Retail Replacement Value must not be empty').isLength({ min: 1 }).trim(),
 	// Sanitize fields (using wildcard).
-	sanitizeBody('reportId').escape(),
 	sanitizeBody('date').escape(),
 	sanitizeBody('customerInfo').escape(),
 	sanitizeBody('brand').escape(),
@@ -217,12 +215,38 @@ exports.watch_create_post = [
 	// Process request after validation and sanitization.
 	(req, res, next) => {
 
+		// Extract the validation errors from a request.
+		const errors = validationResult(req);
+
+		// Create a Watch object with escaped and trimmed data.
+		var watch = new Watch(
+			{
+			  	date: req.body.date,
+				customerInfo: req.body.customerInfo,
+				brand: req.body.brand,
+				referenceNumber: req.body.referenceNumber,
+				serialNumber: req.body.serialNumber,
+				model: req.body.model,
+				movement: req.body.movement,
+				caseDiameter: req.body.caseDiameter,
+				bezelMaterial: req.body.bezelMaterial,
+				dial: req.body.dial,
+				braceletMaterial: req.body.braceletMaterial,
+				comments: req.body.comments,
+				claspMaterial: req.body.claspMaterial,
+				functions: req.body.functions,
+				year: req.body.year,
+				condition: req.body.condition,
+				estimatedRetailReplacementValue: req.body.estimatedRetailReplacementValue
+			}
+		);
+
 		if (req.file != null) {
 			const tempPath = req.file.path;
 			var fileEnding = tempPath.match(/\.[0-9a-z]{1,5}$/i);
 			var targetPath;
 			if (path.extname(req.file.originalname).toLowerCase() === ".jpg") {
-				targetPath = path.join(__dirname, "../public/uploads/" + req.body.reportId + ".jpg");
+				targetPath = path.join(__dirname, "../public/uploads/" + watch._id + ".jpg");
 				fs.rename(tempPath, targetPath, err => {
 					if (err) return next(err);
 			  	});
@@ -236,36 +260,10 @@ exports.watch_create_post = [
 			}
 		}
 
-		// Extract the validation errors from a request.
-		const errors = validationResult(req);
-
-		// Create a Watch object with escaped and trimmed data.
-		var watch = new Watch(
-		  { reportId: req.body.reportId,
-		  	date: req.body.date,
-			customerInfo: req.body.customerInfo,
-			brand: req.body.brand,
-			referenceNumber: req.body.referenceNumber,
-			serialNumber: req.body.serialNumber,
-			model: req.body.model,
-			movement: req.body.movement,
-			caseDiameter: req.body.caseDiameter,
-			bezelMaterial: req.body.bezelMaterial,
-			dial: req.body.dial,
-			braceletMaterial: req.body.braceletMaterial,
-			comments: req.body.comments,
-			claspMaterial: req.body.claspMaterial,
-			functions: req.body.functions,
-			year: req.body.year,
-			condition: req.body.condition,
-			estimatedRetailReplacementValue: req.body.estimatedRetailReplacementValue
-		   });
-
 		if (!errors.isEmpty()) {
 			// There are errors. Render form again with sanitized values/error messages.
 			res.render('watch_form', { title: 'Create Watch', watch: watch, errors: errors.array() });
-		}
-		else {
+		} else {
 			
 			// Data from form is valid. Save watch.
 			watch.save(function (err) {

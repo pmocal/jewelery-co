@@ -5,7 +5,10 @@
 	<div class="col123 row234">
 		<ul>
 			{{#each watch_list}}
-				<li><a href="/watches/{{this.id}}">{{this.customerInfo}}</a></li>
+				<li>
+					<a href="/watches/{{this.id}}">{{this.customerInfo}}</a>
+					<img src="/uploads/{{this.id}}.jpg" class="thumbnail">
+				</li>
 				<br>
 			{{/each}}
 		</ul>

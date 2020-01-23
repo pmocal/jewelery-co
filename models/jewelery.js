@@ -3,7 +3,6 @@ var Schema = mongoose.Schema;
 
 var JewelerySchema = new Schema(
 	{
-		reportId: {type: String, required: true},
 		date: {type: String, required: true},
 		customerInfo: {type: String, required: true},
 		description: {type: String, required: true},

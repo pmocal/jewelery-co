@@ -54,7 +54,7 @@ exports.jewelery_detail_post = function(req, res, next) {
 					body: [
 						['Report ID', 'Date', 'Customer Information', 'Description', 'Stone Type',
 						'Jewelery Weight', 'Total Stones', 'Comments'],
-						[req.body.reportId, req.body.date, req.body.customerInfo, req.body.description,
+						[req.body.id, req.body.date, req.body.customerInfo, req.body.description,
 						req.body.stoneType, req.body.jeweleryWeight, req.body.totalStones, req.body.comments]
 					]
 				}
@@ -156,7 +156,6 @@ exports.jewelery_create_get = function(req, res, next) {
 exports.jewelery_create_post = [
 	// Validate fields.
 	upload.single('file'),
-	check('reportId', 'Report ID must not be empty.').isLength({ min: 1 }).trim(),
 	check('date', 'Date must not be empty.').isLength({ min: 1 }).trim(),
 	check('customerInfo', 'Customer Information must not be empty.').isLength({ min: 1 }).trim(),
 	check('description', 'Description must not be empty.').isLength({ min: 1 }).trim(),
@@ -171,7 +170,6 @@ exports.jewelery_create_post = [
 	check('clarityGrade', 'Clarity Grade must not be empty').isLength({ min: 1 }).trim(),
 	check('estimatedRetailReplacementValue', 'Estimated retail replacement value must not be empty').isLength({ min: 1 }).trim(),
 	// Sanitize fields (using wildcard).
-	sanitizeBody('reportId').escape(),
 	sanitizeBody('date').escape(),
 	sanitizeBody('customerInfo').escape(),
 	sanitizeBody('description').escape(),
@@ -187,31 +185,12 @@ exports.jewelery_create_post = [
 	sanitizeBody('estimatedRetailReplacementValue').escape(),
 	// Process request after validation and sanitization.
 	(req, res, next) => {
-		if (req.file != null) {
-			const tempPath = req.file.path;
-			var fileEnding = tempPath.match(/\.[0-9a-z]{1,5}$/i);
-			var targetPath;
-			if (path.extname(req.file.originalname).toLowerCase() === ".jpg") {
-				targetPath = path.join(__dirname, "../public/uploads/" + req.body.reportId + ".jpg");
-				fs.rename(tempPath, targetPath, err => {
-					if (err) return next(err);
-			  	});
-			} else {
-				fs.unlink(tempPath, err => {
-					if (err) return next(err);
-					res.status(403)
-						.contentType("text/plain")
-						.end("Only .jpg files are allowed!");
-				});
-			}
-		}
 		// Extract the validation errors from a request.
 		const errors = validationResult(req);
 
 		// Create a Jewelery object with escaped and trimmed data.
 		var jewelery = new Jewelery(
 			{
-				reportId: req.body.reportId,
 				date: req.body.date,
 				customerInfo: req.body.customerInfo,
 				description: req.body.description,
@@ -228,11 +207,29 @@ exports.jewelery_create_post = [
 			}
 		);
 
+		if (req.file != null) {
+			const tempPath = req.file.path;
+			var fileEnding = tempPath.match(/\.[0-9a-z]{1,5}$/i);
+			var targetPath;
+			if (path.extname(req.file.originalname).toLowerCase() === ".jpg") {
+				targetPath = path.join(__dirname, "../public/uploads/" + jewelery._id + ".jpg");
+				fs.rename(tempPath, targetPath, err => {
+					if (err) return next(err);
+			  	});
+			} else {
+				fs.unlink(tempPath, err => {
+					if (err) return next(err);
+					res.status(403)
+						.contentType("text/plain")
+						.end("Only .jpg files are allowed!");
+				});
+			}
+		}
+		
 		if (!errors.isEmpty()) {
 			// There are errors. Render form again with sanitized values/error messages.
 			res.render('jewelery_form', { title: 'Create Jewelery', jewelery: jewelery, errors: errors.array() });
-		}
-		else {
+		} else {
 			// Data from form is valid. Save jewelery.
 			jewelery.save(function (err) {
 				if (err) { return next(err); }

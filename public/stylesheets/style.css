@@ -32,6 +32,10 @@ form {
 	font-size:0.8em;
 }
 
+.pdfForm {
+	text-align: center;
+}
+
 form * {
 	padding: 1%;
 	margin: 1%;
@@ -54,7 +58,7 @@ form input {
 
 form button {
 	font-size: 0.8em;
-	width: 70%;
+	width: auto;
 }
 
 .block {
@@ -141,6 +145,11 @@ form button {
 img {
 	max-height: 250px;
 	max-width: 250px;
+}
+
+.thumbnail {
+	max-height: 50px;
+	max-width: 50px;
 }
 
 .footer * {
