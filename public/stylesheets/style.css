@@ -1,6 +1,6 @@
 html, body {
 	height: 100%;
-	font-size: 1.3em;
+	font-size: 1.5em;
 	margin: 0%;
 	padding: 0%;
 	background-color: gainsboro;
@@ -58,6 +58,7 @@ form input {
 
 form button {
 	font-size: 0.8em;
+	height: auto;
 	width: auto;
 }
 
