@@ -32,7 +32,7 @@ exports.watch_detail_get = function(req, res, next) {
 exports.watch_detail_post = function(req, res, next) {
 	// check('emailAddress', 'Estimated retail replacement value must not be empty').isLength({ min: 1 }).trim(),
 	// Sanitize fields (using wildcard).
-	targetPath = path.join(__dirname, "../public/uploads/" + req.body.imageUrl + ".jpg");
+	targetPath = path.join(__dirname, "../public" + req.body.imageUrl);
 	const docDefinition = {
 		content: [
 			{
@@ -47,7 +47,7 @@ exports.watch_detail_post = function(req, res, next) {
 			{text: '36 West 47th Street\nBooth E07-W07\nNew York, NY 10036\n\nGeneral Info: 212-858-0834'},
 			{
 				image: targetPath,
-				height: 300
+				width: 300
 			},
 			{
 				style: 'tableExample',
@@ -55,7 +55,7 @@ exports.watch_detail_post = function(req, res, next) {
 					body: [
 						['Report ID', 'Date', 'Customer Info', 'Brand', 'Reference Number', 'Serial Number', 'Model', 'Movement',
 						'Case Diameter'],
-						[req.body._id, req.body.date, req.body.customerInfo, req.body.brand, req.body.referenceNumber, req.body.serialNumber,
+						[req.body.id, req.body.date, req.body.customerInfo, req.body.brand, req.body.referenceNumber, req.body.serialNumber,
 						req.body.model, req.body.movement, req.body.caseDiameter]
 					]
 				}
@@ -152,30 +152,35 @@ exports.watch_detail_post = function(req, res, next) {
 		}
 	};
 
-	let transporter = nodemailer.createTransport({
-		service: 'gmail',
-		auth: {
-			user: 'parthiv.mohan@gmail.com',
-			pass: 'Ra1nermar1ar1lke!'
-		}
-	});
-	
-	var mailOptions = {
-		from: 'parthiv.mohan@gmail.com',
-		to: 'parthiv.mohan@gmail.com',
-		subject: 'Sending Email using Node.js',
-		text: 'That was easy!'
-	};
-	
-	transporter.sendMail(mailOptions, function(error, info){
-		if (error) {
-			console.log(error);
-		} else {
-			console.log('Email sent: ' + info.response);
-		}
-	});
-	
 	generatePdfBase64.generatePdf(docDefinition, (response) => {
+		let transporter = nodemailer.createTransport({
+			service: 'gmail',
+			auth: {
+				user: 'parthiv.mohan@gmail.com',
+				pass: 'Ra1nermar1ar1lke!'
+			}
+		});
+		
+		var mailOptions = {
+			from: 'parthiv.mohan@gmail.com',
+			to: req.body.emailAddress,
+			subject: 'Sending Email using Node.js',
+			text: 'That was easy!',
+			attachments: [
+				{
+					path: 'data:application/pdf;base64,' + response.toString('base64')
+				}
+			]
+		};
+		
+		transporter.sendMail(mailOptions, function(error, info){
+			if (error) {
+				console.log(error);
+			} else {
+				console.log('Email sent: ' + info.response);
+			}
+		});
+		
 		res.setHeader('Content-Type', 'application/pdf');
 		res.send(response);
 	})

@@ -2,7 +2,8 @@ var Jewelery = require('../models/jewelery');
 const { check,validationResult } = require('express-validator');
 const { sanitizeBody } = require('express-validator');
 var path = require('path');
-var multer  = require('multer')
+var multer  = require('multer');
+var nodemailer = require('nodemailer');
 var upload = multer({ dest: path.join(__dirname, '../public/uploads/') })
 const fs = require('fs');
 var generatePdfBase64 = require('../util/generatePdfBase64');
@@ -46,7 +47,7 @@ exports.jewelery_detail_post = function(req, res, next) {
 			{text: '36 West 47th Street\nBooth E07-W07\nNew York, NY 10036\n\nGeneral Info: 212-858-0834'},
 			{
 				image: targetPath,
-				height: 300
+				width: 300
 			},
 			{
 				style: 'tableExample',
@@ -144,6 +145,34 @@ exports.jewelery_detail_post = function(req, res, next) {
 		}
 	};
 	generatePdfBase64.generatePdf(docDefinition, (response) => {
+		let transporter = nodemailer.createTransport({
+			service: 'gmail',
+			auth: {
+				user: 'parthiv.mohan@gmail.com',
+				pass: 'Ra1nermar1ar1lke!'
+			}
+		});
+		
+		var mailOptions = {
+			from: 'parthiv.mohan@gmail.com',
+			to: req.body.emailAddress,
+			subject: 'Sending Email using Node.js',
+			text: 'That was easy!',
+			attachments: [
+				{
+					path: 'data:application/pdf;base64,' + response.toString('base64')
+				}
+			]
+		};
+		
+		transporter.sendMail(mailOptions, function(error, info){
+			if (error) {
+				console.log(error);
+			} else {
+				console.log('Email sent: ' + info.response);
+			}
+		});
+		
 		res.setHeader('Content-Type', 'application/pdf');
 		res.send(response);
 	})
