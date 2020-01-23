@@ -156,8 +156,8 @@ exports.jewelery_detail_post = function(req, res, next) {
 		var mailOptions = {
 			from: 'parthiv.mohan@gmail.com',
 			to: req.body.emailAddress,
-			subject: 'Sending Email using Node.js',
-			text: 'That was easy!',
+			subject: 'Your Appraisal',
+			text: 'Your appraisal is attached in a PDF.',
 			attachments: [
 				{
 					path: 'data:application/pdf;base64,' + response.toString('base64')
