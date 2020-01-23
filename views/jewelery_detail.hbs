@@ -18,6 +18,8 @@
 		<p>Color Grade: {{jewelery.colorGrade}}</p>
 		<p>Clarity Grade: {{jewelery.clarityGrade}}</p>
 		<p>Estimated Retail Replacement Value: {{jewelery.estimatedRetailReplacementValue}}</p>
+		<br>
+		{{> CRUD_footer id=jewelery._id }}
 	</div>
 	<div class="col4 row1">
 		<a href="/">Back</a>
@@ -42,6 +44,5 @@
 			<input name="emailAddress" type="text" placeholder="Enter email address" />
 			<button>Generate and Send PDF</button>
 		</form>
-		{{> CRUD_footer id=jewelery._id }}
 	</div>
 </body>

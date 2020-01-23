@@ -22,6 +22,8 @@
 		<p>Year: {{watch.year}}</p>
 		<p>Condition: {{watch.condition}}</p>
 		<p>Estimated Retail Replacement Value: {{watch.estimatedRetailReplacementValue}}</p>
+		<br>
+		{{> CRUD_footer id=watch._id }}
 	</div>
 	<div class="col4 row1">
 		<a href="/">Back</a>
@@ -50,6 +52,5 @@
 			<input name="emailAddress" type="text" placeholder="Enter email address" />
 			<button>Generate and Send PDF</button>
 		</form>
-		{{> CRUD_footer id=watch._id }}
 	</div>
 </body>

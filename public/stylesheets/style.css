@@ -20,7 +20,7 @@ body {
 }
 
 h1 {
-	font-size: 2.2em;
+	font-size: 2em;
 	color: black;
 	font-weight: bold;
 }
@@ -58,7 +58,7 @@ form input {
 
 form button {
 	font-size: 0.8em;
-	height: 3em;
+	min-height: 3em;
 	width: auto;
 }
 
