@@ -151,19 +151,30 @@ exports.watch_detail_post = function(req, res, next) {
 			}
 		}
 	};
-	// let transporter = nodemailer.createTransport({
-	// 	host: "localhost",
-	// 	port: 3000,
-	// 	secure: false
-	// });
-	// var message = {
-	//   from: "parthiv.mohan@gmail.com",
-	//   to: "parthiv.mohan@gmail.com",
-	//   subject: "Message title",
-	//   text: "Plaintext version of the message",
-	//   html: "<p>HTML version of the message</p>"
-	// };
-	// transporter.sendMail(message);
+
+	let transporter = nodemailer.createTransport({
+		service: 'gmail',
+		auth: {
+			user: 'parthiv.mohan@gmail.com',
+			pass: 'Ra1nermar1ar1lke!'
+		}
+	});
+	
+	var mailOptions = {
+		from: 'parthiv.mohan@gmail.com',
+		to: 'parthiv.mohan@gmail.com',
+		subject: 'Sending Email using Node.js',
+		text: 'That was easy!'
+	};
+	
+	transporter.sendMail(mailOptions, function(error, info){
+		if (error) {
+			console.log(error);
+		} else {
+			console.log('Email sent: ' + info.response);
+		}
+	});
+	
 	generatePdfBase64.generatePdf(docDefinition, (response) => {
 		res.setHeader('Content-Type', 'application/pdf');
 		res.send(response);
