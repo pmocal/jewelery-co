@@ -1,6 +1,6 @@
 html, body {
 	height: 100%;
-	font-size: 1.5em;
+	font-size: 1.4em;
 	margin: 0%;
 	padding: 0%;
 	background-color: gainsboro;
@@ -14,8 +14,8 @@ body {
 	align-items: center;
 	text-align: center;
 	display: grid;  
-	grid-template-columns: minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr);
-	grid-template-rows: minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr);  
+	grid-template-columns: minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr);
+	grid-template-rows: minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr);  
 	grid-gap: 10px;
 }
 
@@ -32,7 +32,7 @@ form {
 	font-size:0.8em;
 }
 
-.pdfForm {
+.form {
 	text-align: center;
 }
 
@@ -101,8 +101,8 @@ form button {
 	grid-column-end: 5;
 }
 
-.col3 {
-	grid-column-start: 4;
+.col34 {
+	grid-column-start: 3;
 	grid-column-end: 5;
 }
 
@@ -121,10 +121,6 @@ form button {
 	grid-row-end: 4;
 }
 
-.row23 ul { /*detail page*/
-	padding-left: 5%;
-}
-
 .row234 { /*error stack trace*/
 	grid-row-start: 2;
 	grid-row-end: 5;
@@ -135,8 +131,23 @@ form button {
 	grid-row-end: 5;
 }
 
+.row345 { /*error stack trace*/
+	grid-row-start: 2;
+	grid-row-end: 6;
+}
+
+.row5 {
+	grid-row-start: 5;
+	grid-row-end: 6;
+}
+
+.row2345 {
+	grid-row-start: 2;
+	grid-row-end: 6;
+}
+
 .merchandise-title {
-	font-size: 2em;
+	font-size: 1.6em;
 }
 
 .merchandise-items {
@@ -146,11 +157,13 @@ form button {
 img {
 	max-height: 250px;
 	max-width: 250px;
+	padding: 1%;
 }
 
 .thumbnail {
 	max-height: 50px;
 	max-width: 50px;
+	padding: 0;
 }
 
 .footer * {

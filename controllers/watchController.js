@@ -8,7 +8,15 @@ var upload = multer({ dest: path.join(__dirname, '../public/uploads/') })
 const fs = require('fs');
 var generatePdfBase64 = require('../util/generatePdfBase64');
 
-exports.watch_list = function(req, res, next) {
+ensureAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+  	return next();
+  } else {
+  	res.send(401);
+  }
+}
+
+exports.watch_list = [ensureAuthenticated, function(req, res, next) {
 	Watch.find()
 		.exec(function(err, list_watches) {
 			if (err) {
@@ -16,10 +24,10 @@ exports.watch_list = function(req, res, next) {
 			}
 			res.render('watch_list', { title: 'Watch List', watch_list: list_watches});
 		})
-}
+}];
 
 //display detail page for a specific author
-exports.watch_detail_get = function(req, res, next) {
+exports.watch_detail_get = [ensureAuthenticated, function(req, res, next) {
 	Watch.findById(req.params.id)
 		.exec(function(err, watch) {
 			if (err) {
@@ -27,9 +35,9 @@ exports.watch_detail_get = function(req, res, next) {
 			}
 			res.render('watch_detail', { title: 'Watch Detail', watch: watch });
 		})
-};
+}];
 
-exports.watch_detail_post = function(req, res, next) {
+exports.watch_detail_post = [ensureAuthenticated, function(req, res, next) {
 	// check('emailAddress', 'Estimated retail replacement value must not be empty').isLength({ min: 1 }).trim(),
 	// Sanitize fields (using wildcard).
 	targetPath = path.join(__dirname, "../public" + req.body.imageUrl);
@@ -184,13 +192,14 @@ exports.watch_detail_post = function(req, res, next) {
 		res.setHeader('Content-Type', 'application/pdf');
 		res.send(response);
 	})
-};
+}];
 
-exports.watch_create_get = function(req, res, next) {
+exports.watch_create_get = [ensureAuthenticated, function(req, res, next) {
 	res.render('watch_form', { title: 'Create watch' });
-};
+}];
 
 exports.watch_create_post = [
+	ensureAuthenticated,
 	// Validate fields.
 	upload.single('file'),
 	check('date', 'Date must not be empty.').isLength({ min: 1 }).trim(),
@@ -291,7 +300,7 @@ exports.watch_create_post = [
 	}
 ];
 
-exports.watch_delete_get = function(req, res, next) {
+exports.watch_delete_get = [ensureAuthenticated, function(req, res, next) {
 	Watch.findById(req.params.id)
 		.exec(function(err, watch) {
 			if (err) {
@@ -304,9 +313,9 @@ exports.watch_delete_get = function(req, res, next) {
 			}
 			res.render('watch_delete', { title: 'Delete Watch', watch: watch });
 		})
-}
+}];
 
-exports.watch_delete_post = function(req, res, next) {
+exports.watch_delete_post = [ensureAuthenticated, function(req, res, next) {
 	Watch.findByIdAndRemove(req.params.id)
 		.exec(function(err, watch) {
 			if (err) {
@@ -323,4 +332,4 @@ exports.watch_delete_post = function(req, res, next) {
 				})
 			}
 		})
-}
+}];

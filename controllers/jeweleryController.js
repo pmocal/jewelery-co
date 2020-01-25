@@ -8,7 +8,7 @@ var upload = multer({ dest: path.join(__dirname, '../public/uploads/') })
 const fs = require('fs');
 var generatePdfBase64 = require('../util/generatePdfBase64');
 
-exports.jewelery_list = function(req, res, next) {
+exports.jewelery_list = [ensureAuthenticated, function(req, res, next) {
 	Jewelery.find()
 		.exec(function(err, list_jewelery) {
 			if (err) {
@@ -16,10 +16,10 @@ exports.jewelery_list = function(req, res, next) {
 			}
 			res.render('jewelery_list', { title: 'Jewelery List', jewelery_list: list_jewelery });
 		})
-}
+}];
 
 //display detail page for a specific author
-exports.jewelery_detail_get = function(req, res, next) {
+exports.jewelery_detail_get = [ensureAuthenticated, function(req, res, next) {
 	Jewelery.findById(req.params.id)
 		.exec(function(err, jewelery) {
 			if (err) {
@@ -27,9 +27,9 @@ exports.jewelery_detail_get = function(req, res, next) {
 			}
 			res.render('jewelery_detail', { title: 'Jewelery Detail', jewelery: jewelery });
 		})
-};
+}];
 
-exports.jewelery_detail_post = function(req, res, next) {
+exports.jewelery_detail_post = [ensureAuthenticated, function(req, res, next) {
 	// check('emailAddress', 'Estimated retail replacement value must not be empty').isLength({ min: 1 }).trim(),
 	// Sanitize fields (using wildcard).
 	targetPath = path.join(__dirname, "../public" + req.body.imageUrl);
@@ -176,13 +176,14 @@ exports.jewelery_detail_post = function(req, res, next) {
 		res.setHeader('Content-Type', 'application/pdf');
 		res.send(response);
 	})
-};
+}];
 
-exports.jewelery_create_get = function(req, res, next) {
+exports.jewelery_create_get = [ensureAuthenticated, function(req, res, next) {
 	res.render('jewelery_form', { title: 'Create jewelery' });
-};
+}];
 
 exports.jewelery_create_post = [
+	ensureAuthenticated,
 	// Validate fields.
 	upload.single('file'),
 	check('date', 'Date must not be empty.').isLength({ min: 1 }).trim(),
@@ -269,7 +270,7 @@ exports.jewelery_create_post = [
 	}
 ];
 
-exports.jewelery_delete_get = function(req, res, next) {
+exports.jewelery_delete_get = [ensureAuthenticated, function(req, res, next) {
 	Jewelery.findById(req.params.id)
 		.exec(function(err, jewelery) {
 			if (err) {
@@ -282,9 +283,9 @@ exports.jewelery_delete_get = function(req, res, next) {
 			}
 			res.render('jewelery_delete', { title: 'Delete Jewelery', jewelery: jewelery });
 		})
-}
+}];
 
-exports.jewelery_delete_post = function(req, res, next) {
+exports.jewelery_delete_post = [ensureAuthenticated, function(req, res, next) {
 	Jewelery.findByIdAndRemove(req.params.id)
 		.exec(function(err, jewelery) {
 			if (err) {
@@ -301,4 +302,4 @@ exports.jewelery_delete_post = function(req, res, next) {
 				})
 			}
 		})
-}
+}];
