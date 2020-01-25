@@ -21,12 +21,8 @@
 			<p>Estimated Retail Replacement Value: {{jewelery.estimatedRetailReplacementValue}}</p>
 		</div>
 	</div>
-	<div class="col34 row1">
-		<a href="/">Back</a>
-	</div>
-	<div class="col12 row5">
-		{{> CRUD_footer id=jewelery._id }}
-	</div>
+	{{> back_link}} 
+	{{> delete_footer id=jewelery._id }}
 	<div class="footer col34 row5">
 		<form class="form" method="POST" action="">
 			<input name="id" type="hidden" value="{{jewelery.id}}" />

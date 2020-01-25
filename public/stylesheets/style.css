@@ -60,6 +60,7 @@ form button {
 	font-size: 0.8em;
 	min-height: 3em;
 	width: auto;
+	min-width: 10%;
 }
 
 .block {

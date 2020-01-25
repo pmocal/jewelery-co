@@ -2,115 +2,117 @@
 	<div class="col12 row1">
 		<h1 class="merchandise-title">{{title}}</h1>
 	</div>
-	<div class="col23 row234 merchandise-items">
+	<div class="col23 row2345 merchandise-items">
 		<form method="POST" enctype="multipart/form-data" action="">
-			<p>A unique Report ID will be automatically generated.</p>
-			<p>
-				<label for="date">Date: </label>
-				{{#if jewelery}}
-					<input id="date" type="text" name="date" value="{{jewelery.date}}">
-				{{else}}
-					<input id="date" type="text" name="date">
-				{{/if}}
-			</p>
-			<p>
-				<label for="customerInfo">Customer Info: </label>
-				{{#if jewelery}}
-					<input id="customerInfo" name="customerInfo" value="{{jewelery.customerInfo}}">
-				{{else}}
-					<input id="customerInfo" name="customerInfo">
-				{{/if}}
-			</p>
-			<p>
-				<label for="description">Description: </label>
-				{{#if jewelery}}
-					<input id="description" name="description" value="{{jewelery.description}}">
-				{{else}}
-					<input id="description" name="description">
-				{{/if}}
-			</p>
-			<p>
-				<label for="stoneType">Stone Type: </label>
-				{{#if jewelery}}
-					<input id="stoneType" name="stoneType" value="{{jewelery.stoneType}}">
-				{{else}}
-					<input id="stoneType" name="stoneType">
-				{{/if}}
-			</p>
-			<p>
-				<label for="jeweleryWeight">Jewelery Weight: </label>
-				{{#if jewelery}}
-					<input id="jeweleryWeight" name="jeweleryWeight" value="{{jewelery.jeweleryWeight}}">
-				{{else}}
-					<input id="jeweleryWeight" name="jeweleryWeight">
-				{{/if}}
-			</p>
-			<p>
-				<label for="totalStones">Total Stones: </label>
-				{{#if jewelery}}
-					<input id="totalStones" name="totalStones" value="{{jewelery.totalStones}}">
-				{{else}}
-					<input id="totalStones" name="totalStones">
-				{{/if}}
-			</p>
-			<p>
-				<label for="comments">Comments: </label>
-				{{#if jewelery}}
-					<input id="comments" name="comments" value="{{jewelery.comments}}">
-				{{else}}
-					<input id="comments" name="comments">
-				{{/if}}
-			</p>
-			<p>
-				<label for="serialNumber">Serial Number: </label>
-				{{#if jewelery}}
-					<input id="serialNumber" name="serialNumber" value="{{jewelery.serialNumber}}">
-				{{else}}
-					<input id="serialNumber" name="serialNumber">
-				{{/if}}
-			</p>
-			<p>
-				<label for="metalType">Metal Type: </label>
-				{{#if jewelery}}
-					<input id="metalType" name="metalType" value="{{jewelery.metalType}}">
-				{{else}}
-					<input id="metalType" name="metalType">
-				{{/if}}
-			</p>
-			<p>
-				<label for="caratWeight">Carat Weight: </label>
-				{{#if jewelery}}
-					<input id="caratWeight" name="caratWeight" value="{{jewelery.caratWeight}}">
-				{{else}}
-					<input id="caratWeight" name="caratWeight">
-				{{/if}}
-			</p>
-			<p>
-				<label for="colorGrade">Color Grade: </label>
-				{{#if jewelery}}
-					<input id="colorGrade" name="colorGrade" value="{{jewelery.colorGrade}}">
-				{{else}}
-					<input id="colorGrade" name="colorGrade">
-				{{/if}}
-			</p>
-			<p>
-				<label for="clarityGrade">Clarity Grade: </label>
-				{{#if jewelery}}
-					<input id="clarityGrade" name="clarityGrade" value="{{jewelery.clarityGrade}}">
-				{{else}}
-					<input id="clarityGrade" name="clarityGrade">
-				{{/if}}
-			</p>
-			<p>
-				<label for="estimatedRetailReplacementValue">Estimated Retail Replacement Value: </label>
-				{{#if jewelery}}
-					<input id="estimatedRetailReplacementValue" name="estimatedRetailReplacementValue" value="{{jewelery.estimatedRetailReplacementValue}}">
-				{{else}}
-					<input id="estimatedRetailReplacementValue" name="estimatedRetailReplacementValue">
-				{{/if}}
-			</p>
-			<input type="file" name="file">
-			<div class="col23 row5">
+			<div class="col23 row234">
+				<p>A unique Report ID will be automatically generated.</p>
+				<p>
+					<label for="date">Date: </label>
+					{{#if jewelery}}
+						<input id="date" type="text" name="date" value="{{jewelery.date}}">
+					{{else}}
+						<input id="date" type="text" name="date">
+					{{/if}}
+				</p>
+				<p>
+					<label for="customerInfo">Customer Info: </label>
+					{{#if jewelery}}
+						<input id="customerInfo" name="customerInfo" value="{{jewelery.customerInfo}}">
+					{{else}}
+						<input id="customerInfo" name="customerInfo">
+					{{/if}}
+				</p>
+				<p>
+					<label for="description">Description: </label>
+					{{#if jewelery}}
+						<input id="description" name="description" value="{{jewelery.description}}">
+					{{else}}
+						<input id="description" name="description">
+					{{/if}}
+				</p>
+				<p>
+					<label for="stoneType">Stone Type: </label>
+					{{#if jewelery}}
+						<input id="stoneType" name="stoneType" value="{{jewelery.stoneType}}">
+					{{else}}
+						<input id="stoneType" name="stoneType">
+					{{/if}}
+				</p>
+				<p>
+					<label for="jeweleryWeight">Jewelery Weight: </label>
+					{{#if jewelery}}
+						<input id="jeweleryWeight" name="jeweleryWeight" value="{{jewelery.jeweleryWeight}}">
+					{{else}}
+						<input id="jeweleryWeight" name="jeweleryWeight">
+					{{/if}}
+				</p>
+				<p>
+					<label for="totalStones">Total Stones: </label>
+					{{#if jewelery}}
+						<input id="totalStones" name="totalStones" value="{{jewelery.totalStones}}">
+					{{else}}
+						<input id="totalStones" name="totalStones">
+					{{/if}}
+				</p>
+				<p>
+					<label for="comments">Comments: </label>
+					{{#if jewelery}}
+						<input id="comments" name="comments" value="{{jewelery.comments}}">
+					{{else}}
+						<input id="comments" name="comments">
+					{{/if}}
+				</p>
+				<p>
+					<label for="serialNumber">Serial Number: </label>
+					{{#if jewelery}}
+						<input id="serialNumber" name="serialNumber" value="{{jewelery.serialNumber}}">
+					{{else}}
+						<input id="serialNumber" name="serialNumber">
+					{{/if}}
+				</p>
+				<p>
+					<label for="metalType">Metal Type: </label>
+					{{#if jewelery}}
+						<input id="metalType" name="metalType" value="{{jewelery.metalType}}">
+					{{else}}
+						<input id="metalType" name="metalType">
+					{{/if}}
+				</p>
+				<p>
+					<label for="caratWeight">Carat Weight: </label>
+					{{#if jewelery}}
+						<input id="caratWeight" name="caratWeight" value="{{jewelery.caratWeight}}">
+					{{else}}
+						<input id="caratWeight" name="caratWeight">
+					{{/if}}
+				</p>
+				<p>
+					<label for="colorGrade">Color Grade: </label>
+					{{#if jewelery}}
+						<input id="colorGrade" name="colorGrade" value="{{jewelery.colorGrade}}">
+					{{else}}
+						<input id="colorGrade" name="colorGrade">
+					{{/if}}
+				</p>
+				<p>
+					<label for="clarityGrade">Clarity Grade: </label>
+					{{#if jewelery}}
+						<input id="clarityGrade" name="clarityGrade" value="{{jewelery.clarityGrade}}">
+					{{else}}
+						<input id="clarityGrade" name="clarityGrade">
+					{{/if}}
+				</p>
+				<p>
+					<label for="estimatedRetailReplacementValue">Estimated Retail Replacement Value: </label>
+					{{#if jewelery}}
+						<input id="estimatedRetailReplacementValue" name="estimatedRetailReplacementValue" value="{{jewelery.estimatedRetailReplacementValue}}">
+					{{else}}
+						<input id="estimatedRetailReplacementValue" name="estimatedRetailReplacementValue">
+					{{/if}}
+				</p>
+				<input type="file" name="file">
+			</div>
+			<div class="col234 row5 form">
 				<button>Submit</button>
 			</div>
 		</form>
@@ -122,7 +124,5 @@
 			</ul>
 		{{/if}}
 	</div>
-	<div class="col4 row1">
-		<a href="/">Back</a>
-	</div>
+	{{> back_link}}
 </body>

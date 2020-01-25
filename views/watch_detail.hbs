@@ -26,12 +26,8 @@
 			<br>
 		</div>
 	</div>
-	<div class="col34 row1">
-		<a href="/">Back</a>
-	</div>
-	<div class="col12 row5">
-		{{> CRUD_footer id=watch._id }}
-	</div>
+	{{> back_link}}
+	{{> delete_footer id=watch._id }}
 	<div class="footer col34 row5">
 		<form class="form" method="POST" action="">
 			<input name="id" type="hidden" value="{{watch.id}}" />
