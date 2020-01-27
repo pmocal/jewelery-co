@@ -3,10 +3,34 @@ const { check,validationResult } = require('express-validator');
 const { sanitizeBody } = require('express-validator');
 var path = require('path');
 var multer  = require('multer');
+const mongoDb = "mongodb+srv://" + process.env.DB_USER + ":" + 
+	process.env.DB_PASS + "@" + process.env.DB_HOST + "/jewelery-co-upwork?retryWrites=true&w=majority";
+const GridFsStorage = require("multer-gridfs-storage");
+
 var nodemailer = require('nodemailer');
-var upload = multer({ dest: path.join(__dirname, '../public/uploads/') })
 const fs = require('fs');
 var generatePdfBase64 = require('../util/generatePdfBase64');
+
+const storage = new GridFsStorage({
+	url: mongoDb,
+	file: (req, file) => {
+		return new Promise((resolve, reject) => {
+			crypto.randomBytes(16, (err, buf) => {
+				if (err) {
+					return reject(err)
+				}
+				const filename = file.originalname
+				const fileInfo = {
+					filename: filename,
+					bucketName: 'uploads',
+				}
+				resolve(fileInfo)
+			})
+		})
+	},
+})
+
+var upload = multer({ storage })
 
 exports.jewelery_list = [ensureAuthenticated, function(req, res, next) {
 	Jewelery.find()
@@ -245,7 +269,7 @@ exports.jewelery_create_post = [
 				targetPath = path.join(__dirname, "../public/uploads/" + jewelery._id + ".jpg");
 				fs.rename(tempPath, targetPath, err => {
 					if (err) return next(err);
-			  	});
+				});
 			} else {
 				fs.unlink(tempPath, err => {
 					if (err) return next(err);

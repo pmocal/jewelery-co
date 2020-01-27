@@ -1,5 +1,5 @@
 <body>
-	<div class="col12 row1">
+	<div class="col1 row1">
 		<h1 class="merchandise-title">{{title}}</h1>
 	</div>
 	<div class="col23 row234">
@@ -21,9 +21,13 @@
 			<p>Estimated Retail Replacement Value: {{jewelery.estimatedRetailReplacementValue}}</p>
 		</div>
 	</div>
-	{{> back_link}} 
-	{{> delete_footer id=jewelery._id }}
-	<div class="footer col34 row5">
+	<div class="col4 row1">
+		<a href="/">Back</a>
+	</div>
+	<div class="col1 row5">
+		<a href="./{{id}}/delete">Delete</a>
+	</div>
+	<div class="footer col4 row5">
 		<form class="form" method="POST" action="">
 			<input name="id" type="hidden" value="{{jewelery.id}}" />
 			<input name="imageUrl" type="hidden" value="/uploads/{{jewelery.id}}.jpg" />
