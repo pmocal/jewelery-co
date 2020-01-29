@@ -19,7 +19,7 @@ const mongoDb = "mongodb+srv://" + process.env.DB_USER + ":" +
 
 mongoose.connect(mongoDb, { useNewUrlParser: true });
 const db = mongoose.connection;
-
+var Grid = require('gridfs-stream');
 
 db.on("error", console.error.bind(console, "mongo connection error"));
 
@@ -88,6 +88,35 @@ app.post(
 );
 
 app.get("/log-out", user_controller.log_out);
+
+let gfs;
+db.once('open', () => {
+	gfs = Grid(mongoose.connection.db, mongoose.mongo);
+	gfs.collection('uploads');
+	console.log('Connection Successful');
+})
+
+app.get('/:filename', (req, res) => {
+	gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+		// Check if file
+		if (!file || file.length === 0) {
+			return res.status(404).json({
+				err: 'No file exists',
+			})
+		}
+
+		// Check if image
+		if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+			// Read output to browser
+			const readstream = gfs.createReadStream(file.filename);
+			readstream.pipe(res);
+		} else {
+			res.status(404).json({
+				err: 'Not an image',
+			})
+		}
+	})
+})
 
 var watchesRouter = require('./routes/watches');
 var jeweleryRouter = require('./routes/jewelery');

@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var WatchSchema = new Schema(
 	{
+		filename: {type: String},
 		date: {type: String, required: true},
 		customerInfo: {type: String, required: true},
 		brand: {type: String, required: true},

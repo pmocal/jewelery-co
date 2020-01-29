@@ -3,25 +3,31 @@
 		<div class="col12 row1">
 			<h1>Welcome {{user.username}}</h1>
 		</div>
-		<div class="col23 row234">
-			<a class="block" href="/jewelery/all">View past jewelery appraisals</a>
-			<br>
-			<a class="block" href="/watches/all">View past watch appraisals</a>
-			<br>
-			<a class="block" href="/jewelery/create">Create new jewelery appraisal</a>
-			<br>
-			<a class="block" href="/watches/create">Create new watch appraisal</a>
-		</div>
-		<div class="col4 row1">
+		<div class="col45 row1">
 			<a href="/log-out">Log Out</a>
 		</div>
-	{{else}}
-		<div class="col12 row1">
-			<h1>Log In</h1>
+		<div class="col234 row234">
+			<h2>Select one</h2>
+			<a href="/watches/all">
+				<img id="watch" src="/images/watch.svg">
+			</a>
+			<a href="/jewelery/all">
+				<img id="diamond" src="/images/diamond.svg">
+			</a>
 		</div>
-		<div class="col23 row2345">
+	{{else}}
+		<div class="col12345 row1">
+			<h1 class="logo">Manhattan Gemological Appraisals</h1>
+		</div>
+		<div class="col12 row2">
+			<h2>Log In</h2>
+		</div>
+		<div class="col45 row2">
+			<a href="/sign-up">Sign up</a>
+		</div>
+		<div class="col234 row345">
 			<form action="/log-in" method="POST">
-				<div class="col23 row234">
+				<div class="col23 row34">
 					<p>
 						<label for="username">Username</label>
 						<input name="username" placeholder="username" type="text" />
@@ -35,9 +41,6 @@
 					<button>Log In</button>
 				</div>
 			</form>
-		</div>
-		<div class="col4 row1">
-			<a href="/sign-up">Sign up</a>
 		</div>
 	{{/if}}
 </body>

@@ -1,11 +1,14 @@
 <body>
-	<div class="col1 row1">
+	<div class="col123 row1">
 		<h1 class="merchandise-title">{{title}}</h1>
 	</div>
-	<div class="col23 row234">
-		<p>Report ID: {{jewelery.id}}</p>
+	<div class="col45 row1">
+		<a href="/">Home</a>
+	</div>
+	<div class="col234 row234">
 		<div class="merchandise-items">
-			<img src="/uploads/{{jewelery.id}}.jpg">
+			<p>Report ID: {{jewelery.id}}</p>
+			<img src="/{{jewelery.filename}}">
 			<p>Date: {{jewelery.date}}</p>
 			<p>Customer Info: {{jewelery.customerInfo}}</p>
 			<p>Description: {{jewelery.description}}</p>
@@ -21,16 +24,13 @@
 			<p>Estimated Retail Replacement Value: {{jewelery.estimatedRetailReplacementValue}}</p>
 		</div>
 	</div>
-	<div class="col4 row1">
-		<a href="/">Back</a>
+	<div class="col12 row5">
+		<a href="./{{jewelery.id}}/delete">Delete</a>
 	</div>
-	<div class="col1 row5">
-		<a href="./{{id}}/delete">Delete</a>
-	</div>
-	<div class="footer col4 row5">
+	<div class="footer col345 row5">
 		<form class="form" method="POST" action="">
 			<input name="id" type="hidden" value="{{jewelery.id}}" />
-			<input name="imageUrl" type="hidden" value="/uploads/{{jewelery.id}}.jpg" />
+			<input name="imageUrl" type="hidden" value="/{{jewelery.filename}}" />
 			<input name="date" type="hidden" value="{{jewelery.date}}" />
 			<input name="customerInfo" type="hidden" value="{{jewelery.customerInfo}}" />
 			<input name="description" type="hidden" value="{{jewelery.description}}" />

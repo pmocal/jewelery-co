@@ -4,7 +4,9 @@ var router = express.Router();
 // Require controller modules.
 var watch_controller = require('../controllers/watchController');
 
-router.get('/all', watch_controller.watch_list);
+router.get('/all', watch_controller.watch_all);
+
+router.get('/list', watch_controller.watch_list);
 
 router.get('/create', watch_controller.watch_create_get);
 

@@ -1,11 +1,14 @@
 <body>
-	<div class="col1 row1">
+	<div class="col123 row1">
 		<h1 class="merchandise-title">{{title}}</h1>
 	</div>
-	<div class="col23 row234">
-		<p>Report ID: {{watch.id}}</p>
+	<div class="col45 row1">
+		<a href="/">Home</a>
+	</div>
+	<div class="col234 row234">
 		<div class="merchandise-items">
-			<img src="/uploads/{{watch.id}}.jpg">
+			<p>Report ID: {{watch.id}}</p>
+			<img src="/{{watch.filename}}">
 			<p>Date: {{watch.date}}</p>
 			<p>Customer Info: {{watch.customerInfo}}</p>
 			<p>Brand: {{watch.brand}}</p>
@@ -23,19 +26,15 @@
 			<p>Year: {{watch.year}}</p>
 			<p>Condition: {{watch.condition}}</p>
 			<p>Estimated Retail Replacement Value: {{watch.estimatedRetailReplacementValue}}</p>
-			<br>
 		</div>
 	</div>
-	<div class="col4 row1">
-		<a href="/">Back</a>
+	<div class="col12 row5">
+		<a href="./{{watch.id}}/delete">Delete</a>
 	</div>
-	<div class="col1 row5">
-		<a href="./{{id}}/delete">Delete</a>
-	</div>
-	<div class="footer col4 row5">
+	<div class="footer col345 row5">
 		<form class="form" method="POST" action="">
 			<input name="id" type="hidden" value="{{watch.id}}" />
-			<input name="imageUrl" type="hidden" value="/uploads/{{watch.id}}.jpg" />
+			<input name="imageUrl" type="hidden" value="/{{watch.filename}}" />
 			<input name="date" type="hidden" value="{{watch.date}}" />
 			<input name="customerInfo" type="hidden" value="{{watch.customerInfo}}" />
 			<input name="brand" type="hidden" value="{{watch.brand}}" />

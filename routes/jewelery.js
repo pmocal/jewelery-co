@@ -4,7 +4,9 @@ var router = express.Router();
 // Require controller modules.
 var jewelery_controller = require('../controllers/jeweleryController');
 
-router.get('/all', jewelery_controller.jewelery_list);
+router.get('/all', jewelery_controller.jewelery_all);
+
+router.get('/list', jewelery_controller.jewelery_list);
 
 router.get('/create', jewelery_controller.jewelery_create_get);
 
