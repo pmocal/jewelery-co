@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var WatchSchema = new Schema(
 	{
-		filename: {type: String},
+		photo: {type: Buffer},
 		date: {type: String, required: true},
 		customerInfo: {type: String, required: true},
 		brand: {type: String, required: true},
@@ -29,5 +29,11 @@ WatchSchema
 .get(function() {
 	return '/watches/' + this._id;
 });
+
+WatchSchema
+.virtual('photo_src')
+.get(function() {
+	return 'data:image/png;base64,' + this.photo.toString('base64');
+})
 
 module.exports = mongoose.model('Watch', WatchSchema);

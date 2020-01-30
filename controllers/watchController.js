@@ -1,11 +1,14 @@
-var Watch = require('../models/watch');
-const { check,validationResult, sanitizeBody } = require('express-validator');
-var path = require('path');
-var nodemailer = require('nodemailer');
-var generatePdfBase64 = require('../util/generatePdfBase64');
-var ensureAuthentication = require('../util/ensureAuthentication');
-var fileUpload = require('../util/fileUpload');
-var termsConditionsText = require('../util/termsConditionsText');
+const Watch = require('../models/watch');
+const { check, validationResult, sanitizeBody } = require('express-validator');
+const path = require('path');
+const fs = require('fs');
+const nodemailer = require('nodemailer');
+const generatePdfBase64 = require('../util/generatePdfBase64');
+const ensureAuthentication = require('../util/ensureAuthentication');
+const termsConditionsText = require('../util/termsConditionsText');
+const multer = require('multer');
+var storage = multer.memoryStorage()
+var upload = multer({ storage: storage })
 
 exports.watch_all = [
 	ensureAuthentication.noCache,
@@ -47,107 +50,121 @@ exports.watch_detail_get = [
 exports.watch_detail_post = [
 	ensureAuthentication.noCache,
 	ensureAuthentication.ensureAuthenticated,
+	sanitizeBody('emailAddress').escape(),
 	function(req, res, next) {
-		// check('emailAddress', 'Estimated retail replacement value must not be empty').isLength({ min: 1 }).trim(),
-		// Sanitize fields (using wildcard).
-		const docDefinition = {
-			content: [
-				{
-					text: 'Manhattan Gemological Appraisals',
-					color: 'royalblue',
-					style: 'header'
-				},
-				{
-					text: 'Diamond, High End Watches and Jewelery Experts',
-					style: 'subheader'
-				},
-				{text: '36 West 47th Street\nBooth E07-W07\nNew York, NY 10036\n\nGeneral Info: 212-858-0834'},
-				// {
-				// 	image: req.body.imageUrl,
-				// 	width: 300
-				// },
-				{
-					style: 'tableExample',
-					table: {
-						body: [
-							['Report ID', 'Date', 'Customer Info', 'Brand', 'Reference Number',
-							'Serial Number', 'Model', 'Movement', 'Case Diameter'],
-							[req.body.id, req.body.date, req.body.customerInfo, req.body.brand, req.body.referenceNumber, req.body.serialNumber,
-							req.body.model, req.body.movement, req.body.caseDiameter]
-						]
-					}
-				},
-				{
-					style: 'tableExample',
-					table: {
-						body: [
-							['Bezel Material', 'Dial', 'Bracelet Material', 'Comments', 'Clasp Material',
-							'Functions'],
-							[req.body.bezelMaterial, req.body.dial,
-							req.body.braceletMaterial, req.body.comments, req.body.claspMaterial, req.body.functions]
-						]
-					}
-				},
-				{
-					style: 'tableExample',
-					table: {
-						body: [
-							['Year', 'Condition', 'Estimated Retail Replacement Value'],
-							[req.body.year, req.body.condition, req.body.estimatedRetailReplacementValue]
-						]
-					}
-				},
-				{text: 'Terms, Conditions & Important Limitations', pageBreak: 'before', style: 'subheader', bold: true},
-				termsConditionsText.text
-			],
-			defaultStyle: {
-				font: 'Helvetica',
-				alignment: 'justify'
-			},
-			styles: {
-				header: {
-					fontSize: 24,
-					bold: true
-				},
-				subheader: {
-					fontSize: 18,
-					bold: true
+		Watch.findById(req.params.id)
+			.exec(function(err, watch) {
+				if (err) {
+					return next(err);
 				}
-			}
-		};
+				var backgroundUrl = 'data:image/png;base64,' +
+					fs.readFileSync(__dirname + '/../public/images/g604.png', { encoding: 'base64' });
+				const docDefinition = {
+					pageSize: 'LETTER',
+					background: [
+						{
+							image: backgroundUrl,
+							width: 600
+						}
+					],
+					content: [
+						{
+							text: 'Manhattan Gemological Appraisals',
+							color: 'royalblue',
+							style: 'header'
+						},
+						{
+							text: 'Diamond, High End Watches and Jewelery Experts',
+							style: 'subheader'
+						},
+						{text: '36 West 47th Street\nBooth E07-W07\nNew York, NY 10036\n\nGeneral Info: 212-858-0834'},
+						{
+							image: watch.photo_src,
+							width: 300
+						},
+						{
+							style: 'tableExample',
+							table: {
+								body: [
+									['Report ID', 'Date', 'Customer Info', 'Brand', 'Reference Number',
+									'Serial Number', 'Model', 'Movement', 'Case Diameter'],
+									[watch.id, watch.date, watch.customerInfo, watch.brand, watch.referenceNumber,
+									watch.serialNumber, watch.model, watch.movement, watch.caseDiameter]
+								]
+							}
+						},
+						{
+							style: 'tableExample',
+							table: {
+								body: [
+									['Bezel Material', 'Dial', 'Bracelet Material', 'Comments', 'Clasp Material',
+									'Functions'],
+									[watch.bezelMaterial, watch.dial, watch.braceletMaterial, watch.comments,
+									watch.claspMaterial, watch.functions]
+								]
+							}
+						},
+						{
+							style: 'tableExample',
+							table: {
+								body: [
+									['Year', 'Condition', 'Estimated Retail Replacement Value'],
+									[watch.year, watch.condition, watch.estimatedRetailReplacementValue]
+								]
+							}
+						},
+						{text: 'Terms, Conditions & Important Limitations', pageBreak: 'before', style: 'subheader', bold: true},
+						termsConditionsText.text
+					],
+					defaultStyle: {
+						font: 'Helvetica',
+						alignment: 'justify'
+					},
+					styles: {
+						header: {
+							fontSize: 24,
+							bold: true
+						},
+						subheader: {
+							fontSize: 18,
+							bold: true
+						}
+					}
+				};
 
-		generatePdfBase64.generatePdf(docDefinition, (response) => {
-			let transporter = nodemailer.createTransport({
-				service: 'gmail',
-				auth: {
-					user: 'parthiv.alt@gmail.com',
-					pass: 'Ra1nermar1ar1lke!'
-				}
-			});
-			
-			var mailOptions = {
-				from: 'parthiv.alt@gmail.com',
-				to: req.body.emailAddress,
-				subject: 'Your Watch Appraisal',
-				text: 'Your appraisal is attached in a PDF.',
-				attachments: [
-					{
-						path: 'data:application/pdf;base64,' + response.toString('base64')
-					}
-				]
-			};
-			
-			transporter.sendMail(mailOptions, function(error, info){
-				if (error) {
-					console.log(error);
-				} else {
-					console.log('Email sent: ' + info.response);
-				}
-			});
-			
-			res.setHeader('Content-Type', 'application/pdf');
-			res.send(response);
-		})
+				generatePdfBase64.generatePdf(docDefinition, (response) => {
+					let transporter = nodemailer.createTransport({
+						service: 'gmail',
+						auth: {
+							user: 'parthiv.alt@gmail.com',
+							pass: 'Ra1nermar1ar1lke!'
+						}
+					});
+					
+					var mailOptions = {
+						from: 'parthiv.alt@gmail.com',
+						to: req.body.emailAddress,
+						subject: 'Your Watch Appraisal',
+						text: 'Your appraisal is attached in a PDF.',
+						attachments: [
+							{
+								path: 'data:application/pdf;base64,' + response.toString('base64')
+							}
+						]
+					};
+					
+					transporter.sendMail(mailOptions, function(error, info){
+						if (error) {
+							console.log(error);
+						} else {
+							console.log('Email sent: ' + info.response);
+						}
+					});
+					
+					res.setHeader('Content-Type', 'application/pdf');
+					res.send(response);
+				})
+			})
 	}
 ];
 
@@ -163,7 +180,7 @@ exports.watch_create_post = [
 	ensureAuthentication.noCache,
 	ensureAuthentication.ensureAuthenticated,
 	// Validate fields.
-	fileUpload.upload.single('file'),
+	upload.single('file'),
 	check('date', 'Date must not be empty.').isLength({ min: 1 }).trim(),
 	check('customerInfo', 'Customer Information must not be empty.').isLength({ min: 1 }).trim(),
 	check('brand', 'Brand must not be empty.').isLength({ min: 1 }).trim(),
@@ -207,7 +224,7 @@ exports.watch_create_post = [
 		// Create a Watch object with escaped and trimmed data.
 		var watch = new Watch(
 			{
-				file: req.file.filename,
+				photo: req.file.buffer,
 			  	date: req.body.date,
 				customerInfo: req.body.customerInfo,
 				brand: req.body.brand,

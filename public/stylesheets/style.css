@@ -82,6 +82,10 @@ form button {
 	display: block;
 }
 
+.none {
+	text-decoration: none;
+}
+
 .merchandise-title {
 	font-size: 1.1em;
 }

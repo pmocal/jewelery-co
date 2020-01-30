@@ -8,7 +8,7 @@
 	<div class="col234 row234">
 		<div class="merchandise-items">
 			<p>Report ID: {{watch.id}}</p>
-			<img src="/{{watch.filename}}">
+			<img src="{{watch.photo_src}}">
 			<p>Date: {{watch.date}}</p>
 			<p>Customer Info: {{watch.customerInfo}}</p>
 			<p>Brand: {{watch.brand}}</p>
@@ -33,25 +33,6 @@
 	</div>
 	<div class="footer col345 row5">
 		<form class="form" method="POST" action="">
-			<input name="id" type="hidden" value="{{watch.id}}" />
-			<input name="imageUrl" type="hidden" value="/{{watch.filename}}" />
-			<input name="date" type="hidden" value="{{watch.date}}" />
-			<input name="customerInfo" type="hidden" value="{{watch.customerInfo}}" />
-			<input name="brand" type="hidden" value="{{watch.brand}}" />
-			<input name="referenceNumber" type="hidden" value="{{watch.referenceNumber}}" />
-			<input name="serialNumber" type="hidden" value="{{watch.serialNumber}}" />
-			<input name="model" type="hidden" value="{{watch.model}}" />
-			<input name="movement" type="hidden" value="{{watch.movement}}" />
-			<input name="caseDiameter" type="hidden" value="{{watch.caseDiameter}}" />
-			<input name="bezelMaterial" type="hidden" value="{{watch.bezelMaterial}}" />
-			<input name="dial" type="hidden" value="{{watch.dial}}" />
-			<input name="braceletMaterial" type="hidden" value="{{watch.braceletMaterial}}" />
-			<input name="comments" type="hidden" value="{{watch.comments}}" />
-			<input name="claspMaterial" type="hidden" value="{{watch.claspMaterial}}" />
-			<input name="functions" type="hidden" value="{{watch.functions}}" />
-			<input name="year" type="hidden" value="{{watch.year}}" />
-			<input name="condition" type="hidden" value="{{watch.condition}}" />
-			<input name="estimatedRetailReplacementValue" type="hidden" value="{{watch.estimatedRetailReplacementValue}}" />
 			<input name="emailAddress" type="text" placeholder="Enter email address" />
 			<button>Generate and Send PDF</button>
 		</form>

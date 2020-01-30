@@ -1,26 +1,27 @@
 require('dotenv').config()
-var express = require('express');
-var path = require('path');
+
+const express = require('express');
+const path = require('path');
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-
-var createError = require('http-errors');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
+const createError = require('http-errors');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const Grid = require('gridfs-stream');
 const mongoose = require("mongoose");
-var hbs = require('hbs');
-const Schema = mongoose.Schema;
+const hbs = require('hbs');
+const User = require('./models/user');
+const user_controller = require('./controllers/userController');
+const watchesRouter = require('./routes/watches');
+const jeweleryRouter = require('./routes/jewelery');
 
+const Schema = mongoose.Schema;
 const mongoDb = "mongodb+srv://" + process.env.DB_USER + ":" + 
 	process.env.DB_PASS + "@" + process.env.DB_HOST + "/jewelery-co-upwork?retryWrites=true&w=majority";
-
 mongoose.connect(mongoDb, { useNewUrlParser: true });
 const db = mongoose.connection;
-var Grid = require('gridfs-stream');
-
 db.on("error", console.error.bind(console, "mongo connection error"));
 
 var app = express();
@@ -30,9 +31,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
-var User = require('./models/user');
-var user_controller = require('./controllers/userController');
-
+// user auth
 passport.use(
 	new LocalStrategy((username, password, done) => {
 		User.findOne({ username: username }, (err, user) => {
@@ -74,11 +73,8 @@ app.use(function(req, res, next) {
 });
 
 app.get("/", user_controller.index);
-
 app.get("/sign-up", user_controller.sign_up_get);
-
 app.post("/sign-up", user_controller.sign_up_post);
-
 app.post(
 	"/log-in",
 	passport.authenticate("local", {
@@ -86,40 +82,7 @@ app.post(
 		failureRedirect: "/"
 	})
 );
-
 app.get("/log-out", user_controller.log_out);
-
-let gfs;
-db.once('open', () => {
-	gfs = Grid(mongoose.connection.db, mongoose.mongo);
-	gfs.collection('uploads');
-	console.log('Connection Successful');
-})
-
-app.get('/:filename', (req, res) => {
-	gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-		// Check if file
-		if (!file || file.length === 0) {
-			return res.status(404).json({
-				err: 'No file exists',
-			})
-		}
-
-		// Check if image
-		if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
-			// Read output to browser
-			const readstream = gfs.createReadStream(file.filename);
-			readstream.pipe(res);
-		} else {
-			res.status(404).json({
-				err: 'Not an image',
-			})
-		}
-	})
-})
-
-var watchesRouter = require('./routes/watches');
-var jeweleryRouter = require('./routes/jewelery');
 
 app.use(logger('dev'));
 app.use(express.json());

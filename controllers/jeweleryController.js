@@ -1,12 +1,11 @@
-var Jewelery = require('../models/jewelery');
-const { check,validationResult, sanitizeBody } = require('express-validator');
-var path = require('path');
-var nodemailer = require('nodemailer');
-var generatePdfBase64 = require('../util/generatePdfBase64');
-var ensureAuthentication = require('../util/ensureAuthentication');
-var fileUpload = require('../util/fileUpload');
-var termsConditionsText = require('../util/termsConditionsText');
-const fetch = require("node-fetch");
+const Jewelery = require('../models/jewelery');
+const { check, validationResult, sanitizeBody } = require('express-validator');
+const path = require('path');
+const fs = require('fs');
+const nodemailer = require('nodemailer');
+const generatePdfBase64 = require('../util/generatePdfBase64');
+const ensureAuthentication = require('../util/ensureAuthentication');
+const termsConditionsText = require('../util/termsConditionsText');
 
 exports.jewelery_all = [
 	ensureAuthentication.noCache,
@@ -164,7 +163,6 @@ exports.jewelery_create_post = [
 	ensureAuthentication.noCache,
 	ensureAuthentication.ensureAuthenticated,
 	// Validate fields.
-	fileUpload.upload.single('file'),
 	check('date', 'Date must not be empty.').isLength({ min: 1 }).trim(),
 	check('customerInfo', 'Customer Information must not be empty.').isLength({ min: 1 }).trim(),
 	check('description', 'Description must not be empty.').isLength({ min: 1 }).trim(),
