@@ -64,7 +64,7 @@ exports.watch_detail_post = [
 					background: [
 						{
 							image: backgroundUrl,
-							width: 600
+							width: 575
 						}
 					],
 					content: [
@@ -80,36 +80,34 @@ exports.watch_detail_post = [
 						{text: '36 West 47th Street\nBooth E07-W07\nNew York, NY 10036\n\nGeneral Info: 212-858-0834'},
 						{
 							image: watch.photo_src,
-							width: 300
+							width: 300,
+							style: 'imaging'
+						},
+						{
+							text: 'Grading Results',
+							style: 'subheader'
 						},
 						{
 							style: 'tableExample',
 							table: {
 								body: [
-									['Report ID', 'Date', 'Customer Info', 'Brand', 'Reference Number',
-									'Serial Number', 'Model', 'Movement', 'Case Diameter'],
-									[watch.id, watch.date, watch.customerInfo, watch.brand, watch.referenceNumber,
-									watch.serialNumber, watch.model, watch.movement, watch.caseDiameter]
-								]
-							}
-						},
-						{
-							style: 'tableExample',
-							table: {
-								body: [
-									['Bezel Material', 'Dial', 'Bracelet Material', 'Comments', 'Clasp Material',
-									'Functions'],
-									[watch.bezelMaterial, watch.dial, watch.braceletMaterial, watch.comments,
-									watch.claspMaterial, watch.functions]
-								]
-							}
-						},
-						{
-							style: 'tableExample',
-							table: {
-								body: [
-									['Year', 'Condition', 'Estimated Retail Replacement Value'],
-									[watch.year, watch.condition, watch.estimatedRetailReplacementValue]
+									['Grading Report', watch.id],
+									['Date', watch.date],
+									['Customer Info', watch.customerInfo],
+									['Brand', watch.brand],
+									['Reference Number', watch.referenceNumber],
+									['Serial Number', watch.serialNumber],
+									['Model', watch.model],
+									['Movement', watch.movement],
+									['Case Diameter', watch.caseDiameter],
+									['Bezel Material', watch.bezelMaterial],
+									['Dial', watch.dial],
+									['Comments', watch.comments],
+									['Clasp Material', watch.claspMaterial],
+									['Functions', watch.functions],
+									['Year', watch.year],
+									['Condition', watch.condition],
+									['Estimated Retail Replacement Value', watch.estimatedRetailReplacementValue]
 								]
 							}
 						},
@@ -128,6 +126,9 @@ exports.watch_detail_post = [
 						subheader: {
 							fontSize: 18,
 							bold: true
+						},
+						imaging: {
+							alignment: 'right'
 						}
 					}
 				};

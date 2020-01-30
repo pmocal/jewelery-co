@@ -63,7 +63,7 @@ exports.jewelery_detail_post = [
 					background: [
 						{
 							image: backgroundUrl,
-							width: 600
+							width: 575
 						}
 					],
 					content: [
@@ -79,28 +79,31 @@ exports.jewelery_detail_post = [
 						{text: '36 West 47th Street\nBooth E07-W07\nNew York, NY 10036\n\nGeneral Info: 212-858-0834'},
 						{
 							image: jewelery.photo_src,
-							width: 300
+							width: 300,
+							style: 'imaging'
+						},
+						{
+							text: 'Grading Results',
+							style: 'subheader'
 						},
 						{
 							style: 'tableExample',
 							table: {
 								body: [
-									['Report ID', 'Date', 'Customer Information', 'Description', 'Stone Type',
-									'Jewelery Weight', 'Total Stones', 'Comments'],
-									[jewelery.id, jewelery.date, jewelery.customerInfo, jewelery.description,
-									jewelery.stoneType, jewelery.jeweleryWeight, jewelery.totalStones, jewelery.comments]
-								]
-							}
-						},
-						{
-							style: 'tableExample',
-							table: {
-								body: [
-									['Serial Number',
-									'Metal Type', 'Carat Weight', 'Color Grade', 'Clarity Grade',
-									'Estimated Retail Replacement Value'],
-									[jewelery.serialNumber, jewelery.metalType, jewelery.caratWeight, jewelery.colorGrade,
-									req.body.clarityGrade, req.body.estimatedRetailReplacementValue]
+									['Grading Report', jewelery.id],
+									['Date', jewelery.date],
+									['Customer Information', jewelery.customerInfo],
+									['Description', jewelery.description],
+									['Stone Type', jewelery.stoneType],
+									['Jewelery Weight', jewelery.jeweleryWeight],
+									['Total Stones', jewelery.totalStones],
+									['Comments', jewelery.comments],
+									['Serial Number', jewelery.serialNumber],
+									['Metal Type', jewelery.metalType],
+									['Carat Weight', jewelery.caratWeight],
+									['Color Grade', jewelery.colorGrade],
+									['Clarity Grade', jewelery.clarityGrade],
+									['Estimated Retail Replacement Value', jewelery.estimatedRetailReplacementValue]
 								]
 							}
 							
@@ -120,6 +123,9 @@ exports.jewelery_detail_post = [
 						subheader: {
 							fontSize: 18,
 							bold: true
+						},
+						imaging: {
+							alignment: 'right'
 						}
 					}
 				};
