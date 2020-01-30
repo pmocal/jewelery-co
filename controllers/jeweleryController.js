@@ -6,6 +6,9 @@ const nodemailer = require('nodemailer');
 const generatePdfBase64 = require('../util/generatePdfBase64');
 const ensureAuthentication = require('../util/ensureAuthentication');
 const termsConditionsText = require('../util/termsConditionsText');
+const multer = require('multer');
+var storage = multer.memoryStorage()
+var upload = multer({ storage: storage })
 
 exports.jewelery_all = [
 	ensureAuthentication.noCache,
@@ -48,106 +51,112 @@ exports.jewelery_detail_post = [
 	ensureAuthentication.noCache,
 	ensureAuthentication.ensureAuthenticated,
 	function(req, res, next) {
-		// check('emailAddress', 'Estimated retail replacement value must not be empty').isLength({ min: 1 }).trim(),
-		// Sanitize fields (using wildcard).
-		var imageDataUrl;
-		fetch('/:' + req.body.imageUrl)
-		.then(response => {
-			var reader = new FileReader();
-			reader.onload = function(){ imageDataUrl = this.result; }; // <--- `this.result` contains a base64 data URI
-			reader.readAsDataURL(response);
-		});
-		const docDefinition = {
-			content: [
-				{
-					text: 'Manhattan Gemological Appraisals',
-					color: 'royalblue',
-					style: 'header'
-				},
-				{
-					text: 'Diamond, High End Watches and Jewelery Experts',
-					style: 'subheader'
-				},
-				{text: '36 West 47th Street\nBooth E07-W07\nNew York, NY 10036\n\nGeneral Info: 212-858-0834'},
-				{
-					image: imageDataUrl,
-					width: 300
-				},
-				{
-					style: 'tableExample',
-					table: {
-						body: [
-							['Report ID', 'Date', 'Customer Information', 'Description', 'Stone Type',
-							'Jewelery Weight', 'Total Stones', 'Comments'],
-							[req.body.id, req.body.date, req.body.customerInfo, req.body.description,
-							req.body.stoneType, req.body.jeweleryWeight, req.body.totalStones, req.body.comments]
-						]
-					}
-				},
-				{
-					style: 'tableExample',
-					table: {
-						body: [
-							['Serial Number',
-							'Metal Type', 'Carat Weight', 'Color Grade', 'Clarity Grade',
-							'Estimated Retail Replacement Value'],
-							[req.body.serialNumber, req.body.metalType, req.body.caratWeight, req.body.colorGrade,
-							req.body.clarityGrade, req.body.estimatedRetailReplacementValue]
-						]
-					}
-					
-				},
-				{text: 'Terms, Conditions & Important Limitations', pageBreak: 'before', style: 'subheader', bold: true},
-				termsConditionsText.text
-			],
-			defaultStyle: {
-				font: 'Helvetica',
-				alignment: 'justify'
-			},
-			styles: {
-				header: {
-					fontSize: 24,
-					bold: true
-				},
-				subheader: {
-					fontSize: 18,
-					bold: true
+		Jewelery.findById(req.params.id)
+			.exec(function(err, jewelery) {
+				if (err) {
+					return next(err);
 				}
-			}
-		};
+				var backgroundUrl = 'data:image/png;base64,' +
+					fs.readFileSync(__dirname + '/../public/images/g604.png', { encoding: 'base64' });
+				const docDefinition = {
+					pageSize: 'LETTER',
+					background: [
+						{
+							image: backgroundUrl,
+							width: 600
+						}
+					],
+					content: [
+						{
+							text: 'Manhattan Gemological Appraisals',
+							color: 'royalblue',
+							style: 'header'
+						},
+						{
+							text: 'Diamond, High End Watches and Jewelery Experts',
+							style: 'subheader'
+						},
+						{text: '36 West 47th Street\nBooth E07-W07\nNew York, NY 10036\n\nGeneral Info: 212-858-0834'},
+						{
+							image: jewelery.photo_src,
+							width: 300
+						},
+						{
+							style: 'tableExample',
+							table: {
+								body: [
+									['Report ID', 'Date', 'Customer Information', 'Description', 'Stone Type',
+									'Jewelery Weight', 'Total Stones', 'Comments'],
+									[jewelery.id, jewelery.date, jewelery.customerInfo, jewelery.description,
+									jewelery.stoneType, jewelery.jeweleryWeight, jewelery.totalStones, jewelery.comments]
+								]
+							}
+						},
+						{
+							style: 'tableExample',
+							table: {
+								body: [
+									['Serial Number',
+									'Metal Type', 'Carat Weight', 'Color Grade', 'Clarity Grade',
+									'Estimated Retail Replacement Value'],
+									[jewelery.serialNumber, jewelery.metalType, jewelery.caratWeight, jewelery.colorGrade,
+									req.body.clarityGrade, req.body.estimatedRetailReplacementValue]
+								]
+							}
+							
+						},
+						{text: 'Terms, Conditions & Important Limitations', pageBreak: 'before', style: 'subheader', bold: true},
+						termsConditionsText.text
+					],
+					defaultStyle: {
+						font: 'Helvetica',
+						alignment: 'justify'
+					},
+					styles: {
+						header: {
+							fontSize: 24,
+							bold: true
+						},
+						subheader: {
+							fontSize: 18,
+							bold: true
+						}
+					}
+				};
 
-		generatePdfBase64.generatePdf(docDefinition, (response) => {
-			let transporter = nodemailer.createTransport({
-				service: 'gmail',
-				auth: {
-					user: 'parthiv.alt@gmail.com',
-					pass: 'Ra1nermar1ar1lke!'
-				}
-			});
-			
-			var mailOptions = {
-				from: 'parthiv.alt@gmail.com',
-				to: req.body.emailAddress,
-				subject: 'Your Jewelery Appraisal',
-				text: 'Your appraisal is attached in a PDF.',
-				attachments: [
-					{
-						path: 'data:application/pdf;base64,' + response.toString('base64')
-					}
-				]
-			};
-			
-			transporter.sendMail(mailOptions, function(error, info){
-				if (error) {
-					console.log(error);
-				} else {
-					console.log('Email sent: ' + info.response);
-				}
-			});
-			
-			res.setHeader('Content-Type', 'application/pdf');
-			res.send(response);
-		})
+				generatePdfBase64.generatePdf(docDefinition, (response) => {
+					let transporter = nodemailer.createTransport({
+						service: 'gmail',
+						auth: {
+							user: 'parthiv.alt@gmail.com',
+							pass: 'Ra1nermar1ar1lke!'
+						}
+					});
+					
+					var mailOptions = {
+						from: 'parthiv.alt@gmail.com',
+						to: req.body.emailAddress,
+						subject: 'Your Jewelery Appraisal',
+						text: 'Your appraisal is attached in a PDF.',
+						attachments: [
+							{
+								path: 'data:application/pdf;base64,' + response.toString('base64')
+							}
+						]
+					};
+					
+					transporter.sendMail(mailOptions, function(error, info){
+						if (error) {
+							console.log(error);
+						} else {
+							console.log('Email sent: ' + info.response);
+						}
+					});
+					
+					res.setHeader('Content-Type', 'application/pdf');
+					res.send(response);
+				})
+			})
 	}
 ];
 
@@ -163,6 +172,7 @@ exports.jewelery_create_post = [
 	ensureAuthentication.noCache,
 	ensureAuthentication.ensureAuthenticated,
 	// Validate fields.
+	upload.single('file'),
 	check('date', 'Date must not be empty.').isLength({ min: 1 }).trim(),
 	check('customerInfo', 'Customer Information must not be empty.').isLength({ min: 1 }).trim(),
 	check('description', 'Description must not be empty.').isLength({ min: 1 }).trim(),
@@ -197,7 +207,7 @@ exports.jewelery_create_post = [
 		// Create a Jewelery object with escaped and trimmed data.
 		var jewelery = new Jewelery(
 			{
-				filename: req.file.filename,
+				photo: req.file.buffer,
 				date: req.body.date,
 				customerInfo: req.body.customerInfo,
 				description: req.body.description,

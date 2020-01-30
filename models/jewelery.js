@@ -29,4 +29,10 @@ JewelerySchema
 	return '/jewelery/' + this._id;
 });
 
+JewelerySchema
+.virtual('photo_src')
+.get(function() {
+	return 'data:image/png;base64,' + this.photo.toString('base64');
+})
+
 module.exports = mongoose.model('Jewelery', JewelerySchema);
