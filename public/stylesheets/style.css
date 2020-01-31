@@ -91,7 +91,7 @@ form button {
 }
 
 .merchandise-items {
-	font-size: 0.8em;
+	font-size: 0.4em;
 }
 
 pre {
@@ -105,8 +105,8 @@ pre {
 }
 
 img {
-	max-height: 250px;
-	max-width: 250px;
+	max-height: 150px;
+	max-width: 150px;
 	padding: 1%;
 }
 
