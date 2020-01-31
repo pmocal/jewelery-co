@@ -1,7 +1,6 @@
 const Watch = require('../models/watch');
 const { check, validationResult, sanitizeBody } = require('express-validator');
 const path = require('path');
-const fs = require('fs');
 const nodemailer = require('nodemailer');
 const generatePdfBase64 = require('../util/generatePdfBase64');
 const ensureAuthentication = require('../util/ensureAuthentication');
@@ -57,79 +56,99 @@ exports.watch_detail_post = [
 				if (err) {
 					return next(err);
 				}
-				var backgroundUrl = 'data:image/png;base64,' +
-					fs.readFileSync(__dirname + '/../public/images/g604.png', { encoding: 'base64' });
 				const docDefinition = {
-					pageSize: 'LETTER',
-					background: [
-						{
-							image: backgroundUrl,
-							width: 575
-						}
-					],
+					pageSize: 'SRA2',
+					pageMargins: [ 0, 0, 0, 0 ],
 					content: [
 						{
-							text: 'Manhattan Gemological Appraisals',
-							color: 'royalblue',
-							style: 'header'
+							image: __dirname + '/../public/images/watch_skeleton.png',
 						},
-						{
-							text: 'Diamond, High End Watches and Jewelery Experts',
-							style: 'subheader'
-						},
-						{text: '36 West 47th Street\nBooth E07-W07\nNew York, NY 10036\n\nGeneral Info: 212-858-0834'},
 						{
 							image: watch.photo_src,
 							width: 300,
-							style: 'imaging'
+							absolutePosition: {x:875, y:625}
 						},
 						{
-							text: 'Grading Results',
-							style: 'subheader'
+							text: watch.id,
+							absolutePosition: {x:410, y:510}
 						},
 						{
-							style: 'tableExample',
-							table: {
-								body: [
-									['Grading Report', watch.id],
-									['Date', watch.date],
-									['Customer Info', watch.customerInfo],
-									['Brand', watch.brand],
-									['Reference Number', watch.referenceNumber],
-									['Serial Number', watch.serialNumber],
-									['Model', watch.model],
-									['Movement', watch.movement],
-									['Case Diameter', watch.caseDiameter],
-									['Bezel Material', watch.bezelMaterial],
-									['Dial', watch.dial],
-									['Comments', watch.comments],
-									['Clasp Material', watch.claspMaterial],
-									['Functions', watch.functions],
-									['Year', watch.year],
-									['Condition', watch.condition],
-									['Estimated Retail Replacement Value', watch.estimatedRetailReplacementValue]
-								]
-							}
+							text: watch.date,
+							absolutePosition: {x:1027, y:510}
 						},
-						{text: 'Terms, Conditions & Important Limitations', pageBreak: 'before', style: 'subheader', bold: true},
-						termsConditionsText.text
+						{
+							text: watch.customerInfo,
+							absolutePosition: {x:86, y:668}
+						},
+						{
+							text: watch.brand,
+							absolutePosition: {x:86, y:765}
+						},
+						{
+							text: watch.claspMaterial,
+							absolutePosition: {x:450, y:765}
+						},
+						{
+							text: watch.referenceNumber,
+							absolutePosition: {x:86, y:825}
+						},
+						{
+							text: watch.serialNumber,
+							absolutePosition: {x:86, y:900}
+						},
+						{
+							text: watch.model,
+							absolutePosition: {x:86, y:975}
+						},
+						{
+							text: watch.movement,
+							absolutePosition: {x:86, y:1050}
+						},
+						{
+							text: watch.caseDiameter,
+							absolutePosition: {x:86, y:1120}
+						},
+						{
+							text: watch.bezelMaterial,
+							absolutePosition: {x:86, y:1195}
+						},
+						{
+							text: watch.dial,
+							absolutePosition: {x:86, y:1270}
+						},
+						{
+							text: watch.braceletMaterial,
+							absolutePosition: {x:86, y:1345}
+						},
+						{
+							text: watch.comments,
+							absolutePosition: {x:86, y:1425}
+						},
+						{
+							text: watch.functions,
+							absolutePosition: {x:450, y:835}
+						},
+						{
+							text: watch.year,
+							absolutePosition: {x:450, y:905}
+						},
+						{
+							text: watch.condition,
+							absolutePosition: {x:450, y:980}
+						},
+						{
+							text: watch.estimatedRetailReplacementValue,
+							absolutePosition: {x:86, y:1625}
+						},
+						{
+							image: __dirname + '/../public/images/terms.png',
+							pageBreak: 'before'
+						},
 					],
 					defaultStyle: {
 						font: 'Helvetica',
+						fontSize: 25,
 						alignment: 'justify'
-					},
-					styles: {
-						header: {
-							fontSize: 24,
-							bold: true
-						},
-						subheader: {
-							fontSize: 18,
-							bold: true
-						},
-						imaging: {
-							alignment: 'right'
-						}
 					}
 				};
 
