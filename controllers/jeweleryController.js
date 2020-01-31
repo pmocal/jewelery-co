@@ -50,84 +50,87 @@ exports.jewelery_detail_get = [
 exports.jewelery_detail_post = [
 	ensureAuthentication.noCache,
 	ensureAuthentication.ensureAuthenticated,
+	sanitizeBody('emailAddress').escape(),
 	function(req, res, next) {
 		Jewelery.findById(req.params.id)
 			.exec(function(err, jewelery) {
 				if (err) {
 					return next(err);
 				}
-				var backgroundUrl = 'data:image/png;base64,' +
-					fs.readFileSync(__dirname + '/../public/images/g604.png', { encoding: 'base64' });
 				const docDefinition = {
-					pageSize: 'LETTER',
-					background: [
-						{
-							image: backgroundUrl,
-							width: 575
-						}
-					],
+					pageSize: 'SRA2',
+					pageMargins: [ 0, 0, 0, 0 ],
 					content: [
 						{
-							text: 'Manhattan Gemological Appraisals',
-							color: 'royalblue',
-							style: 'header'
+							image: __dirname + '/../public/images/jewelery_skeleton.png',
 						},
-						{
-							text: 'Diamond, High End Watches and Jewelery Experts',
-							style: 'subheader'
-						},
-						{text: '36 West 47th Street\nBooth E07-W07\nNew York, NY 10036\n\nGeneral Info: 212-858-0834'},
 						{
 							image: jewelery.photo_src,
 							width: 300,
-							style: 'imaging'
+							absolutePosition: {x:875, y:625}
 						},
 						{
-							text: 'Grading Results',
-							style: 'subheader'
+							text: jewelery.id,
+							absolutePosition: {x:410, y:510}
 						},
 						{
-							style: 'tableExample',
-							table: {
-								body: [
-									['Grading Report', jewelery.id],
-									['Date', jewelery.date],
-									['Customer Information', jewelery.customerInfo],
-									['Description', jewelery.description],
-									['Stone Type', jewelery.stoneType],
-									['Jewelery Weight', jewelery.jeweleryWeight],
-									['Total Stones', jewelery.totalStones],
-									['Comments', jewelery.comments],
-									['Serial Number', jewelery.serialNumber],
-									['Metal Type', jewelery.metalType],
-									['Carat Weight', jewelery.caratWeight],
-									['Color Grade', jewelery.colorGrade],
-									['Clarity Grade', jewelery.clarityGrade],
-									['Estimated Retail Replacement Value', jewelery.estimatedRetailReplacementValue]
-								]
-							}
-							
+							text: jewelery.date,
+							absolutePosition: {x:1027, y:510}
 						},
-						{text: 'Terms, Conditions & Important Limitations', pageBreak: 'before', style: 'subheader', bold: true},
-						termsConditionsText.text
+						{
+							text: jewelery.customerInfo,
+							absolutePosition: {x:450, y:590}
+						},
+						{
+							text: jewelery.description,
+							absolutePosition: {x:86, y:715}
+						},
+						{
+							text: jewelery.stoneType,
+							absolutePosition: {x:86, y:805}
+						},
+						{
+							text: jewelery.jeweleryWeight,
+							absolutePosition: {x:86, y:910}
+						},
+						{
+							text: jewelery.totalStones,
+							absolutePosition: {x:86, y:1010}
+						},
+						{
+							text: jewelery.comments,
+							absolutePosition: {x:86, y:1115}
+						},
+						{
+							text: jewelery.metalType,
+							absolutePosition: {x:86, y:1315}
+						},
+						{
+							text: jewelery.caratWeight,
+							absolutePosition: {x:86, y:1400}
+						},
+						{
+							text: jewelery.colorGrade,
+							absolutePosition: {x:86, y:1500}
+						},
+						{
+							text: jewelery.clarityGrade,
+							absolutePosition: {x:86, y:1600}
+						},
+						{
+							text: jewelery.estimatedRetailReplacementValue,
+							absolutePosition: {x:86, y:1700}
+						},
+						{
+							image: __dirname + '/../public/images/terms.png',
+							pageBreak: 'before'
+						},
 					],
 					defaultStyle: {
 						font: 'Helvetica',
+						fontSize: 25,
 						alignment: 'justify'
 					},
-					styles: {
-						header: {
-							fontSize: 24,
-							bold: true
-						},
-						subheader: {
-							fontSize: 18,
-							bold: true
-						},
-						imaging: {
-							alignment: 'right'
-						}
-					}
 				};
 
 				generatePdfBase64.generatePdf(docDefinition, (response) => {

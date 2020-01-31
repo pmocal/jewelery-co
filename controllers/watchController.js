@@ -122,7 +122,7 @@ exports.watch_detail_post = [
 						},
 						{
 							text: watch.comments,
-							absolutePosition: {x:86, y:1425}
+							absolutePosition: {x:86, y:1430}
 						},
 						{
 							text: watch.functions,
