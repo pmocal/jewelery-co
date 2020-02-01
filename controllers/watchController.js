@@ -218,24 +218,6 @@ exports.watch_create_post = [
 	check('year', 'Year must not be empty').isLength({ min: 1 }).trim(),
 	check('condition', 'Condition must not be empty').isLength({ min: 1 }).trim(),
 	check('estimatedRetailReplacementValue', 'Estimated Retail Replacement Value must not be empty').isLength({ min: 1 }).trim(),
-	// Sanitize fields (using wildcard).
-	sanitizeBody('date').escape(),
-	sanitizeBody('customerInfo').escape(),
-	sanitizeBody('brand').escape(),
-	sanitizeBody('referenceNumber').escape(),
-	sanitizeBody('serialNumber').escape(),
-	sanitizeBody('model').escape(),
-	sanitizeBody('movement').escape(),
-	sanitizeBody('caseDiameter').escape(),
-	sanitizeBody('bezelMaterial').escape(),
-	sanitizeBody('dial').escape(),
-	sanitizeBody('braceletMaterial').escape(),
-	sanitizeBody('comments').escape(),
-	sanitizeBody('claspMaterial').escape(),
-	sanitizeBody('functions').escape(),
-	sanitizeBody('year').escape(),
-	sanitizeBody('condition').escape(),
-	sanitizeBody('estimatedRetailReplacementValue').escape(),
 	// Process request after validation and sanitization.
 	(req, res, next) => {
 

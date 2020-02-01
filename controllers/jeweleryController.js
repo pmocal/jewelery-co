@@ -103,19 +103,19 @@ exports.jewelery_detail_post = [
 						},
 						{
 							text: jewelery.metalType,
-							absolutePosition: {x:86, y:1315}
+							absolutePosition: {x:86, y:1215}
 						},
 						{
 							text: jewelery.caratWeight,
-							absolutePosition: {x:86, y:1400}
+							absolutePosition: {x:86, y:1300}
 						},
 						{
 							text: jewelery.colorGrade,
-							absolutePosition: {x:86, y:1500}
+							absolutePosition: {x:86, y:1400}
 						},
 						{
 							text: jewelery.clarityGrade,
-							absolutePosition: {x:86, y:1600}
+							absolutePosition: {x:86, y:1500}
 						},
 						{
 							text: jewelery.estimatedRetailReplacementValue,
@@ -195,20 +195,6 @@ exports.jewelery_create_post = [
 	check('colorGrade', 'Color Grade must not be empty').isLength({ min: 1 }).trim(),
 	check('clarityGrade', 'Clarity Grade must not be empty').isLength({ min: 1 }).trim(),
 	check('estimatedRetailReplacementValue', 'Estimated retail replacement value must not be empty').isLength({ min: 1 }).trim(),
-	// Sanitize fields (using wildcard).
-	sanitizeBody('date').escape(),
-	sanitizeBody('customerInfo').escape(),
-	sanitizeBody('description').escape(),
-	sanitizeBody('stoneType').escape(),
-	sanitizeBody('jeweleryWeight').escape(),
-	sanitizeBody('totalStones').escape(),
-	sanitizeBody('comments').escape(),
-	sanitizeBody('serialNumber').escape(),
-	sanitizeBody('metalType').escape(),
-	sanitizeBody('caratWeight').escape(),
-	sanitizeBody('colorGrade').escape(),
-	sanitizeBody('clarityGrade').escape(),
-	sanitizeBody('estimatedRetailReplacementValue').escape(),
 	// Process request after validation and sanitization.
 	(req, res, next) => {
 		// Extract the validation errors from a request.
