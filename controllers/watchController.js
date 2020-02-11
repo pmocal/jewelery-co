@@ -8,7 +8,6 @@ const termsConditionsText = require('../util/termsConditionsText');
 const multer = require('multer');
 var storage = multer.memoryStorage()
 var upload = multer({ storage: storage })
-const jo = require('jpeg-autorotate')
 
 exports.watch_all = [
 	ensureAuthentication.noCache,
@@ -227,15 +226,7 @@ exports.watch_create_post = [
 		// Create a Watch object with escaped and trimmed data.
 		var watch = new Watch(
 			{
-				photo: jo.rotate(req.file.buffer, {quality: 100}, (error, buffer, orientation, dimensions, quality) => {
-						if (error) {
-						    console.log('An error occurred when rotating the file: ' + error.message)
-						    return
-						}
-						console.log(`Orientation was ${orientation}`)
-						console.log(`Dimensions after rotation: ${dimensions.width}x${dimensions.height}`)
-						console.log(`Quality: ${quality}`)
-					}),
+				photo: req.file.buffer,
 			  	date: req.body.date,
 				customerInfo: req.body.customerInfo,
 				brand: req.body.brand,
