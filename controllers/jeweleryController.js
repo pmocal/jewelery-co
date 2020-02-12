@@ -135,18 +135,21 @@ exports.jewelery_detail_post = [
 
 				generatePdfBase64.generatePdf(docDefinition, (response) => {
 					let transporter = nodemailer.createTransport({
-						service: 'gmail',
+						sendmail: true,
+						host: 'vps31943.inmotionhosting.com',
+						port: 587,
+						secure: false,
 						auth: {
-							user: 'parthiv.alt@gmail.com',
-							pass: 'Ra1nermar1ar1lke!'
+							user: 'admin',
+							pass: 'Alpha4560!'
 						}
 					});
 					
 					var mailOptions = {
-						from: 'parthiv.alt@gmail.com',
+						from: 'admin@manhattangemologicalappraisals.com',
 						to: req.body.emailAddress,
 						subject: 'Your Jewelery Appraisal',
-						text: 'Your appraisal is attached in a PDF.',
+						text: 'Your appraisal is attached in a PDF. Do not reply to this email. Contact adamshalit@gmail.com instead.',
 						attachments: [
 							{
 								path: 'data:application/pdf;base64,' + response.toString('base64')
