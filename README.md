@@ -6,7 +6,8 @@ https://secure1.inmotionhosting.com/index/login
 Email: adamshalit@gmail.com
 Password: Alpha4560!
 
-server root password gtZ$Snz%YMm~1S.
+server 104.247.77.102
+root password gtZ$Snz%YMm~1S.
 
 mongodb+srv://admin:<password>@cluster0-y8kv1.mongodb.net/test?retryWrites=true&w=majority
 Username: pawn212nyc@gmail.com
