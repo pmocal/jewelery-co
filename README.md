@@ -11,3 +11,5 @@ server root password yum -y install
 mongodb+srv://admin:<password>@cluster0-y8kv1.mongodb.net/test?retryWrites=true&w=majority
 Username: pawn212nyc@gmail.com
 Password: Alpha4560!
+
+gtZ$Snz%YMm~1S.
