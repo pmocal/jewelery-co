@@ -62,7 +62,7 @@ exports.jewelery_detail_post = [
 					pageMargins: [ 0, 0, 0, 0 ],
 					content: [
 						{
-							image: __dirname + '/../public/images/jewelery_skeleton.png',
+							image: __dirname + '/../public/images/jewelery.png',
 						},
 						{
 							image: jewelery.photo_src,
