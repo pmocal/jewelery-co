@@ -9,7 +9,6 @@ const LocalStrategy = require("passport-local").Strategy;
 const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const Grid = require('gridfs-stream');
 const mongoose = require("mongoose");
 const hbs = require('hbs');
 const User = require('./models/user');
