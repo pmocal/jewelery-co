@@ -103,22 +103,22 @@ exports.jewelery_detail_post = [
 						},
 						{
 							text: jewelery.metalType,
-							absolutePosition: {x:86, y:1215}
-						},
-						{
-							text: jewelery.caratWeight,
 							absolutePosition: {x:86, y:1300}
 						},
 						{
-							text: jewelery.colorGrade,
+							text: jewelery.caratWeight,
 							absolutePosition: {x:86, y:1400}
 						},
 						{
-							text: jewelery.clarityGrade,
-							absolutePosition: {x:86, y:1500}
+							text: jewelery.colorGrade,
+							absolutePosition: {x:86, y:1480}
 						},
 						{
-							text: jewelery.estimatedRetailReplacementValue,
+							text: jewelery.clarityGrade,
+							absolutePosition: {x:86, y:1570}
+						},
+						{
+							text: '$' + jewelery.estimatedRetailReplacementValue,
 							absolutePosition: {x:86, y:1700}
 						},
 						{

@@ -137,7 +137,7 @@ exports.watch_detail_post = [
 							absolutePosition: {x:450, y:980}
 						},
 						{
-							text: watch.estimatedRetailReplacementValue,
+							text: "$" + watch.estimatedRetailReplacementValue,
 							absolutePosition: {x:86, y:1625}
 						},
 						{
