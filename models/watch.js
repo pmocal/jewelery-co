@@ -33,7 +33,11 @@ WatchSchema
 WatchSchema
 .virtual('photo_src')
 .get(function() {
-	return 'data:image/png;base64,' + this.photo.toString('base64');
+	if (this.photo) {
+		return 'data:image/png;base64,' + this.photo.toString('base64');
+	} else {
+		return;
+	}
 })
 
 module.exports = mongoose.model('Watch', WatchSchema);
