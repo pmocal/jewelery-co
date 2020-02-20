@@ -6,6 +6,7 @@ const nodemailer = require('nodemailer');
 const generatePdfBase64 = require('../util/generatePdfBase64');
 const ensureAuthentication = require('../util/ensureAuthentication');
 const termsConditionsText = require('../util/termsConditionsText');
+const customizeMongooseIDs = require('../util/customizeMongooseIDs');
 const multer = require('multer');
 var storage = multer.memoryStorage()
 var upload = multer({ storage: storage })
@@ -14,7 +15,7 @@ exports.jewelery_all = [
 	ensureAuthentication.noCache,
 	ensureAuthentication.ensureAuthenticated,
 	function(req, res, next) {
-		res.render("jewelery_all", { title: "Jewelery" });
+		res.render("jewelery_all", { title: "Jewelery Appraisals" });
 	}
 ];
 
@@ -27,7 +28,7 @@ exports.jewelery_list = [
 				if (err) {
 					return next(err);
 				}
-				res.render('jewelery_list', { title: 'Jewelery List', jewelery_list: list_jewelery });
+				res.render('jewelery_list', { title: 'Jewelery Appraisal List', jewelery_list: list_jewelery });
 			})
 	}
 ];
@@ -78,7 +79,7 @@ exports.jewelery_detail_post = [
 							absolutePosition: {x:1027, y:510}
 						},
 						{
-							text: jewelery.customerInfo,
+							text: 'Customer Info: ' + jewelery.customerInfo,
 							absolutePosition: {x:450, y:590}
 						},
 						{
@@ -176,7 +177,7 @@ exports.jewelery_create_get = [
 	ensureAuthentication.noCache,
 	ensureAuthentication.ensureAuthenticated,
 	function(req, res, next) {
-		res.render('jewelery_form', { title: 'Create jewelery' });
+		res.render('jewelery_form', { title: 'Create jewelery appraisal' });
 	}
 ];
 
@@ -205,6 +206,7 @@ exports.jewelery_create_post = [
 		// Create a Jewelery object with escaped and trimmed data.
 		var jewelery = new Jewelery(
 			{
+				_id: customizeMongoIDs.getNextSequence('userid'),
 				photo: req.file.buffer,
 				date: req.body.date,
 				customerInfo: req.body.customerInfo,

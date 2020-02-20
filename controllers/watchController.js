@@ -5,6 +5,7 @@ const nodemailer = require('nodemailer');
 const generatePdfBase64 = require('../util/generatePdfBase64');
 const ensureAuthentication = require('../util/ensureAuthentication');
 const termsConditionsText = require('../util/termsConditionsText');
+const customizeMongooseIDs = require('../util/customizeMongooseIDs');
 const multer = require('multer');
 var storage = multer.memoryStorage()
 var upload = multer({ storage: storage })
@@ -13,7 +14,7 @@ exports.watch_all = [
 	ensureAuthentication.noCache,
 	ensureAuthentication.ensureAuthenticated,
 	function(req, res, next) {
-		res.render("watch_all", { title: "Watches" });
+		res.render("watch_all", { title: "Watch Appraisals" });
 	}
 ];
 
@@ -26,7 +27,7 @@ exports.watch_list = [
 				if (err) {
 					return next(err);
 				}
-				res.render('watch_list', { title: 'Watch List', watch_list: list_watches});
+				res.render('watch_list', { title: 'Watch Appraisal List', watch_list: list_watches});
 			})
 	}
 ];
@@ -77,7 +78,7 @@ exports.watch_detail_post = [
 							absolutePosition: {x:1027, y:510}
 						},
 						{
-							text: watch.customerInfo,
+							text: 'Customer Info: ' + watch.customerInfo,
 							absolutePosition: {x:86, y:668}
 						},
 						{
@@ -195,7 +196,7 @@ exports.watch_create_get = [
 	ensureAuthentication.noCache,
 	ensureAuthentication.ensureAuthenticated,
 	function(req, res, next) {
-		res.render('watch_form', { title: 'Create watch' });
+		res.render('watch_form', { title: 'Create watch appraisal' });
 	}
 ];
 
@@ -229,6 +230,7 @@ exports.watch_create_post = [
 		// Create a Watch object with escaped and trimmed data.
 		var watch = new Watch(
 			{
+				_id: customizeMongoIDs.getNextSequence('userid'),
 				photo: req.file.buffer,
 			  	date: req.body.date,
 				customerInfo: req.body.customerInfo,
@@ -279,7 +281,7 @@ exports.watch_delete_get = [
 					err.status = 404;
 					return next(err);
 				}
-				res.render('watch_delete', { title: 'Delete Watch', watch: watch });
+				res.render('watch_delete', { title: 'Delete Watch Appraisal', watch: watch });
 			})
 	}
 ];

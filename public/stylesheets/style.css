@@ -1,6 +1,6 @@
 html, body {
 	height: 100%;
-	font-size: 1.1em;
+	font-size: 1.2em;
 	margin: 0%;
 	padding: 0%;
 	background-color: gainsboro;
@@ -40,6 +40,22 @@ form {
 
 .form {
 	text-align: center;
+}
+
+.merchandise-title {
+	font-size: 1.1em;
+}
+
+.merchandise-items {
+	font-size: 0.4em;
+}
+
+.merchandise-form form {
+	font-size: 0.55em;
+}
+
+.warning {
+	font-size: 0.65em;
 }
 
 form * {
@@ -84,14 +100,6 @@ form button {
 
 .none {
 	text-decoration: none;
-}
-
-.merchandise-title {
-	font-size: 1.1em;
-}
-
-.merchandise-items {
-	font-size: 0.4em;
 }
 
 pre {
