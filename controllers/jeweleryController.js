@@ -206,7 +206,7 @@ exports.jewelery_create_post = [
 		// Create a Jewelery object with escaped and trimmed data.
 		var jewelery = new Jewelery(
 			{
-				_id: customizeMongoIDs.getNextSequence('userid'),
+				_id: customizeMongooseIDs.getNextSequence('userid'),
 				photo: req.file.buffer,
 				date: req.body.date,
 				customerInfo: req.body.customerInfo,
