@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var WatchSchema = new Schema(
 	{
+		_id: {type: Number, required: true},
 		photo: {type: Buffer},
 		date: {type: String, required: true},
 		customerInfo: {type: String, required: true},

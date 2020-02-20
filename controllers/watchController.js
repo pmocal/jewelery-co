@@ -1,11 +1,11 @@
 const Watch = require('../models/watch');
+const Counter = require('../models/counter');
 const { check, validationResult, sanitizeBody } = require('express-validator');
 const path = require('path');
 const nodemailer = require('nodemailer');
 const generatePdfBase64 = require('../util/generatePdfBase64');
 const ensureAuthentication = require('../util/ensureAuthentication');
 const termsConditionsText = require('../util/termsConditionsText');
-const customizeMongooseIDs = require('../util/customizeMongooseIDs');
 const multer = require('multer');
 var storage = multer.memoryStorage()
 var upload = multer({ storage: storage })
@@ -224,46 +224,53 @@ exports.watch_create_post = [
 	check('estimatedRetailReplacementValue', 'Estimated Retail Replacement Value must not be empty').isLength({ min: 1 }).trim(),
 	// Process request after validation and sanitization.
 	(req, res, next) => {
-
-		// Extract the validation errors from a request.
-		const errors = validationResult(req);
-		// Create a Watch object with escaped and trimmed data.
-		var watch = new Watch(
-			{
-				_id: customizeMongooseIDs.getNextSequence('userid'),
-				photo: req.file.buffer,
-			  	date: req.body.date,
-				customerInfo: req.body.customerInfo,
-				brand: req.body.brand,
-				referenceNumber: req.body.referenceNumber,
-				serialNumber: req.body.serialNumber,
-				model: req.body.model,
-				movement: req.body.movement,
-				caseDiameter: req.body.caseDiameter,
-				bezelMaterial: req.body.bezelMaterial,
-				dial: req.body.dial,
-				braceletMaterial: req.body.braceletMaterial,
-				comments: req.body.comments,
-				claspMaterial: req.body.claspMaterial,
-				functions: req.body.functions,
-				year: req.body.year,
-				condition: req.body.condition,
-				estimatedRetailReplacementValue: req.body.estimatedRetailReplacementValue
-			}
-		);
-		
-		if (!errors.isEmpty()) {
-			// There are errors. Render form again with sanitized values/error messages.
-			res.render('watch_form', { title: 'Create Watch', watch: watch, errors: errors.array() });
-		} else {
-			
-			// Data from form is valid. Save watch.
-			watch.save(function (err) {
-				if (err) { return next(err); }
-					//successful - redirect to new watch record.
-					res.redirect(watch.url);
-				});
-		}
+		Counter.findByIdAndUpdate(
+				"userid",
+				{ $inc: { seq: 1 } },
+				{ new: true }
+			).exec(function(err, thedocument) {
+				if (err) {
+					return err;
+				}
+				// Extract the validation errors from a request.
+				const errors = validationResult(req);
+				// Create a Watch object with escaped and trimmed data.
+				var watch = new Watch(
+					{
+						_id: thedocument.seq,
+						photo: req.file.buffer,
+					  	date: req.body.date,
+						customerInfo: req.body.customerInfo,
+						brand: req.body.brand,
+						referenceNumber: req.body.referenceNumber,
+						serialNumber: req.body.serialNumber,
+						model: req.body.model,
+						movement: req.body.movement,
+						caseDiameter: req.body.caseDiameter,
+						bezelMaterial: req.body.bezelMaterial,
+						dial: req.body.dial,
+						braceletMaterial: req.body.braceletMaterial,
+						comments: req.body.comments,
+						claspMaterial: req.body.claspMaterial,
+						functions: req.body.functions,
+						year: req.body.year,
+						condition: req.body.condition,
+						estimatedRetailReplacementValue: req.body.estimatedRetailReplacementValue
+					}
+				);
+				
+				if (!errors.isEmpty()) {
+					// There are errors. Render form again with sanitized values/error messages.
+					res.render('watch_form', { title: 'Create Watch', watch: watch, errors: errors.array() });
+				} else {
+					// Data from form is valid. Save watch.
+					watch.save(function (err) {
+						if (err) { return next(err); }
+							//successful - redirect to new watch record.
+						res.redirect(watch.url);
+					});
+				}
+			})
 	}
 ];
 

@@ -1,12 +1,11 @@
 const Jewelery = require('../models/jewelery');
+const Counter = require('../models/counter');
 const { check, validationResult, sanitizeBody } = require('express-validator');
 const path = require('path');
-const fs = require('fs');
 const nodemailer = require('nodemailer');
 const generatePdfBase64 = require('../util/generatePdfBase64');
 const ensureAuthentication = require('../util/ensureAuthentication');
 const termsConditionsText = require('../util/termsConditionsText');
-const customizeMongooseIDs = require('../util/customizeMongooseIDs');
 const multer = require('multer');
 var storage = multer.memoryStorage()
 var upload = multer({ storage: storage })
@@ -201,40 +200,49 @@ exports.jewelery_create_post = [
 	check('estimatedRetailReplacementValue', 'Estimated retail replacement value must not be empty').isLength({ min: 1 }).trim(),
 	// Process request after validation and sanitization.
 	(req, res, next) => {
-		// Extract the validation errors from a request.
-		const errors = validationResult(req);
-		// Create a Jewelery object with escaped and trimmed data.
-		var jewelery = new Jewelery(
-			{
-				_id: customizeMongooseIDs.getNextSequence('userid'),
-				photo: req.file.buffer,
-				date: req.body.date,
-				customerInfo: req.body.customerInfo,
-				description: req.body.description,
-				stoneType: req.body.stoneType,
-				jeweleryWeight: req.body.jeweleryWeight,
-				totalStones: req.body.totalStones,
-				comments: req.body.comments,
-				serialNumber: req.body.serialNumber,
-				metalType: req.body.metalType,
-				caratWeight: req.body.caratWeight,
-				colorGrade: req.body.colorGrade,
-				clarityGrade: req.body.clarityGrade,
-				estimatedRetailReplacementValue: req.body.estimatedRetailReplacementValue,
-			}
-		);
-				
-		if (!errors.isEmpty()) {
-			// There are errors. Render form again with sanitized values/error messages.
-			res.render('jewelery_form', { title: 'Create Jewelery', jewelery: jewelery, errors: errors.array() });
-		} else {
-			// Data from form is valid. Save jewelery.
-			jewelery.save(function (err) {
-				if (err) { return next(err); }
-				//successful - redirect to new watch record.
-				res.redirect(jewelery.url);
-			});
-		}
+		Counter.findByIdAndUpdate(
+				"userid",
+				{ $inc: { seq: 1 } },
+				{ new: true }
+			).exec(function(err, thedocument) {
+				if (err) {
+					return err;
+				}
+				// Extract the validation errors from a request.
+				const errors = validationResult(req);
+				// Create a Jewelery object with escaped and trimmed data.
+				var jewelery = new Jewelery(
+					{
+						_id: customizeMongooseIDs.getNextSequence('userid'),
+						photo: req.file.buffer,
+						date: req.body.date,
+						customerInfo: req.body.customerInfo,
+						description: req.body.description,
+						stoneType: req.body.stoneType,
+						jeweleryWeight: req.body.jeweleryWeight,
+						totalStones: req.body.totalStones,
+						comments: req.body.comments,
+						serialNumber: req.body.serialNumber,
+						metalType: req.body.metalType,
+						caratWeight: req.body.caratWeight,
+						colorGrade: req.body.colorGrade,
+						clarityGrade: req.body.clarityGrade,
+						estimatedRetailReplacementValue: req.body.estimatedRetailReplacementValue,
+					}
+				);
+						
+				if (!errors.isEmpty()) {
+					// There are errors. Render form again with sanitized values/error messages.
+					res.render('jewelery_form', { title: 'Create Jewelery', jewelery: jewelery, errors: errors.array() });
+				} else {
+					// Data from form is valid. Save jewelery.
+					jewelery.save(function (err) {
+						if (err) { return next(err); }
+						//successful - redirect to new watch record.
+						res.redirect(jewelery.url);
+					});
+				}
+			})
 	}
 ];
 
