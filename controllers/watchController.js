@@ -66,8 +66,8 @@ exports.watch_detail_post = [
 						},
 						{
 							image: watch.photo_src,
-							width: 300,
-							absolutePosition: {x:875, y:625}
+							width: 450,
+							absolutePosition: {x:600, y:1000}
 						},
 						{
 							text: watch.id,

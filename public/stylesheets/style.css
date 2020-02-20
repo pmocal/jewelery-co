@@ -19,6 +19,13 @@ body {
 	grid-gap: 10px;
 }
 
+.expand {
+	display: grid;
+	grid-template-columns: minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr);
+	grid-template-rows: minmax(100px, auto) minmax(50px, auto) minmax(50px, auto) minmax(50px, auto) minmax(100px, auto);  
+	grid-gap: 10px;
+}
+
 h1 {
 	font-size: 1.5em;
 	color: royalblue;

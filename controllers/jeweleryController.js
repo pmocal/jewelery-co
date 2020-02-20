@@ -66,8 +66,8 @@ exports.jewelery_detail_post = [
 						},
 						{
 							image: jewelery.photo_src,
-							width: 300,
-							absolutePosition: {x:875, y:625}
+							width: 450,
+							absolutePosition: {x:600, y:715}
 						},
 						{
 							text: jewelery.id,
@@ -78,7 +78,7 @@ exports.jewelery_detail_post = [
 							absolutePosition: {x:1027, y:510}
 						},
 						{
-							text: 'Customer Info: ' + jewelery.customerInfo,
+							text: 'Customer Information: ' + jewelery.customerInfo,
 							absolutePosition: {x:450, y:590}
 						},
 						{

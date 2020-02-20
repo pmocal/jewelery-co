@@ -1,4 +1,4 @@
-<body>
+<body class="expand">
 	<div class="col123 row1">
 		<h1>{{title}}</h1>
 	</div>
@@ -7,7 +7,7 @@
 		<ul>
 			{{#each jewelery_list}}
 				<li>
-					<a href="/jewelery/{{this.id}}">{{this.customerInfo}}</a>
+					<a href="/jewelery/{{this._id}}">{{this.customerInfo}}</a>
 					<img src="{{this.photo_src}}" class="thumbnail">
 				</li>
 				<br>
