@@ -27,7 +27,7 @@ exports.jewelery_list = [
 				if (err) {
 					return next(err);
 				}
-				res.render('jewelery_list', { title: 'Jewelery Appraisal List', jewelery_list: list_jewelery });
+				res.render('jewelery_list', { title: 'Jewelery List', jewelery_list: list_jewelery });
 			})
 	}
 ];
@@ -176,7 +176,7 @@ exports.jewelery_create_get = [
 	ensureAuthentication.noCache,
 	ensureAuthentication.ensureAuthenticated,
 	function(req, res, next) {
-		res.render('jewelery_form', { title: 'Create jewelery appraisal' });
+		res.render('jewelery_form', { title: 'Create Jewelery' });
 	}
 ];
 

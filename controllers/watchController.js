@@ -27,7 +27,7 @@ exports.watch_list = [
 				if (err) {
 					return next(err);
 				}
-				res.render('watch_list', { title: 'Watch Appraisal List', watch_list: list_watches});
+				res.render('watch_list', { title: 'Watch List', watch_list: list_watches});
 			})
 	}
 ];
@@ -196,7 +196,7 @@ exports.watch_create_get = [
 	ensureAuthentication.noCache,
 	ensureAuthentication.ensureAuthenticated,
 	function(req, res, next) {
-		res.render('watch_form', { title: 'Create watch appraisal' });
+		res.render('watch_form', { title: 'Create Watch' });
 	}
 ];
 
@@ -288,7 +288,7 @@ exports.watch_delete_get = [
 					err.status = 404;
 					return next(err);
 				}
-				res.render('watch_delete', { title: 'Delete Watch Appraisal', watch: watch });
+				res.render('watch_delete', { title: 'Delete Watch', watch: watch });
 			})
 	}
 ];
