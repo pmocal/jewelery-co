@@ -53,7 +53,7 @@ form {
 }
 
 .merchandise-items {
-	font-size: 0.55em;
+	font-size: 0.6em;
 }
 
 .merchandise-form form {
@@ -71,6 +71,8 @@ form * {
 
 form p {
 	display: table-row;
+	font-weight: bold;
+	margin-bottom: 2%;
 }
 
 form label {
