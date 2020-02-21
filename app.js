@@ -18,7 +18,8 @@ const jeweleryRouter = require('./routes/jewelery');
 
 const Schema = mongoose.Schema;
 const mongoDb = "mongodb+srv://" + process.env.DB_USER + ":" + 
-	process.env.DB_PASS + "@" + process.env.DB_HOST + "/jewelery-co-upwork?retryWrites=true&w=majority";
+	process.env.DB_PASS + "@" + process.env.DB_HOST + "/" + 
+	process.env.DB_TABLE + "?retryWrites=true&w=majority";
 mongoose.connect(mongoDb, { useNewUrlParser: true, useFindAndModify: false });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
