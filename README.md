@@ -1,15 +1,5 @@
 # jewelery-co-upwork
 
-Create a webpage (that looks good on mobile as well) where a product is chosen, a series of fields is filled out, and a PDF is produced. One of the fields will be an email and the PDF should be mailed there. This site should be password protected. Fields should be stored to MongoDB as well as users, of course.
+Application built for a client so that they can generate jewelery appraisals for their clients.
 
-https://secure1.inmotionhosting.com/index/login
-Email: adamshalit@gmail.com
-Password: Alpha4560!
-
-server 104.247.77.102
-root password gtZ$Snz%YMm~1S.
-
-mongodb+srv://admin:<password>@cluster0-y8kv1.mongodb.net/test?retryWrites=true&w=majority
-Username: pawn212nyc@gmail.com
-Password: Alpha4560!
-
+Create an account using the codename "github".
