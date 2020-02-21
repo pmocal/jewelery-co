@@ -20,10 +20,9 @@ body {
 }
 
 .expand {
-	display: grid;
+	height: auto;
 	grid-template-columns: minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr);
-	grid-template-rows: auto auto auto auto auto;  
-	grid-gap: 10px;
+	grid-template-rows: 100px auto auto auto 100px;  
 }
 
 h1 {
