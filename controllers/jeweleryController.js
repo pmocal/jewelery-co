@@ -27,7 +27,7 @@ exports.jewelery_list = [
 				if (err) {
 					return next(err);
 				}
-				res.render('jewelery_list', { title: 'Jewelery List', jewelery_list: list_jewelery });
+				res.render('jewelery_list', { title: 'Jewelery', jewelery_list: list_jewelery });
 			})
 	}
 ];

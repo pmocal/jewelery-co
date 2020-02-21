@@ -27,7 +27,7 @@ exports.watch_list = [
 				if (err) {
 					return next(err);
 				}
-				res.render('watch_list', { title: 'Watch List', watch_list: list_watches});
+				res.render('watch_list', { title: 'Watches', watch_list: list_watches});
 			})
 	}
 ];
