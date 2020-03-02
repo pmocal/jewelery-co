@@ -150,13 +150,13 @@ exports.watch_detail_post = [
 					let transporter = nodemailer.createTransport({
 						service: 'gmail',
 						auth: {
-							user: 'parthiv.alt@gmail.com',
-							pass: 'Nextwave21'
+							user: process.env.EMAIL_USER,
+							pass: process.env.EMAIL_PASS
 						}
 					});
 					
 					var mailOptions = {
-						from: 'admin@manhattangemologicalappraisals.com',
+						from: process.env.EMAIL_USER,
 						to: req.body.emailAddress,
 						subject: 'Your Watch Appraisal',
 						text: 'Your appraisal is attached in a PDF.',
