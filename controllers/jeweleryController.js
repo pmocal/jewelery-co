@@ -62,9 +62,6 @@ exports.jewelery_detail_post = [
 					pageMargins: [ 0, 0, 0, 0 ],
 					content: [
 						{
-							image: __dirname + '/../public/images/jewelery.png',
-						},
-						{
 							image: jewelery.photo_src,
 							width: 450,
 							absolutePosition: {x:600, y:715}
@@ -121,10 +118,6 @@ exports.jewelery_detail_post = [
 							text: '$' + jewelery.estimatedRetailReplacementValue,
 							absolutePosition: {x:86, y:1700}
 						},
-						{
-							image: __dirname + '/../public/images/terms.png',
-							pageBreak: 'before'
-						},
 					],
 					defaultStyle: {
 						font: 'Helvetica',
@@ -135,13 +128,10 @@ exports.jewelery_detail_post = [
 
 				generatePdfBase64.generatePdf(docDefinition, (response) => {
 					let transporter = nodemailer.createTransport({
-						sendmail: true,
-						host: 'vps31943.inmotionhosting.com',
-						port: 587,
-						secure: false,
+						service: 'gmail',
 						auth: {
-							user: 'admin',
-							pass: 'Alpha4560!'
+							user: 'parthiv.alt@gmail.com',
+							pass: 'Nextwave21'
 						}
 					});
 					
@@ -149,7 +139,7 @@ exports.jewelery_detail_post = [
 						from: 'admin@manhattangemologicalappraisals.com',
 						to: req.body.emailAddress,
 						subject: 'Your Jewelery Appraisal',
-						text: 'Your appraisal is attached in a PDF. Do not reply to this email. Contact adamshalit@gmail.com instead.',
+						text: 'Your appraisal is attached in a PDF.',
 						attachments: [
 							{
 								path: 'data:application/pdf;base64,' + response.toString('base64')

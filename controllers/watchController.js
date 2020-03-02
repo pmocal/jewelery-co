@@ -62,9 +62,6 @@ exports.watch_detail_post = [
 					pageMargins: [ 0, 0, 0, 0 ],
 					content: [
 						{
-							image: __dirname + '/../public/images/watch_skeleton.png',
-						},
-						{
 							image: watch.photo_src,
 							width: 450,
 							absolutePosition: {x:600, y:1000}
@@ -140,11 +137,7 @@ exports.watch_detail_post = [
 						{
 							text: "$" + watch.estimatedRetailReplacementValue,
 							absolutePosition: {x:86, y:1625}
-						},
-						{
-							image: __dirname + '/../public/images/terms.png',
-							pageBreak: 'before'
-						},
+						}
 					],
 					defaultStyle: {
 						font: 'Helvetica',
@@ -155,13 +148,10 @@ exports.watch_detail_post = [
 
 				generatePdfBase64.generatePdf(docDefinition, (response) => {
 					let transporter = nodemailer.createTransport({
-						sendmail: true,
-						host: 'vps31943.inmotionhosting.com',
-						port: 587,
-						secure: false,
+						service: 'gmail',
 						auth: {
-							user: 'admin',
-							pass: 'Alpha4560!'
+							user: 'parthiv.alt@gmail.com',
+							pass: 'Nextwave21'
 						}
 					});
 					
@@ -169,7 +159,7 @@ exports.watch_detail_post = [
 						from: 'admin@manhattangemologicalappraisals.com',
 						to: req.body.emailAddress,
 						subject: 'Your Watch Appraisal',
-						text: 'Your appraisal is attached in a PDF. Do not reply to this email. Contact adamshalit@gmail.com instead.',
+						text: 'Your appraisal is attached in a PDF.',
 						attachments: [
 							{
 								path: 'data:application/pdf;base64,' + response.toString('base64')
