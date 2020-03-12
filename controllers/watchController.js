@@ -9,6 +9,7 @@ const termsConditionsText = require('../util/termsConditionsText');
 const multer = require('multer');
 var storage = multer.memoryStorage()
 var upload = multer({ storage: storage })
+var moment = require('moment');
 
 exports.watch_all = [
 	ensureAuthentication.noCache,
@@ -186,7 +187,7 @@ exports.watch_create_get = [
 	ensureAuthentication.noCache,
 	ensureAuthentication.ensureAuthenticated,
 	function(req, res, next) {
-		res.render('watch_form', { title: 'Create Watch' });
+		res.render('watch_form', { title: 'Create Watch', date: moment().format('MM/DD/YYYY') });
 	}
 ];
 
@@ -228,7 +229,7 @@ exports.watch_create_post = [
 				var watch = new Watch(
 					{
 						_id: thedocument.seq,
-						photo: req.file.buffer,
+						photo: req.file ? req.file.buffer : null,
 					  	date: req.body.date,
 						customerInfo: req.body.customerInfo,
 						brand: req.body.brand,

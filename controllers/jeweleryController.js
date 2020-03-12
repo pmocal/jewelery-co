@@ -9,6 +9,7 @@ const termsConditionsText = require('../util/termsConditionsText');
 const multer = require('multer');
 var storage = multer.memoryStorage()
 var upload = multer({ storage: storage })
+var moment = require('moment');
 
 exports.jewelery_all = [
 	ensureAuthentication.noCache,
@@ -166,7 +167,7 @@ exports.jewelery_create_get = [
 	ensureAuthentication.noCache,
 	ensureAuthentication.ensureAuthenticated,
 	function(req, res, next) {
-		res.render('jewelery_form', { title: 'Create Jewelery' });
+		res.render('jewelery_form', { title: 'Create Jewelery', date: moment().format('MM/DD/YYYY') });
 	}
 ];
 
@@ -204,7 +205,7 @@ exports.jewelery_create_post = [
 				var jewelery = new Jewelery(
 					{
 						_id: thedocument.seq,
-						photo: req.file.buffer,
+						photo: req.file ? req.file.buffer : null,
 						date: req.body.date,
 						customerInfo: req.body.customerInfo,
 						description: req.body.description,
