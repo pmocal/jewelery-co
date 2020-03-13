@@ -68,11 +68,11 @@ exports.watch_detail_post = [
 							absolutePosition: {x:600, y:1000}
 						},
 						{
-							text: watch.id,
+							text: 'ID: ' + watch.id,
 							absolutePosition: {x:410, y:510}
 						},
 						{
-							text: watch.date,
+							text: 'Date: ' + watch.date,
 							absolutePosition: {x:1027, y:510}
 						},
 						{
@@ -80,63 +80,63 @@ exports.watch_detail_post = [
 							absolutePosition: {x:86, y:668}
 						},
 						{
-							text: watch.brand,
+							text: 'Brand: ' + watch.brand,
 							absolutePosition: {x:86, y:765}
 						},
 						{
-							text: watch.claspMaterial,
+							text: 'Clasp Material: ' + watch.claspMaterial,
 							absolutePosition: {x:450, y:765}
 						},
 						{
-							text: watch.referenceNumber,
+							text: 'Reference Number: ' + watch.referenceNumber,
 							absolutePosition: {x:86, y:825}
 						},
 						{
-							text: watch.serialNumber,
+							text: 'Serial Number: ' + watch.serialNumber,
 							absolutePosition: {x:86, y:900}
 						},
 						{
-							text: watch.model,
+							text: 'Model: ' + watch.model,
 							absolutePosition: {x:86, y:975}
 						},
 						{
-							text: watch.movement,
+							text: 'Movement: ' + watch.movement,
 							absolutePosition: {x:86, y:1050}
 						},
 						{
-							text: watch.caseDiameter,
+							text: 'Case Diameter: ' + watch.caseDiameter,
 							absolutePosition: {x:86, y:1120}
 						},
 						{
-							text: watch.bezelMaterial,
+							text: 'Bezel Material: ' + watch.bezelMaterial,
 							absolutePosition: {x:86, y:1195}
 						},
 						{
-							text: watch.dial,
+							text: 'Dial: ' + watch.dial,
 							absolutePosition: {x:86, y:1270}
 						},
 						{
-							text: watch.braceletMaterial,
+							text: 'Bracelet Material: ' + watch.braceletMaterial,
 							absolutePosition: {x:86, y:1345}
 						},
 						{
-							text: watch.comments,
+							text: 'Comments: ' + watch.comments,
 							absolutePosition: {x:86, y:1430}
 						},
 						{
-							text: watch.functions,
+							text: 'Functions: ' + watch.functions,
 							absolutePosition: {x:450, y:835}
 						},
 						{
-							text: watch.year,
+							text: 'Year: ' + watch.year,
 							absolutePosition: {x:450, y:905}
 						},
 						{
-							text: watch.condition,
+							text: 'Condition: ' + watch.condition,
 							absolutePosition: {x:450, y:980}
 						},
 						{
-							text: "$" + watch.estimatedRetailReplacementValue,
+							text: "Estimated Retail Replacement Value: $" + watch.estimatedRetailReplacementValue,
 							absolutePosition: {x:86, y:1625}
 						}
 					],

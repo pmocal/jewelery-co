@@ -68,11 +68,11 @@ exports.jewelery_detail_post = [
 							absolutePosition: {x:600, y:715}
 						},
 						{
-							text: jewelery.id,
+							text: 'ID: ' + jewelery.id,
 							absolutePosition: {x:410, y:510}
 						},
 						{
-							text: jewelery.date,
+							text: 'Date: ' + jewelery.date,
 							absolutePosition: {x:1027, y:510}
 						},
 						{
@@ -80,43 +80,43 @@ exports.jewelery_detail_post = [
 							absolutePosition: {x:450, y:590}
 						},
 						{
-							text: jewelery.description,
+							text: 'Description: ' + jewelery.description,
 							absolutePosition: {x:86, y:715}
 						},
 						{
-							text: jewelery.stoneType,
+							text: 'Stone Type: ' + jewelery.stoneType,
 							absolutePosition: {x:86, y:805}
 						},
 						{
-							text: jewelery.jeweleryWeight,
+							text: 'Jewelery Weight: ' + jewelery.jeweleryWeight,
 							absolutePosition: {x:86, y:910}
 						},
 						{
-							text: jewelery.totalStones,
+							text: 'Total Stones: ' + jewelery.totalStones,
 							absolutePosition: {x:86, y:1010}
 						},
 						{
-							text: jewelery.comments,
+							text: 'Comments: ' + jewelery.comments,
 							absolutePosition: {x:86, y:1115}
 						},
 						{
-							text: jewelery.metalType,
+							text: 'Metal Type: ' + jewelery.metalType,
 							absolutePosition: {x:86, y:1300}
 						},
 						{
-							text: jewelery.caratWeight,
+							text: 'Carat Weight: ' + jewelery.caratWeight,
 							absolutePosition: {x:86, y:1400}
 						},
 						{
-							text: jewelery.colorGrade,
+							text: 'Color Grade: ' + jewelery.colorGrade,
 							absolutePosition: {x:86, y:1480}
 						},
 						{
-							text: jewelery.clarityGrade,
+							text: 'Clarity Grade: ' + jewelery.clarityGrade,
 							absolutePosition: {x:86, y:1570}
 						},
 						{
-							text: '$' + jewelery.estimatedRetailReplacementValue,
+							text: 'Estimated Retail Replacement Value: $' + jewelery.estimatedRetailReplacementValue,
 							absolutePosition: {x:86, y:1700}
 						},
 					],
