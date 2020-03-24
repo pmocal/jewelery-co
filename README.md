@@ -1,5 +1,7 @@
 # jewelery-co-upwork
 
+![screen1.png](screen1.png) ![screen2.png](screen2.png)
+
 ## Description
 Application built for a client so that they can generate jewelery appraisals for their clients.
 
